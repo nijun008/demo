@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>es6 学习</title>
+    <style type="text/css">
+      
+    </style>
+</head>
+<body>
+  <div class="dom1"></div>
+  <div class="dom2"></div>
+  <img class="loadimg" src="" data-src="../img/logo.png">
+  <img class="loadimg" src="" data-src="https://eimg.smzdm.com/201711/22/5a152bd861e969533.jpg">
+<script type="text/javascript">
+
+  let a = 'a'
+  console.log(a)
+
+  //let非常适用于for循环
+  for (let i = 0; i < 10; i++) {
+    console.log(i)
+  }
+
+  //let作用域
+  {
+    let _a = '_a'
+    {
+      console.log(_a)
+    }
+  }
+
+  //const 指向的指针不可变
+  const _const = []
+  _const.push('1')
+  console.log(_const)
+
+  var _fn =   x => x * x
+  var _b = _fn(5)
+  console.log(_b)
+
+  let arr = [1,2,1,2,3,3,4,5]
+  let set = new Set()
+  console.log(set)
+  set.add(...arr)
+  console.log(set)
+
+  const preloadImage = function (path) {
+    return new Promise(function (resolve, reject) {
+      const image = new Image();
+      image.onload  = resolve;
+      image.onerror = reject;
+      image.src = path;
+    });
+  };
+
+  var img = document.querySelectorAll('.loadimg')
+  img.forEach(function (item, index, input) {
+    var src = item.getAttribute('data-src')
+    item.setAttribute('src', src)
+  })
+
+  function runAsync () {
+    var p = new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        console.log('执行完成')
+        resolve('成功')
+      }, 2000)
+    })
+    return p
+  }
+  runAsync()
+  .then(function () {
+    console.log('this is then function')
+  })
+  .catch(function (err) {
+    console.log(err)
+  })
+
+  function* GeneratorFn () {
+    yield 'hello'
+    yield 'world'
+    return 'end'
+  }
+  GeneratorFn ().next
+
+  class User {
+    consolefn(x) {
+      console.log(x)
+    }
+  }
+  var user1 = new User()
+
+  !function () {
+    console.log(this)
+  }()
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    @keyframes animate{
+        from{
+            transform: rotateY(10deg) rotateX(10deg);
+        }
+        to{
+            transform: rotateY(360deg) rotateX(360deg);
+        }
+    }
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    .wrap{
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 200px auto;
+    }
+    .box{
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        transform-style: preserve-3d;
+        transform: rotateY(10deg) rotateX(10deg);
+        transition: 0.5s;
+        cursor: pointer;
+    }
+    .box:hover{
+        /* transform: rotateY(190deg) rotateX(190deg); */
+        animation: 5s animate linear infinite;
+        /* transform: rotateX(-90deg); */
+    }
+    .box>div{
+        color: #fff;
+        width: 200px;
+        height: 200px;
+        position: absolute;
+    }
+    .one{
+        background-color: red;
+        transform: rotateY(0deg) translateZ(100px)
+    }
+    .two{
+        background-color: gray;
+        transform: rotateY(90deg) translateZ(100px)
+    }
+    .three{
+        background-color: #333;
+        transform: rotateX(180deg) translateZ(100px);
+    }
+    .four{
+        background-color: #3839d3;
+        transform: rotateY(-90deg) translateZ(100px);
+    }
+    .five{
+        background-color: #f8ed3c;
+        transform: rotateX(90deg) translateZ(100px);
+    }
+    .six{
+        background-color: pink;
+        transform: rotateX(-90deg) translateZ(100px);
+    }
+</style>
+<body>
+    <div class="wrap">
+        <div class="box">
+            <div class="one">1</div>
+            <div class="two">2</div>
+            <div class="three">3</div>
+            <div class="four">4</div>
+            <div class="five">5</div>
+            <div class="six">6</div>
+        </div>
+    </div>
+</body>
+</html>
