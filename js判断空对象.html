@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>js判断空对象</title>
+</head>
+<body>
+  <script type="text/javascript">
+    var a = {}
+    var b = { one: '' }
+
+    function nullFn (obj) {
+      if (JSON.stringify(obj) === "{}") {
+        console.log('空对象')
+      } else {
+        console.log('非空对象')
+      }
+    }
+    nullFn(a);
+    nullFn(b);
+
+    function nullFn1 (obj) {
+      for (let key in obj) {
+        console.log('非空对象')
+        return
+      }
+      console.log('空对象')
+      return
+    }
+    nullFn1(a)
+    nullFn1(b)
+  </script>
+</body>
+</html>
