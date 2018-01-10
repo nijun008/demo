@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript高级程序设计笔记</title>
+</head>
+<body>
+  
+  <script type="text/javascript">
+    //前值操作与后置操作
+    var a = 5
+    var b = 5
+    var c = --a + 2
+    console.log(a)  //4
+    console.log(c)  //6
+    var d = b-- + 2
+    console.log(b)  //4
+    console.log(d)  //7
+
+    //函数操作参数对象会改变原对象
+    var person = {
+      name: 'old name'
+    }
+    console.log(person.name) //old name
+    function setName (obj) {
+      obj.name = 'new name'
+    }
+    setName(person)
+    console.log(person.name)  //new name
+
+    //对象深拷贝
+    function clnoeObj (obj) {
+      let newObj
+      if (typeof obj === 'object') {
+        if (obj === null) {
+          newObj = null
+        } else if (obj instanceof Array) {
+          newObj = []
+          for (let i = 0;i<obj.length;i++) {
+            newObj.push(clnoeObj(obj[i]))
+          }
+        } else {
+          newObj = {}
+          for (let i in obj) {
+            newObj[i] = clnoeObj(obj[i])
+          }
+        }
+      } else {
+        newObj = obj
+      }
+      return newObj
+    }
+    var obj1 = 1
+    var obj2 = clnoeObj(obj1)
+    clnoeObj({a: 1})
+    function obj3 () {
+      console.log('obj3')
+    }
+    clnoeObj(obj3)
+    var arr1 = [{ a: 'test' },2,3]
+    var arr2 = clnoeObj(arr1)
+    arr2[2] = '12'
+    console.log(arr1)
+    console.log(arr2)
+    var obj4 = {
+      a: ['1','2',3],
+      b: 3
+    }
+    var obj5 = clnoeObj(obj4)
+    obj5.b = 10
+    console.log(obj4)
+    console.log(obj5)
+    fn1 = function () {
+      console.log(2)
+    }
+    var fn2 = clnoeObj(fn1)
+    fn2 = function () {
+      console.log('newFn')
+    }
+    console.log(fn1)
+    console.log(fn2)
+  </script>
+</body>
+</html>

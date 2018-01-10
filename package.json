@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/nijun008/demo#readme",
   "dependencies": {
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "vue": "^2.5.13"
   }
 }
