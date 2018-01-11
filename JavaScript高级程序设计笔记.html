@@ -79,6 +79,37 @@
     }
     console.log(fn1)
     console.log(fn2)
+
+    //判断是否为数组
+    console.log(Array.isArray([1,2])) //true、
+
+    //数组排序
+    var arry = [2,4,12,46,353,42,34,634,6,44,5,-1,54,6,42,5,53]
+    arry.sort(function (va1, val2) {
+      if (va1 > val2) {
+        return 1
+      } else if (va1 < val2){
+        return -1
+      } else {
+        return 0
+      }
+    })
+    console.log(arry)
+
+    //数组操作
+    var arry2 = [1, '2', 3 , 'a', 'b', 's', '字符', 24]
+    //过滤
+    console.log(arry2.filter(function (item, index , array) {
+      return typeof item === 'string'
+    }))
+    //对数组每一项操作,返回新数组，不影响原数组
+    console.log(arry2.map(function (item, index , array) {
+      return item + '1'
+    }))
+    //操作原数组，不返回值，原数组被改变，类似于for循环
+    arry2.forEach(function (item, index, array) {
+      console.log(item)
+    })
   </script>
 </body>
 </html>
