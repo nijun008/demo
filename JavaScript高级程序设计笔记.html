@@ -37,12 +37,12 @@
         } else if (obj instanceof Array) {
           newObj = []
           for (let i = 0;i<obj.length;i++) {
-            newObj.push(clnoeObj(obj[i]))
+            newObj.push(arguments.callee(obj[i]))
           }
         } else {
           newObj = {}
           for (let i in obj) {
-            newObj[i] = clnoeObj(obj[i])
+            newObj[i] = arguments.callee(obj[i])
           }
         }
       } else {
@@ -110,6 +110,69 @@
     arry2.forEach(function (item, index, array) {
       console.log(item)
     })
+
+    // ||和&&的运算
+    console.log(1 || 2)
+    console.log(1 && 2)
+
+    //随机数,all为总数,start为第一个可能的值
+    function getRandom(all,start) {
+      return Math.floor(Math.random() * all + start)
+    }
+    console.log(getRandom(10,1))
+
+    //工厂模式
+    function createperson (name, age, job) {
+      var o = {}
+      o.name = name
+      o.age = age
+      o.job = job
+      o.sayName = function () {
+        console.log(this.name)
+      }
+      return o
+    }
+    var person1 = createperson('名字', 20, '工作')
+    console.log(person1)
+
+    //构造函数模式
+    function Person(name, age, job) {
+      this.name = name
+      this.age = age
+      this.job = job
+      this.sayName = function () {
+        console.log(this.name)
+      }
+    }
+    var person2 = new Person('姓名', 22, '无')
+    console.log(person2)
+    //判断对象是否为Person的实例
+    console.log(person2 instanceof Person)
+
+    //混合模式（构造函数模式和原型模式）
+    function  Person1 (name, age, job) {
+      this.name = name
+      this.age = age
+      this.job = job
+    }
+    Person1.prototype = {
+      sayAge : function () {
+        console.log(this.age)
+      }
+    }
+    person2 = new Person1('aa', 55, '有')
+    console.log(person2)
+    person2.sayAge()
+
+    //递归
+    function numPlus(num) {
+      if(num > 1) {
+        return num + arguments.callee(--num)
+      } else {
+        return 1
+      }
+    }
+    console.log(numPlus(100))
   </script>
 </body>
 </html>
