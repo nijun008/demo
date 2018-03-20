@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/icons-extra.css" />
+    <style>
+    	.mui-bar-nav~.mui-content{
+    		padding-bottom: 50px;
+    	}
+    </style>
+</head>
+<body>
+	<div id="app">
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">审批</h1>
+		</header>
+		
+		<div class="mui-content">
+		    <ul class="mui-table-view mui-grid-view mui-grid-9">
+		    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a href="#">
+		            <span style="line-height: 40px;color: #2AC845" class="mui-icon-extra mui-icon-extra-holiday"></span>
+		            <div class="mui-media-body">请假</div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a href="#">
+		            <span style="line-height: 40px;color:#CF2D28;" class="mui-icon-extra mui-icon-extra-calendar"></span>
+		            <div class="mui-media-body">加班</div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3 claim">
+		        <a href="#">
+		            <span style="line-height: 40px;color: #EC971F;" class="mui-icon-extra mui-icon-extra-gold"></span>
+		            <div class="mui-media-body">报销</div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a href="#">
+		            <span class="mui-icon mui-icon-paperplane" style="color: #007AFF;"></span>
+		            <div class="mui-media-body">出差</div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a href="#">
+		            <span style="line-height: 40px;color: #007AFF;" class="mui-icon-extra mui-icon-extra-find"></span>
+		            <div class="mui-media-body">外出</div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3 buy">
+		        <a href="#">
+		            <span style="line-height: 40px;color: #FF5053;" class="mui-icon-extra mui-icon-extra-cart"></span>
+		            <div class="mui-media-body">采购</div>
+		        </a>
+		    </li>
+		        </ul>
+		    
+		</div>
+		
+		<nav class="mui-bar mui-bar-tab">
+		    <a class="mui-tab-item">
+		        <span class="mui-icon mui-icon-list"></span>
+		        <span class="mui-tab-label">新申请</span>
+		    </a>
+		    <a class="mui-tab-item works">
+		        <span class="mui-icon mui-icon-settings"></span>
+		        <span class="mui-tab-label">我的审批</span>
+		    </a>
+		    <a class="mui-tab-item">
+		        <span class="mui-icon mui-icon-person"></span>
+		        <span class="mui-tab-label">已提交</span>
+		    </a>
+		</nav>
+	
+	</div>
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script src="js/mui.min.js"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.init({
+			preloadPages:[{
+			    id:'claim.html',
+			    url:'claim.html'
+			},{
+				id: 'buy.html',
+				url: 'buy.html'
+			}]
+		})
+		mui.plusReady(function() {
+			
+			mui('.mui-table-view').on('tap', '.claim', function() {
+				mui.openWindow({
+					id: 'claim.html',
+					url: 'claim.html',
+				})
+			})
+			
+			mui('.mui-table-view').on('tap', '.buy', function() {
+				mui.openWindow({
+					id: 'buy.html',
+					url: 'buy.html',
+				})
+			})
+		})
+	</script>
+</body>
+</html>

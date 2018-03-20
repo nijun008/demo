@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/icons-extra.css" />
+    <style>
+    	.mui-bar-nav~.mui-content{
+    		padding-bottom: 50px;
+    	}
+    </style>
+</head>
+<body>
+	<div id="app">
+	<header class="mui-bar mui-bar-nav">
+		    <h1 class="mui-title">工作台</h1>
+		</header>
+	
+	<div class="mui-content">
+		
+		<ul class="mui-table-view mui-grid-view mui-grid-9">
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+			    <a href="#">
+			        <span class="mui-icon mui-icon-location" style="color: #Eb1f18"></span>
+			        <div class="mui-media-body">打卡</div>
+			    </a>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+			    <a href="#">
+			        <span class="mui-icon mui-icon-email" style="color: #03aeda;"><span class="mui-badge mui-badge-red">5</span></span>
+			        <div class="mui-media-body">企业邮箱</div>
+			    </a>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+			    <a href="#">
+			        <span class="mui-icon mui-icon-compose" style="color: #EC971F;"></span>
+			        <div class="mui-media-body">日报</div>
+			    </a>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 approve">
+			    <a href="#">
+			        <span class="mui-icon mui-icon-checkmarkempty" style="color: #EC971F;"></span>
+			        <div class="mui-media-body">审批</div>
+			    </a>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+			    <a href="#">
+			        <span style="font-size: 30px;margin: 5px 0;color: #EC971F;" class="mui-icon-extra mui-icon-extra-notice"></span>
+			        <div class="mui-media-body">公告</div>
+			    </a>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+			    <a href="#">
+			        <span class="mui-icon mui-icon-flag" style="color: #0033ff;"></span>
+			        <div class="mui-media-body">待办</div>
+			    </a>
+			</li>
+		</ul>
+		
+		<ul class="mui-table-view mui-grid-view mui-grid-9" style="margin-top: 24px;">
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+			    <a href="#">
+			        <span class="mui-icon-extra mui-icon-extra-card" style="color: #000;"></span>
+			        <div class="mui-media-body">工资条</div>
+			    </a>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+			    <a href="#">
+			        <span class="mui-icon-extra mui-icon-extra-gift" style="color: #2AC845;"></span>
+			        <div class="mui-media-body">体检</div>
+			    </a>
+			</li>
+		</ul>
+		
+	</div>
+	
+	</div>
+	
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script src="js/mui.min.js"></script>
+	<script>
+		mui.init({
+			preloadPages:[{
+			    id:'approve.html',
+			    url:'approve.html'
+			}]
+		})
+		mui.plusReady(function() {
+			
+			mui('.mui-table-view').on('tap', '.approve', function() {
+				mui.openWindow({
+					id: 'approve.html',
+					url: 'approve.html',
+				})
+			})
+		})
+		
+		
+		var myApp = new Vue({
+				el: '#app',
+				data: {
+					msg: 'hello'
+				},
+				created() {
+					
+				}
+				
+			})
+	</script>
+</body>
+</html>

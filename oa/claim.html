@@ -1,0 +1,382 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/mui.picker.min.css" />
+		<style>
+			.img-wrap{
+				margin-top: 40px;
+				padding-bottom: 16px;
+			}
+			.img-box {
+				width: 100px;
+				height: 100px;
+				margin-left: 10px;
+				margin-top: 10px;
+				border: 1px dotted #6d6d6d;
+				border-radius: 8px;
+				float: left;
+				line-height: 100px;
+				position: relative;
+			}
+			.img-btn{
+				display: block;
+				float: left;
+				width: 100px;
+				height: 100px;
+				margin-top: 10px;
+				margin-left: 10px;
+				line-height: 100px;
+				border: 1px solid #adadad;
+				text-align: center;
+				border-radius: 8px;
+				color: #8d8d8d;
+				font-size: 14px;
+			}
+			.img-box img{
+				max-width: 100%;
+				max-height: 100%;
+				vertical-align: middle;
+			}
+			.delete-img{
+				position: absolute;
+				width: 18px;
+				height: 18px;
+				border-radius: 50%;
+				z-index: 5;
+				right: -9px;
+				top: -9px;
+				background-color: #CF2D28;
+				color: #fff;
+				line-height: 18px;
+				text-align: center;
+			}
+			.noafter:after{
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">报销</h1>
+		</header>
+		
+		<div class="mui-content">
+		    <form class="mui-input-group">
+		        <div class="mui-input-row mui-select">
+				    <label>报销类型</label>
+				    <select name="">
+				    	<option value="1">差旅费</option>
+				    	<option value="1">交通费</option>
+				    	<option value="1">招待费</option>
+				    	<option>其他</option>
+				    </select>
+				</div>
+				<div class="mui-input-row">
+		            <label>报销事由</label>
+		            <input type="text" class="mui-input-clear" placeholder="请输入">
+		        </div>
+		        <div class="mui-input-row" style="margin-top: 14px;">
+		            <label style="color: #6d6d6d;font-size: 14px;">报销明细</label>
+		        </div>
+		        
+		        <div class="mui-input-row mui-select">
+				    <label>费用类型</label>
+				    <select name="">
+				    	<option value="1">飞机票</option>
+				    	<option value="1">火车票</option>
+				    	<option value="1">车船票</option>
+				    	<option value="1">的士费</option>
+				    	<option value="1">住宿费</option>
+				    	<option value="1">餐饮费</option>
+				    	<option value="1">礼品费</option>
+				    	<option value="1">活动费</option>
+				    	<option value="1">通讯费</option>
+				    	<option value="1">补贴</option>
+				    	<option value="1">其他</option>
+				    </select>
+				</div>
+				<div class="mui-input-row mui-select">
+				    <label>发生日期</label>
+				    <input readonly="readonly" class="date" type="text" placeholder="选择日期">
+				</div>
+				<div class="mui-input-row">
+				    <label>费用金额</label>
+				    <input class="sum" type="number" placeholder="请输入">
+				</div>
+				
+		        <div class="mui-input-row">
+				    <label>费用说明</label>
+				    <input type="text" placeholder="请输入">
+				</div>
+				
+				<div class="mui-input-row" style="height: auto;">
+					<label>报销附件</label>
+					<div class="img-wrap mui-clearfix">
+						<div class="img-btn" id="img-btn">+添加附件</div>
+					</div>
+				</div>
+
+				<button type="button" class="mui-btn mui-btn-blue mui-btn-outlined add" style="margin: 20px;">添加报销明细</button>
+				
+				<div class="mui-input-row">
+				    <label>总金额</label>
+				    <input class="total" type="text" placeholder="" readonly="readonly">
+				</div>
+				<div class="mui-input-row noafter" style="height: auto;padding-top: 20 px;">
+					<label>选择审批人</label> 
+					<input class="total" type="text" placeholder="" readonly="readonly">
+					<div style="margin-top: 30px;padding: 10px 3%;color: #6d6d6d;">
+						<ul class="mui-table-view"> 
+					        <li class="mui-table-view-cell mui-collapse">
+					            <a class="mui-navigate-right" href="#" style="color: #6d6d6d;">管理</a>
+					            <div class="mui-collapse-content">
+					                <div class="mui-input-row mui-checkbox">
+									  <label>张总</label>
+									  <input name="checkbox1" value="Item 1" type="checkbox">
+									</div>
+									<div class="mui-input-row mui-checkbox">
+									  <label>王总</label>
+									  <input name="checkbox1" value="Item 1" type="checkbox">
+									</div>
+									<div class="mui-input-row mui-checkbox">
+									  <label>刘总</label>
+									  <input name="checkbox1" value="Item 1" type="checkbox">
+									</div>
+									<div class="mui-input-row mui-checkbox">
+									  <label>吴董</label>
+									  <input name="checkbox1" value="Item 1" type="checkbox">
+									</div>
+					            </div>
+					        </li>
+					        <li class="mui-table-view-cell mui-collapse">
+					            <a class="mui-navigate-right" href="#" style="color: #6d6d6d;">财务</a>
+					            <div class="mui-collapse-content">
+					                <div class="mui-input-row mui-checkbox">
+									  <label>张三</label>
+									  <input name="checkbox1" value="Item 1" type="checkbox">
+									</div>
+									<div class="mui-input-row mui-checkbox">
+									  <label>李四</label>
+									  <input name="checkbox1" value="Item 1" type="checkbox">
+									</div>
+					            </div>
+					        </li>
+					    </ul>
+					</div>
+				</div>
+				<button type="button" class="mui-btn mui-btn-primary submit" style="margin: 20px;width: 90%;">提交</button>
+		    </form>
+		    
+		    <div id="popover" class="mui-popover">
+			   <ul class="mui-table-view"> 
+			        <li class="mui-table-view-cell mui-collapse">
+			            <a class="mui-navigate-right" href="#">管理</a>
+			            <div class="mui-collapse-content">
+			                <div class="mui-input-row mui-checkbox">
+							  <label>checkbox示例</label>
+							  <input name="checkbox1" value="Item 1" type="checkbox" checked>
+							</div>
+							<div class="mui-input-row mui-checkbox">
+							  <label>checkbox示例</label>
+							  <input name="checkbox1" value="Item 1" type="checkbox" checked>
+							</div>
+							<div class="mui-input-row mui-checkbox">
+							  <label>checkbox示例</label>
+							  <input name="checkbox1" value="Item 1" type="checkbox" checked>
+							</div>
+							<div class="mui-input-row mui-checkbox">
+							  <label>checkbox示例</label>
+							  <input name="checkbox1" value="Item 1" type="checkbox" checked>
+							</div>
+			            </div>
+			        </li>
+			        <li class="mui-table-view-cell mui-collapse">
+			            <a class="mui-navigate-right" href="#">财务</a>
+			            <div class="mui-collapse-content">
+			                <div class="mui-input-row mui-checkbox">
+							  <label>checkbox示例</label>
+							  <input name="checkbox1" value="Item 1" type="checkbox" checked>
+							</div>
+							<div class="mui-input-row mui-checkbox">
+							  <label>checkbox示例</label>
+							  <input name="checkbox1" value="Item 1" type="checkbox" checked>
+							</div>
+							<div class="mui-input-row mui-checkbox">
+							  <label>checkbox示例</label>
+							  <input name="checkbox1" value="Item 1" type="checkbox" checked>
+							</div>
+							<div class="mui-input-row mui-checkbox">
+							  <label>checkbox示例</label>
+							  <input name="checkbox1" value="Item 1" type="checkbox" checked>
+							</div>
+			            </div>
+			        </li>
+			    </ul>
+			</div>
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.picker.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function () {
+				var html = '<div class="mui-input-row" style="margin-top: 14px;">'
+		             + '<label style="color: #6d6d6d;font-size: 14px;">报销明细</label>'
+		        + '</div>'
+		        + '<div class="mui-input-row mui-select">'
+				    + '<label>费用类型</label>'
+				    + '<select name="">'
+				    	+ '<option value="1">飞机票</option>'
+				    	+ '<option value="1">火车票</option>'
+				    	+ '<option value="1">车船票</option>'
+				    	+ '<option value="1">的士费</option>'
+				    	+ '<option value="1">住宿费</option>'
+				    	+ '<option value="1">餐饮费</option>'
+				    	+ '<option value="1">礼品费</option>'
+				    	+ '<option value="1">活动费</option>'
+				    	+ '<option value="1">通讯费</option>'
+				    	+ '<option value="1">补贴</option>'
+				    	+ '<option value="1">其他</option>'
+				    + '</select>'
+				+ '</div>'
+				+ '<div class="mui-input-row mui-select">'
+				    + '<label>发生日期</label>'
+				    + '<input class="date" type="text" placeholder="YYYY-MM-DD" readonly="readonly">'
+				+ '</div>'
+				+ '<div class="mui-input-row">'
+				    + '<label>费用金额</label>'
+				    + '<input class="sum" type="number" placeholder="请输入">'
+				+ '</div>'
+		        + '<div class="mui-input-row">'
+				    + '<label>费用说明</label>'
+				    + '<input type="text" placeholder="请输入">'
+				+ '</div>'
+				+ '<div class="mui-input-row" style="height: auto;">'
+					+ '<label>报销附件</label>'
+					+ '<div class="img-wrap mui-clearfix">'
+						+ '<div class="img-btn" id="img-btn">+添加附件</div>'
+					+ '</div>'
+				+ '</div>'
+			    mui('.mui-input-group').on('tap', '.add', function () {
+			    	this.insertAdjacentHTML('beforeBegin', html);
+			    })
+			    var dtpicker = new mui.DtPicker({
+				    type: "date",//设置日历初始视图模式 
+				    beginDate: new Date(2016, 01, 01),//设置开始日期 
+				    endDate: new Date(),//设置结束日期 
+				    labels: ['年', '月', '日'],//设置默认标签区域提示语 
+				}) 
+				mui('.mui-input-group').on('tap', '.date', function () {
+					var self = this
+					dtpicker.show(function(e) {
+				    	self.value = e.y.value + '-' +  e.m.value + '-' + e.d.text
+				   })
+				})
+				
+				mui('.mui-input-group').on('change', '.sum', function () {
+					var total = 0
+					mui('.sum').each(function (index,item) {
+						total += item.value - 0
+					})
+					mui('.total')[0].value = total
+				})
+				
+				mui('.mui-input-group').on('tap', '.submit', function () {
+					mui.alert('提交成功','提示', '确定', function () {
+						mui.back()
+					})
+				})
+				
+				var img_btn;
+				mui('.mui-input-group').on('tap','.img-btn', function() {
+					img_btn = this
+				    if (mui.os.plus) {
+				        var buttonTit = [{  
+				            title: "拍照"  
+				        }, {  
+				            title: "从手机相册选择"  
+				        }];  
+				          
+				        plus.nativeUI.actionSheet({  
+				            title: "上传图片",  
+				            cancel: "取消",  
+				            buttons: buttonTit  
+				        }, function(b) { /*actionSheet 按钮点击事件*/  
+				            switch (b.index) {  
+				                case 0:  
+				                    break;  
+				                case 1:  
+				                    getImage(); /*拍照*/  
+				                    break;  
+				                case 2:  
+				                    galleryImg();/*打开相册*/  
+				                    break;  
+				                default:  
+				                    break;  
+				            }  
+				        })  
+				    }          
+				}, false);
+				
+				function galleryImg(){  
+				    // 从相册中选择图片  
+				    plus.gallery.pick( function(e){  
+				        for(var i in e.files){  
+				            var fileSrc = e.files[i]  
+				            setHtml(fileSrc);  
+				        }  
+				    }, function ( e ) {  
+				        console.log( "取消选择图片" );  
+				    },{  
+				        filter: "image",  
+				        multiple: true,  
+				        maximum: 5,  
+				        system: false,  
+				        onmaxed: function() {  
+				            plus.nativeUI.alert('最多只能选择5张图片');  
+				        }  
+				    });  
+				}
+				
+				function getImage() {  
+				    var c = plus.camera.getCamera();  
+				    c.captureImage(function(e) {  
+				        plus.io.resolveLocalFileSystemURL(e, function(entry) {  
+				            var imgSrc = entry.toLocalURL() + "?version=" + new Date().getTime(); //拿到图片路径  
+				              
+				            setHtml(imgSrc);  
+				        }, function(e) {  
+				            console.log("读取拍照文件错误：" + e.message);  
+				        });  
+				    }, function(s) {  
+				        console.log("error" + s);  
+				    }, {  
+				        filename: "_doc/camera/"  
+				    })  
+				}  
+				
+				function setHtml(fileSrc) {
+					var html  = '<div class="img-box">'
+									+ '<img src="' + fileSrc + '"/>'
+									+ '<span class="delete-img">—</span>'
+								+ '</div>'
+					img_btn.insertAdjacentHTML('beforeBegin', html);
+				}
+				
+				mui('.mui-input-group').on('tap', '.delete-img', function () {
+					this.parentNode.style.display = 'none'
+				})
+				
+				//mui('#popover').popover('toggle')
+			})
+		</script>
+	</body>
+
+</html>

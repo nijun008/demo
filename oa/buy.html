@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/mui.picker.min.css" />
+		<style type="text/css">
+			.noafter:after{
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">采购</h1>
+		</header>
+		
+		<div class="mui-content">
+		    <form class="mui-input-group">
+		        <div class="mui-input-row">
+				    <label>采购事由</label>
+				    <input type="text" class="mui-input-clear" placeholder="请输入">
+				</div>
+				<div class="mui-input-row mui-select">
+				    <label>交付日期</label>
+				    <input readonly="readonly" class="date" placeholder="选择日期" type="text">
+				</div>
+				
+		        <div class="mui-input-row" style="margin-top: 14px;">
+		            <label style="color: #6d6d6d;font-size: 14px;">采购明细</label>
+		        </div>
+		       <div class="mui-input-row">
+				    <label>物品名称</label>
+				    <input type="text" class="mui-input-clear" placeholder="请输入">
+				</div>
+				<div class="mui-input-row">
+				    <label>型号规格</label>
+				    <input type="text" class="mui-input-clear" placeholder="请输入">
+				</div>
+				<div class="mui-input-row">
+				    <label>数量</label>
+				    <input type="number" class="mui-input-clear" placeholder="请输入">
+				</div>
+				<div class="mui-input-row">
+				    <label>金额</label>
+				    <input type="number" class="mui-input-clear sum" placeholder="请输入">
+				</div>
+				<div class="mui-input-row">
+				    <label>备注</label>
+				    <input type="text" class="mui-input-clear" placeholder="请输入">
+				</div>
+
+				<button type="button" class="mui-btn mui-btn-blue mui-btn-outlined add" style="margin: 20px;">添加采购明细</button>
+				
+				<div class="mui-input-row">
+				    <label>总金额</label>
+				    <input class="total" type="text" placeholder="" readonly="readonly">
+				</div>
+				<div class="mui-input-row noafter" style="height: auto;padding-top: 20 px;">
+					<label>选择审批人</label> 
+					<input class="total" type="text" placeholder="" readonly="readonly">
+					<div style="margin-top: 30px;padding: 10px 3%;color: #6d6d6d;">
+						<ul class="mui-table-view"> 
+					        <li class="mui-table-view-cell mui-collapse">
+					            <a class="mui-navigate-right" href="#" style="color: #6d6d6d;">管理</a>
+					            <div class="mui-collapse-content">
+					                <div class="mui-input-row mui-checkbox">
+									  <label>张总</label>
+									  <input name="checkbox1" value="Item 1" type="checkbox">
+									</div>
+									<div class="mui-input-row mui-checkbox">
+									  <label>王总</label>
+									  <input name="checkbox1" value="Item 1" type="checkbox">
+									</div>
+									<div class="mui-input-row mui-checkbox">
+									  <label>刘总</label>
+									  <input name="checkbox1" value="Item 1" type="checkbox">
+									</div>
+									<div class="mui-input-row mui-checkbox">
+									  <label>吴董</label>
+									  <input name="checkbox1" value="Item 1" type="checkbox">
+									</div>
+					            </div>
+					        </li>
+					        <li class="mui-table-view-cell mui-collapse">
+					            <a class="mui-navigate-right" href="#" style="color: #6d6d6d;">财务</a>
+					            <div class="mui-collapse-content">
+					                <div class="mui-input-row mui-checkbox">
+									  <label>张三</label>
+									  <input name="checkbox1" value="Item 1" type="checkbox">
+									</div>
+									<div class="mui-input-row mui-checkbox">
+									  <label>李四</label>
+									  <input name="checkbox1" value="Item 1" type="checkbox">
+									</div>
+					            </div>
+					        </li>
+					    </ul>
+					</div>
+				</div>
+				<button type="button" class="mui-btn mui-btn-primary submit" style="margin: 20px;width: 90%;">提交</button>
+		    </form>
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.picker.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function () {
+				var html = '<div class="mui-input-row" style="margin-top: 14px;">'
+		            + '<label style="color: #6d6d6d;font-size: 14px;">采购明细</label>'
+		        + '</div>'
+		       + '<div class="mui-input-row">'
+				    + '<label>物品名称</label>'
+				    + '<input type="text" class="mui-input-clear" placeholder="请输入">'
+				+ '</div>'
+				+ '<div class="mui-input-row">'
+				    + '<label>型号规格</label>'
+				    + '<input type="text" class="mui-input-clear" placeholder="请输入">'
+				+ '</div>'
+				+ '<div class="mui-input-row">'
+				    + '<label>数量</label>'
+				    + '<input type="number" class="mui-input-clear" placeholder="请输入">'
+				+ '</div>'
+				+ '<div class="mui-input-row">'
+				    + '<label>金额</label>'
+				    + '<input type="number" class="mui-input-clear sum" placeholder="请输入">'
+				+ '</div>'
+				+ '<div class="mui-input-row">'
+				    + '<label>备注</label>'
+				    + '<input type="text" class="mui-input-clear" placeholder="请输入">'
+				+ '</div>'
+				
+			    mui('.mui-input-group').on('tap', '.add', function () {
+			    	this.insertAdjacentHTML('beforeBegin', html);
+			    })
+			    
+			    var dtpicker = new mui.DtPicker({
+				    type: "date",//设置日历初始视图模式 
+				    beginDate: new Date(),//设置开始日期 
+				    endDate: new Date(2018,12,31),//设置结束日期 
+				    labels: ['年', '月', '日'],//设置默认标签区域提示语 
+				}) 
+				mui('.mui-input-group').on('tap', '.date', function () {
+					var self = this
+					dtpicker.show(function(e) {
+				    	self.value = e.y.value + '-' +  e.m.value + '-' + e.d.text
+				   })
+				})
+				
+				mui('.mui-input-group').on('change', '.sum', function () {
+					var total = 0
+					mui('.sum').each(function (index,item) {
+						total += item.value - 0
+					})
+					mui('.total')[0].value = total
+				})
+				
+				mui('.mui-input-group').on('tap', '.submit', function () {
+					mui.alert('提交成功','提示', '确定', function () {
+						mui.back()
+					})
+				})
+			})
+		</script>
+	</body>
+
+</html>

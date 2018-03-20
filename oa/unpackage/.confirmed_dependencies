@@ -1,0 +1,38 @@
+{
+	"index.html": {
+		"refer": [
+			"works.html",
+			"message.html",
+			"person.html",
+			"contacts.html"
+		],
+		"resources": [
+			"works.html",
+			"message.html"
+		]
+	},
+	"works.html": {
+		"refer": [
+			"index.html",
+			"approve.html"
+		]
+	},
+	"approve.html": {
+		"resources": [
+			"message.html"
+		],
+		"refer": [
+			"message.html",
+			"person.html",
+			"works.html",
+			"new_approve.html",
+			"claim.html",
+			"buy.html"
+		]
+	},
+	"claim.html": {
+		"refer": [
+			"claim.html"
+		]
+	}
+}
