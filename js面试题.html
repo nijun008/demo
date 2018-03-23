@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>js面试题</title>
+</head>
+<body>
+  <script type="text/javascript">
+    console.log('11' * 2)
+    console.log('a8' * 3)
+
+    var num = 10;
+    var obj = {
+        num: 8,
+        inner: {
+            num: 6,
+            print: function () {
+                console.log(this.num);
+            }
+        }
+    }
+    num = 888;
+    obj.inner.print();
+    var fn = obj.inner.print;
+    fn();
+    (obj.inner.print)();
+    (obj.inner.print = obj.inner.print)();
+
+    function b () {
+        console.log(a);
+        var a = 10;
+        function a() {};
+        a = 100;
+        console.log(a);
+    }
+    b();
+
+    function c () {
+        console.log(a);
+        function a() {};
+        var a = 10;
+        a = 100;
+        console.log(a);
+    }
+    c();
+
+    !(function d (num) {
+      console.log(num)
+      var num = 10;
+    })(100)
+
+    !(function e (num) {
+        console.log(num);
+        var num = 10;
+        function num () {};
+    }(100))
+
+    !(function f (num) {
+        function num () {};
+        console.log(num);
+        var num =10
+        console.log(num);
+    }(100))
+
+    function m () {
+        console.log(a1);
+        console.log(a2);
+        console.log(b1);
+        console.log(b2);
+        if(false) {
+            function b1 (){};
+            var a1 = 10;
+        }
+        if(true) {
+            function b2 (){};
+            var a2 = 10;
+        }
+        console.log(a1);
+        console.log(a2);
+        console.log(b1);
+        console.log(b2); 
+    }
+    m();
+
+    
+  </script>
+</body>
+</html>
