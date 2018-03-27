@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">审批</h1>
+		</header>
+		
+		<div class="mui-content">
+		    <ul class="mui-table-view">
+			    <li class="mui-table-view-cell mui-media approve_details">
+			        <a href="javascript:;">
+			            <div class="mui-media-body">
+			               	 张三 的采购申请
+			                <p class='mui-ellipsis'>2018-02-28</p>
+			            </div>
+			        </a>
+			    </li>
+			    <li class="mui-table-view-cell mui-media approve_details">
+			        <a href="javascript:;">
+			            <div class="mui-media-body">
+			                	李四 的采购申请
+			                <p class='mui-ellipsis'>2018-02-28</p>
+			            </div>
+			        </a>
+			    </li>
+			    <li class="mui-table-view-cell mui-media approve_details">
+			        <a href="javascript:;">
+			            <div class="mui-media-body">
+			                     	王二 的采购申请
+			                <p class='mui-ellipsis'>2018-02-28</p>
+			            </div>
+			        </a>
+			    </li>
+			</ul>
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+			preloadPages:[{
+			    id:'approve_details.html',
+			    url:'approve_details.html'
+			}]
+		})
+		mui.plusReady(function() {
+			
+			mui('.mui-table-view').on('tap', '.approve_details', function() {
+				mui.openWindow({
+					id: 'approve_details.html',
+					url: 'approve_details.html',
+				})
+			
+			})
+		})
+		</script>
+	</body>
+
+</html>

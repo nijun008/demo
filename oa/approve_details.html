@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style>
+			.mui-content{
+				background-color: #fff;
+			}
+			.mui-ellipsis{
+				margin-top: 20px;
+				padding-left: 3%;
+			}
+			.mui-table-view-cell span{
+				display: inline-block;
+				width: 25%;
+				color: #6d6d6d;
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">流程审批</h1>
+		</header>
+		
+		<div class="mui-content">
+		    <div class="mui-table-view-cell"><span>申请人</span>张三</div>
+		    <div class="mui-table-view-cell"><span>申请类型</span>采购</div>
+		    <div class="mui-table-view-cell"><span>发起日期</span>2018-2-28</div>
+		    <div class="mui-table-view-cell"><span>采购事由</span>增加办公电脑</div>
+		    <div class="mui-table-view-cell"><span>交付日期</span>2018-04-02</div>
+		    <p class="mui-ellipsis">采购明细</p>
+		    <div class="mui-table-view-cell"><span>物品名称</span>笔记本电脑</div>
+		    <div class="mui-table-view-cell"><span>型号规格</span>ThinkPad E470c</div>
+		    <div class="mui-table-view-cell"><span>数量</span>1</div>
+		    <div class="mui-table-view-cell"><span>金额</span>4999.00</div>
+		    <div class="mui-table-view-cell"><span>备注</span>无</div>
+		    <p class="mui-ellipsis">采购明细</p>
+		    <div class="mui-table-view-cell"><span>物品名称</span>鼠标</div>
+		    <div class="mui-table-view-cell"><span>型号规格</span>罗技M185</div>
+		    <div class="mui-table-view-cell"><span>数量</span>10</div>
+		    <div class="mui-table-view-cell"><span>金额</span>800.00</div>
+		    <div class="mui-table-view-cell"><span>备注</span>无</div>
+		    <div class="mui-table-view-cell" style="margin-top: 30px;"><span>总金额</span>5799.00</div>
+		    <div class="mui-input-row mui-radio mui-right">
+				<label style="">审批选项</label>
+			</div>
+		    <div class="mui-input-row mui-radio mui-right mui-selected">
+				<label style="color: blue;">批准</label>
+				<input name="radio" type="radio">
+			</div> 
+			<div class="mui-input-row mui-radio mui-right">
+				<label style="color: red;">驳回</label>
+				<input name="radio" type="radio">
+			</div> 
+		    <div class="mui-input-row">
+				<label style="width: 25%;">批注</label>
+				<input style="width: 75%;" type="text" class="mui-input-clear" placeholder="请输入">
+			</div>
+		    <button type="button" class="mui-btn mui-btn-primary submit" style="margin: 20px;width: 90%;">提交</button>
+		    <div
+		</div>
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function () {
+			    mui('.mui-content').on('tap', '.submit', function () {
+					mui.alert('提交成功','提示', '确定', function () {
+						mui.back()
+					})
+				})
+			})
+		</script>
+	</body>
+
+</html>
