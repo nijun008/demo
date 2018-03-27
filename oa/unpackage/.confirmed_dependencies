@@ -19,7 +19,8 @@
 	},
 	"approve.html": {
 		"resources": [
-			"message.html"
+			"message.html",
+			"new_approve.html"
 		],
 		"refer": [
 			"message.html",
@@ -27,12 +28,25 @@
 			"works.html",
 			"new_approve.html",
 			"claim.html",
-			"buy.html"
+			"buy.html",
+			"contacts.html",
+			"my_approve.html"
 		]
 	},
 	"claim.html": {
 		"refer": [
 			"claim.html"
+		]
+	},
+	"new_approve.html": {
+		"refer": [
+			"claim.html",
+			"buy.html"
+		]
+	},
+	"my_approve.html": {
+		"refer": [
+			"approve_details.html"
 		]
 	}
 }

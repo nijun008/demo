@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title></title>
     <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/icons-extra.css" />
     <style>
     	.mui-bar-nav~.mui-content{
     		padding-bottom: 50px;
@@ -13,88 +14,53 @@
 </head>
 <body>
 	<div id="app">
+		
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">审批</h1>
+	</header>
 	
 	<div class="mui-content">
-		
-		<ul class="mui-table-view mui-grid-view mui-grid-9">
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-			    <a href="#">
-			        <span class="mui-icon mui-icon-location"></span>
-			        <div class="mui-media-body">打卡</div>
-			    </a>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-			    <a href="#">
-			        <span class="mui-icon mui-icon-email"><span class="mui-badge mui-badge-red">5</span></span>
-			        <div class="mui-media-body">企业邮箱</div>
-			    </a>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 approve">
-			    <a href="#">
-			        <span class="mui-icon mui-icon-chatbubble"></span>
-			        <div class="mui-media-body">审批</div>
-			    </a>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-			    <a href="#">
-			        <span class="mui-icon mui-icon-compose"></span>
-			        <div class="mui-media-body">日报</div>
-			    </a>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-			    <a href="#">
-			        <span class="mui-icon mui-icon-mic"></span>
-			        <div class="mui-media-body">公告</div>
-			    </a>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-			    <a href="#">
-			        <span class="mui-icon mui-icon-flag"></span>
-			        <div class="mui-media-body">待办</div>
-			    </a>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-			    <a href="#">
-			        <span class="mui-icon mui-icon-phone"></span>
-			        <div class="mui-media-body">公共电话</div>
-			    </a>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-			    <a href="#">
-			        <span class="mui-icon mui-icon-phone"></span>
-			        <div class="mui-media-body">Phone</div>
-			    </a>
-			</li>
-		</ul>
-		
-		<ul class="mui-table-view mui-grid-view mui-grid-9" style="margin-top: 24px;">
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-			    <a href="#">
-			        <span class="mui-icon mui-icon-home"></span>
-			        <div class="mui-media-body">工资条</div>
-			    </a>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-			    <a href="#">
-			        <span class="mui-icon mui-icon-email"><span class="mui-badge mui-badge-red">5</span></span>
-			        <div class="mui-media-body">体检</div>
-			    </a>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-			    <a href="#">
-			        <span class="mui-icon mui-icon-chatbubble"></span>
-			        <div class="mui-media-body">Chat</div>
-			    </a>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-			    <a href="#">
-			        <span class="mui-icon mui-icon-location"></span>
-			        <div class="mui-media-body">Location</div>
-			    </a>
-			</li>
-		</ul>
-		
-	</div>
+		    <ul class="mui-table-view mui-grid-view mui-grid-9">
+		    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a href="#">
+		            <span style="line-height: 40px;color: #2AC845" class="mui-icon-extra mui-icon-extra-holiday"></span>
+		            <div class="mui-media-body">请假</div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a href="#">
+		            <span style="line-height: 40px;color:#CF2D28;" class="mui-icon-extra mui-icon-extra-calendar"></span>
+		            <div class="mui-media-body">加班</div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3 claim">
+		        <a href="#">
+		            <span style="line-height: 40px;color: #EC971F;" class="mui-icon-extra mui-icon-extra-gold"></span>
+		            <div class="mui-media-body">报销</div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a href="#">
+		            <span class="mui-icon mui-icon-paperplane" style="color: #007AFF;"></span>
+		            <div class="mui-media-body">出差</div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+		        <a href="#">
+		            <span style="line-height: 40px;color: #007AFF;" class="mui-icon-extra mui-icon-extra-find"></span>
+		            <div class="mui-media-body">外出</div>
+		        </a>
+		    </li>
+		    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3 buy">
+		        <a href="#">
+		            <span style="line-height: 40px;color: #FF5053;" class="mui-icon-extra mui-icon-extra-cart"></span>
+		            <div class="mui-media-body">采购</div>
+		        </a>
+		    </li>
+		        </ul>
+		    
+		</div>
 	
 	</div>
 	
@@ -103,31 +69,30 @@
 	<script>
 		mui.init({
 			preloadPages:[{
-			    id:'approve.html',
-			    url:'approve.html'
+			    id:'claim.html',
+			    url:'claim.html'
+			},{
+				id: 'buy.html',
+				url: 'buy.html'
 			}]
 		})
 		mui.plusReady(function() {
 			
-			mui('.mui-table-view').on('tap', '.approve', function() {
+			mui('.mui-table-view').on('tap', '.claim', function() {
 				mui.openWindow({
-					id: 'approve.html',
-					url: 'approve.html',
+					id: 'claim.html',
+					url: 'claim.html',
+				})
+			})
+			
+			mui('.mui-table-view').on('tap', '.buy', function() {
+				mui.openWindow({
+					id: 'buy.html',
+					url: 'buy.html',
 				})
 			})
 		})
 		
-		
-		var myApp = new Vue({
-				el: '#app',
-				data: {
-					msg: 'hello'
-				},
-				created() {
-					
-				}
-				
-			})
 	</script>
 </body>
 </html>

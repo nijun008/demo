@@ -149,14 +149,16 @@
 			},
 			"approve.html": {
 				"resources": [
-					"message.html"
+					"message.html",
+					"new_approve.html"
 				],
 				"refer": [
 					"person.html",
 					"works.html",
-					"new_approve.html",
 					"claim.html",
-					"buy.html"
+					"buy.html",
+					"contacts.html",
+					"my_approve.html"
 				],
 				"priority": 0
 			},
@@ -164,6 +166,21 @@
 				"resources": [],
 				"refer": [
 					"claim.html"
+				],
+				"priority": 0
+			},
+			"new_approve.html": {
+				"resources": [],
+				"refer": [
+					"claim.html",
+					"buy.html"
+				],
+				"priority": 0
+			},
+			"my_approve.html": {
+				"resources": [],
+				"refer": [
+					"approve_details.html"
 				],
 				"priority": 0
 			}
