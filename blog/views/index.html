@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>首页</title>
+  <link rel="stylesheet" type="text/css" href="/public/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/common.css">
+</head>
+<body>
+  <h1>主页</h1>
+  {% if userInfo._id %}
+  <h5>你好，{{userInfo.username}}</h5>
+  <a href="javascript:;" class="logout">退出</a>
+  {% else %}
+  <div class="register">
+    <form>
+      <input type="text" name="username">
+      <br>
+      <input type="password" name="password">
+      <br>
+      <input type="password" name="repassword">
+      <br>
+      <a href="javascript:;">注册</a>
+    </form>
+  </div>
+
+  <div class="login" style="margin-top: 20px;">
+    <form>
+      <input type="text" name="username">
+      <br>
+      <input type="password" name="password">
+      <br>
+      <br>
+      <a href="javascript:;">登录</a>
+    </form>
+  </div>
+  {% endif %}
+
+  <script type="text/javascript" src="/public/js/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $('.register').find('a').on('click', function (e) {
+        e.preventDefault()
+        $.ajax({
+          url: '/api/user/register',
+          type: 'post',
+          data: {
+            username: $('.register').find('[name="username"]').val(),
+            password: $('.register').find('[name="password"]').val(),
+            repassword: $('.register').find('[name="repassword"]').val()
+          },
+          dataType: 'json',
+          success: function (data) {
+            console.log(data)
+          }
+        })
+      })
+
+      $('.login').find('a').on('click', function (e) {
+        e.preventDefault()
+        $.ajax({
+          url: '/api/user/login',
+          type: 'post',
+          data: {
+            username: $('.login').find('[name="username"]').val(),
+            password: $('.login').find('[name="password"]').val(),
+          },
+          dataType: 'json',
+          success: function (data) {
+            console.log(data)
+          }
+        })
+      })
+
+      $('.logout').on('click', function () {
+        console.log(this)
+        $.ajax({
+          type: 'get',
+          url: '/api/user/logout',
+          success: function (data) {
+            console.log(data)
+            window.location.reload()
+          }
+        })
+      })
+
+    })
+  </script>
+</body>
+</html>
