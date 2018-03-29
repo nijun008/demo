@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css" rel="stylesheet">
+			.movie-box{
+				width: 90%;
+				margin-left: 5%;
+			}
+			.img-box img{
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="subjectApp">
+			<header class="mui-bar mui-bar-nav">
+			    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			    <h1 class="mui-title">影片详情</h1>
+			</header>
+			<div class="mui-content">
+			    <div class="movie-box" if="movie.title">
+			    	<div class="img-box" v-if='movie.images'>
+			    		<img :src="movie.images.large" />
+			    	</div>
+			    	<div class="movie-txt">
+			    		<h4>{{ movie.title }}</h4>
+			    		<p>豆瓣评分：{{ movie.rating.average ? movie.rating.average : '暂无' }}</p>
+			    		<p>导演：
+			    			<span v-for="(item, index) in movie.directors">
+			    				<span v-if="index !== 0">/ </span>{{ item.name }}
+			    			</span>
+			    		</p>
+			    		<p>演员：
+			    			<span v-for="(item, index) in movie.casts">
+			    				<span v-if="index !== 0">/ </span>{{ item.name }}
+			    			</span>
+			    		</p>
+			    		<p>年份：{{ movie.year }}</p>
+			    		<p>类型：
+			    			<span v-for="(item, index) in movie.genres">
+			    				<span v-if="index !== 0">/ </span>{{ item}}
+			    			</span>
+			    		</p>
+			    		<p>剧情简介：{{ movie.summary }}</p>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/vue.js" ></script>
+		<script type="text/javascript">
+			mui.init()
+			
+			mui.plusReady(function() {
+				window.addEventListener('getSubject', function(event) {
+					var id = event.detail.id
+					console.log(id)
+					mui.get('https://api.douban.com/v2/movie/subject/' + id, function(data) {
+						subjectApp.movie = data
+						setTimeout(function() {
+							plus.nativeUI.closeWaiting();
+    						mui.currentWebview.show();
+						},200)
+					})
+				})
+			})
+			
+			var subjectApp = new Vue({
+				el: '#subjectApp',
+				data: {
+					movie: {
+						title: '电影名'
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

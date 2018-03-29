@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <style>
+    	.mui-bar-nav~.mui-content{
+    		padding-bottom: 50px;
+    	}
+    	.mui-slider{
+    		/*height: 214px;*/
+    	}
+    	.slide-box{
+ 			
+    	}
+    	.img-box{
+    		height: 350px;
+    		width: 250px;
+    		background-position: center;
+    		background-repeat: no-repeat;
+    		background-size: cover;
+    		margin-left: auto;
+    		margin-right: auto;
+    		position: relative;
+    	}
+    	.txt-center{
+    		text-align: center;
+    	}
+    </style>
+</head>
+<body>
+	<div id="app">
+	<header class="mui-bar mui-bar-nav">
+	    <div class="mui-input-row mui-search">
+	        <input type="search" class="mui-input-clear" placeholder="电影、电影人">
+	    </div>
+	</header>
+	<div class="mui-content">
+		<h5 style="line-height: 2rem;padding-left: 3%;">正在热映</h5>
+	    <div class="mui-slider">
+	      <div class="mui-slider-group">
+
+	        <div class="mui-slider-item" v-for="item in movies">
+	          <div v-if="item.title" class="slide-box" :id="item.id">
+	          	<div class="img-box" :style="{ backgroundImage: 'url(' + item.images.small + ')' }"></div>
+	          	<h4 class="txt-center" style="margin-top: 10px;">{{ item.title }}</h4>
+	          	<p class="txt-center">
+	          		<span v-if="item.rating.average">豆瓣评分：{{ item.rating.average }}</span>
+	          		<span v-else>暂无评分</span>
+	          	</p>
+	          </div>
+	        </div>
+	        
+	        <div class="mui-slider-item" v-if="movies.length===0">
+	        	<p class="txt-center" style="line-height: 350px;">正在加载....</p>
+	        </div>
+	        
+	      </div>
+	    </div>
+	    <h5 style="line-height: 2rem;padding-left: 3%;">即将上映</h5>
+	    <div class="mui-slider">
+	      <div class="mui-slider-group">
+
+	        <div class="mui-slider-item" v-for="item in soon">
+	          <div v-if="item.title" class="slide-box" :id="item.id">
+	          	<div class="img-box" :style="{ backgroundImage: 'url(' + item.images.small + ')' }"></div>
+	          	<h4 class="txt-center" style="margin-top: 10px;">{{ item.title }}</h4>
+	          	<p class="txt-center">
+	          		<span v-if="item.rating.average">豆瓣评分：{{ item.rating.average }}</span>
+	          		<span v-else>暂无评分</span>
+	          	</p>
+	          </div>
+	        </div>
+	        
+	        <div class="mui-slider-item" v-if="movies.length===0">
+	        	<p class="txt-center" style="line-height: 350px;">正在加载....</p>
+	        </div>
+	        
+	      </div>
+	    </div>
+	</div>
+	<nav class="mui-bar mui-bar-tab">
+	    <a class="mui-tab-item mui-active">
+	        <span class="mui-icon mui-icon-home"></span>
+	        <span class="mui-tab-label">电影</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-phone"></span>
+	        <span class="mui-tab-label">读书</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-email"></span>
+	        <span class="mui-tab-label">音乐</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <span class="mui-icon mui-icon-gear"></span>
+	        <span class="mui-tab-label">空缺</span>
+	    </a>
+	</nav>
+	</div>
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script>
+		mui.init({
+			preloadPages:[{
+			    id:'movie/subject.html',
+			    url:'movie/subject.html'
+			}]
+		})
+		mui.plusReady(function() {
+			console.log('ready')
+			
+			mui('.mui-slider-group').on('tap', '.slide-box', function() {
+				plus.nativeUI.showWaiting();
+				var id = this.getAttribute("id")
+				var subject = plus.webview.getWebviewById('movie/subject.html')
+				mui.fire(subject, 'getSubject', { id: id })
+				mui.openWindow({
+					id: 'movie/subject.html',
+					url: 'movie/subject.html',
+					show: {
+						autoShow: false
+					}
+				})
+			})
+		})
+		
+		
+		var myApp = new Vue({
+				el: '#app',
+				data: {
+					movies: [],
+					soon: []
+				},
+				created() {
+					var _self = this
+					mui.get('https://api.douban.com/v2/movie/in_theaters', function(data) {
+						_self.movies = data.subjects
+					})
+					mui.get('http://api.douban.com/v2/movie/coming_soon', function(data) {
+						_self.soon = data.subjects
+					})
+				}
+				
+			})
+	</script>
+</body>
+</html>
