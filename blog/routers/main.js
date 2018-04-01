@@ -1,9 +1,15 @@
 var express = require('express')
+var Tag = require('../models/Tag')
+
 var router  = express.Router()
 
+
 router.get('/', function (req, res, next) {
-  res.render('index', {
-    userInfo: req.userInfo
+  Tag.find().then(tags => {
+    res.render('index', {
+      userInfo: req.userInfo,
+      tags: tags
+    })
   })
 })
 

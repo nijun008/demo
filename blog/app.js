@@ -59,9 +59,9 @@ app.use('/', require('./routers/main'))
 //建立数据库连接
 mongoose.connect('mongodb://localhost:27017/blog', function (err) {
   if(err) {
-    console.log('数据库连接错误')
+    console.log('数据库连接失败')
   } else {
-    console.log('数据库连接成功')
+    console.log('数据库已连接')
     app.listen(8080);
   }
 })

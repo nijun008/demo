@@ -7,7 +7,12 @@ var router  = express.Router()
 //路由拦截,身份验证
 router.use( function (req, res, next) {
   if(!req.userInfo.isAdmin) {
-    res.send('没有管理员权限')
+    //res.send('没有管理员权限')
+    res.render('admin/error', {
+      userInfo: req.userInfo,
+      message: '没有管理员权限',
+      url: '/'
+    })
     return
   }
   next()
@@ -37,6 +42,7 @@ router.get('/user', function (req, res, next) {
 
     User.find().limit(limit).skip(skip).then((users) => {
        res.render('admin/user', {
+        userInfo: req.userInfo,
         users: users,
         page: page,
         count: count,
@@ -61,6 +67,7 @@ router.get('/tag', function (req, res, next) {
 
     Tag.find().limit(limit).skip(skip).then((tags) => {
       res.render('admin/tag', {
+        userInfo: req.userInfo,
         tags: tags,
         page: page,
         count: count,
@@ -188,7 +195,6 @@ router.get('/tag/delete', function (req, res) {
   Tag.findOne({
     _id: id
   }).then((tag) => {
-    console.log(tag)
     if(!tag) {
       res.render('admin/error', {
         userInfo: req.userInfo,
