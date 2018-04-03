@@ -1,6 +1,7 @@
 var express = require('express')
 var User = require('../models/User')
 var Tag = require('../models/Tag')
+var Content = require('../models/Content')
 
 var router  = express.Router()
 
@@ -221,6 +222,163 @@ router.get('/tag/delete', function (req, res) {
       url: '/admin/tag'
     })
     return
+  })
+})
+
+//文章路由
+router.get('/content', function (req, res) {
+
+  var page = Number(req.query.page) || 1
+  var limit = 10
+  var pages = 0
+
+  Content.count().then(count => {
+    pages = Math.ceil(count / limit)
+    page = Math.min(page, pages)
+    page = Math.max(page, 1)
+    var skip = (page - 1) * limit
+
+    Content.find().sort({ _id: -1}).limit(limit).skip(skip).populate(['tag', 'user']).then(contents => {
+      res.render('admin/content', {
+        userInfo: req.userInfos,
+        contents: contents,
+        pages: pages,
+        page: page,
+        limit: limit,
+        count: count
+      })
+    })
+
+  })
+})
+
+router.get('/content/add', function (req, res) {
+  Tag.find().then(tags => {
+    res.render('admin/content_add', {
+      userInfo: req.userInfos,
+      tags: tags
+    })
+  })
+})
+
+router.post('/content/add', function (req, res) {
+
+  if(req.body.tag == '' || req.body.title == '') {
+    render('admin/error', {
+      userInfo: req.userInfo,
+      message: '文章标签和标题不能为空'
+    })
+    return
+  }
+
+  new Content({
+    tag: req.body.tag,
+    title: req.body.title,
+    user: req.userInfo._id.toString(),
+    description: req.body.description,
+    content: req.body.content
+  }).save().then(() => {
+    res.render('admin/success', {
+      userInfo: req.userInfo,
+      message: '文章保存成功',
+      url: '/admin/content'
+    })
+  })
+})
+
+router.get('/content/edit', function (req, res) {
+  var id = req.query.id || ''
+  var tags = []
+  Tag.find().then(result => {
+    tags = result
+    return Content.findOne({
+      _id: id
+    }).populate('tag')
+  }).then(content => {
+    if(!content) {
+      res.render('admin/error', {
+        userInfo: req.userInfo,
+        message: '文章不存在'
+      })
+    } else {
+      res.render('admin/content_edit', {
+        userInfo: req.userInfo,
+        content: content,
+        tags: tags
+      })
+    }
+
+  }).catch(err => {
+    res.render('admin/error', {
+      userInfo: req.userInfo,
+      message: '文章不存在'
+    })
+  })
+})
+
+router.post('/content/edit', function (req, res) {
+  var id = req.query.id || ''
+  Content.findOne({
+    _id: id
+  }).then(content => {
+    if(!content) {
+      res.render('admin/error', {
+        userInfo: req.userInfo,
+        message: '文章不存在',
+        url: '/admin/content'
+      })
+    } else {
+      if(req.body.tag == '' || req.body.title == '') {
+        render('admin/error', {
+          userInfo: req.userInfo,
+          message: '文章标签和标题不能为空'
+        })
+        return
+      }
+
+      return Content.update({
+        _id: id
+      }, {
+        tag: req.body.tag,
+        title: req.body.title,
+        description: req.body.description,
+        content: req.body.content
+      })
+    }
+  }).then(() => {
+    res.render('admin/success', {
+      userInfo: req.userInfo,
+      message: '保存成功',
+      url: '/admin/content'
+    })
+  }).catch(err => {
+    res.render('admin/error', {
+      userInfo: req.userInfo,
+      message: '文章不存在'
+    })
+  })
+})
+
+router.get('/content/delete', function (req, res) {
+  var id = req.query.id
+  Content.findOne({
+    _id: id
+  }).then(content => {
+    return Content.remove({
+      _id: id
+    })
+  }).then(() => {
+    res.render('admin/success', {
+      userInfo: req.userInfo,
+      message: '文章删除成功',
+      url: '/admin/content'
+    })
+  }).catch(err => {
+    res.render('admin/error', {
+      userInfo: req.userInfo,
+      message: '文章不存在',
+      url: '/admin/content'
+    })
   })
 })
 
