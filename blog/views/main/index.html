@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>首页</title>
-  <link rel="stylesheet" type="text/css" href="/public/css/reset.css">
-  <link rel="stylesheet" type="text/css" href="/public/css/common.css">
+{% extends 'layout.html' %}
+
+{% block style %}
   <style type="text/css">
     .active{
       color: red;
     }
   </style>
-</head>
-<body>
-  <h1>主页</h1>
+{% endblock %}
+
+{% block content %}
+<h1>主页</h1>
   {% if userInfo._id %}
   <h5>你好，{{userInfo.username}}</h5>
   <a href="javascript:;" class="logout">退出</a>
@@ -53,6 +51,7 @@
     {% endif %}
     {% endfor %}
   </ul>
+
   <div style="margin: 20px 0">
     {% for content in contents %}
     <div style="margin-bottom: 16px;">
@@ -60,6 +59,7 @@
       <p>{{ content.tag.name }} {{ content.user.username }}</p>
       <p>{{ content.views }}</p>
       <p>{{ content.description }}</p>
+      <p><a href="/view?contentid={{ content.id }}">阅读全文</a></p>
     </div>
     {% endfor %}
   </div>
@@ -79,9 +79,10 @@
     {% endif %}
   </div>
   {% endif %}
+{% endblock %}
 
-  <script type="text/javascript" src="/public/js/jquery.min.js"></script>
-  <script type="text/javascript">
+{% block script %}
+ <script type="text/javascript">
     $(function () {
       $('.register').find('a').on('click', function (e) {
         e.preventDefault()
@@ -130,5 +131,6 @@
 
     })
   </script>
+{% endblock %}
 </body>
 </html>
