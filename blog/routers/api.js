@@ -1,6 +1,7 @@
 var express = require('express')
 var router  = express.Router()
 var User = require('../models/User')
+var Content = require('../models/Content')
 
 //统一返回数据
 var responseData
@@ -106,6 +107,31 @@ router.get('/user/logout', function (req, res, next) {
   responseData.message = '退出成功'
   res.json(responseData)
   return
+})
+
+//评论提交接口
+router.post('/comment/post', function (req, res) {
+  //评论文章ID
+  var contentId = req.body.contentId || ''
+  //评论数据
+  var postData = {
+    username: req.userInfo.username,
+    createTime: new Date(),
+    content: req.body.content,
+  }
+
+  //保存评论到数据库
+  Content.findOne({
+    _id: contentId
+  }).then(content => {
+    content.comments.unshift(postData)
+    return content.save()
+  }).then((newContent) => {
+    responseData.code = 200
+    responseData.message = '评论提交成功'
+    res.json(responseData)
+    return
+  })
 })
 
 module.exports = router
