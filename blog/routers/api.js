@@ -124,7 +124,7 @@ router.post('/comment/post', function (req, res) {
   Content.findOne({
     _id: contentId
   }).then(content => {
-    content.comments.unshift(postData)
+    content.comments.push(postData)
     return content.save()
   }).then((newContent) => {
     responseData.code = 200

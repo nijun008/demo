@@ -4,7 +4,7 @@
 <p>分类：{{ content.tag.name }} 作者：{{ content.user.username }} 日期：{{ content.createTime | date('Y-m-d h:m') }} 点击量：{{ content.views }}</p>
 <p>{{ content.content }}</p>
 {% if userInfo._id %}
-<p>发表评论</p>
+<h3>评论<span style="float: right;">{{ content.comments.length }}条评论</span></h3>
 <form id="comment-form">
   <input type="text" id="content">
   <input type="hidden" id="contentId" value="{{ content.id }}">
