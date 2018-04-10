@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>canvas绘制时钟</title>
+  <style type="text/css">
+  </style>
+</head>
+<body>
+  <canvas id="clock" width="600" height="600">
+    
+  </canvas>
+<script type="text/javascript">
+  window.onload = function () {
+    var myClock = new Clock('clock', 600)
+  }
+  //绘制时钟
+  function Clock(canvas, width) {
+    var _self = this
+    this.canvas = document.getElementById(canvas)
+    this.clock = this.canvas.getContext('2d')
+    this.width = width
+    setInterval(function () {
+      _self.clockStart()
+    }, 1000);
+  }
+
+  Clock.prototype.clockStart = function () {
+    //清除画布
+    this.clock.clearRect(0, 0, this.width, this.width)
+    //获取时间
+    this.now = new Date()
+    this.secd = this.now.getSeconds()
+    this.min = this.now.getMinutes()
+    this.hour = this.now.getHours()
+    this.hour = this.hour + (this.min / 60)                 //浮点型小时
+    this.hour = this.hour > 12 ? this.hour - 12 : this.hour //12小时制
+    //表盘
+    this.clock.beginPath()
+    this.clock.lineWidth = this.width/200
+    this.clock.strokeStyle = "#000";
+    this.clock.arc(this.width/2, this.width/2, this.width/2 - (this.width/200), 0, 360, false)
+    this.clock.stroke()
+    this.clock.closePath()
+    //时刻度
+    for(var i=0;i<12;i++) {
+      this.clock.save()
+      this.clock.lineWidth = 1
+      this.clock.strokeStyle = "#000"
+      this.clock.translate(this.width/2, this.width/2)
+      this.clock.rotate(i*30*Math.PI/180)
+      this.clock.beginPath()
+      this.clock.moveTo(0,-(this.width/2 - this.width/20))
+      this.clock.lineTo(0,-(this.width/2) + (this.width/200))
+      this.clock.stroke()
+      this.clock.closePath()
+      this.clock.restore()
+    }
+    //分刻度
+    for (var i = 0; i < 60; i++) {
+      this.clock.save()
+      this.clock.lineWidth = 1
+      this.clock.strokeStyle = "#333"
+      this.clock.translate(this.width/2, this.width/2)
+      this.clock.rotate((i * 6) * Math.PI / 180)
+      this.clock.beginPath()
+      this.clock.moveTo(0,-(this.width/2 - this.width/40))
+      this.clock.lineTo(0,-(this.width/2) + (this.width/200))
+      this.clock.closePath()
+      this.clock.stroke()
+      this.clock.restore()
+    }
+    //时针
+    this.clock.save()
+    this.clock.lineWidth = this.width/70
+    this.clock.strokeStyle = "#000"
+    this.clock.translate(this.width/2, this.width/2)
+    this.clock.rotate(this.hour * 30 * Math.PI / 180)
+    this.clock.beginPath()
+    this.clock.moveTo(0, -(this.width/5))
+    this.clock.lineTo(0, 1)
+    this.clock.stroke()
+    this.clock.closePath()
+    this.clock.restore()
+    //分针
+    this.clock.save()
+    this.clock.lineWidth = this.width/100
+    this.clock.strokeStyle = "#000"
+    this.clock.translate(this.width/2, this.width/2)
+    this.clock.rotate(this.min * 6 * Math.PI / 180)
+    this.clock.beginPath()
+    this.clock.moveTo(0, -(this.width/3))
+    this.clock.lineTo(0, 1)
+    this.clock.stroke()
+    this.clock.closePath()
+    this.clock.restore()
+    //秒针
+    this.clock.save()
+    this.clock.lineWidth = this.width/200
+    this.clock.strokeStyle = "#bd2d30"
+    this.clock.translate(this.width/2, this.width/2)
+    this.clock.rotate(this.secd * 6 * Math.PI / 180)
+    this.clock.beginPath()
+    this.clock.moveTo(0, -(this.width/2.2))
+    this.clock.lineTo(0, 1)
+    this.clock.closePath()
+    this.clock.stroke()
+    //指针交叉点
+    this.clock.beginPath()
+    this.clock.arc(0, 0, 3, 0, 360, false)
+    this.clock.closePath()
+    this.clock.fillStyle = "#bd2d3o"
+    this.clock.fill()
+    this.clock.stroke()
+
+    this.clock.restore()
+  }
+</script>
+</body>
+</html>
