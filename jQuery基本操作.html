@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery基本操作</title>
+</head>
+<body>
+  <div id="dom1">dom1</div>
+  <div id="dom2">dom2</div>
+  <div id="dom3">dom3</div>
+  <div id="dom4">dom4</div>
+  <div id="dom5">dom5</div>
+  <div id="dom6">dom6</div>
+  <div id="dom7">dom7</div>
+  <div id="dom8">dom8</div>
+  <div id="dom9">dom9</div>
+
+  <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+  <script type="text/javascript">
+    $(function () {
+
+      //ajax常用参数
+      $.ajax({
+        url: '/admin',
+        type: 'get',
+        data: {
+          name: 'ni',
+          age: 25
+        },
+        dataType: 'json',
+        beforeSend: function (xhr) {
+          console.log(xhr)
+          console.log('发送前')
+        },
+        success: function (data) {
+          console.log(data)
+        },
+        error: function (err) {
+          console.log(err)
+        }
+      })
+
+      //常用dom方法
+      $('#dom1').append('<p>dom1 append方法</p>')
+      $('#dom2').prepend('<p>dom2 prepend方法</p>')
+      $('#dom3').after('<p>dom3 after方法</p>')
+      $('#dom4').before('<p>dom4 before方法</p>')
+
+      //移除节点
+      $('#dom5').remove()
+      //清空节点内部
+      $('#dom6').empty()
+
+      //直接上级元素
+      $('#dom7').parent()
+      //所有祖先元素
+      $('#dom7').parents()
+      //兄弟元素
+      $('#dom7').siblings()
+      //下一个兄弟元素
+      $('#dom7').next()
+      //之后所有兄弟元素
+      $('#dom7').nextAll()
+      //前一个兄弟元素
+      $('#dom7').prev()
+      //之前所有兄弟元素
+      $('#dom7').prevAll()
+      //被选元素中指定索引号的元素
+      $('div').eq(1)
+    })
+  </script>
+</body>
+</html>
