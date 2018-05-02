@@ -18,6 +18,7 @@
   "homepage": "https://github.com/nijun008/demo#readme",
   "dependencies": {
     "browser": "^0.2.6",
+    "cheerio": "^1.0.0-rc.2",
     "echarts": "^4.0.2",
     "jquery": "^3.2.1",
     "react": "^16.2.0",
