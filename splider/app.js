@@ -59,6 +59,7 @@ function getMovie(url) {
     } else {
       rate = 0
     }
+
     //保存到数据库
     var movie = new Movie({
       name: name,
@@ -67,9 +68,9 @@ function getMovie(url) {
       downloadUrl: downloadUrl
     })
     movie.save().then(newMovie => {
-      console.log('保存成功')
+      console.log('保存成功 ' + name)
     }).catch (err => {
-      console.log('保存出错')
+      console.log('保存出错 ' + name)
     }) 
   })
 }
