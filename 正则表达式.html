@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>正则</title>
+</head>
+<body>
+
+  <script type="text/javascript">
+    //i忽略大小写
+    var str = 'fgAskfsafaflaksfA'
+    console.log(str.search(/a/i))
+
+    //\d 所有数字
+    var str2 = 'asfd4 165asd465sa435d2'
+    console.log(str2.search(/\d/i))
+
+    //g全局匹配
+    var str3 = 'fas a;lsl;sfkl3k5l 32l5k2;l35k  32l k235k'
+    console.log(str3.match(/\d/g))
+
+    //+一个或多个
+    var str4 = 'fa;sfk l32 4 5456 k5l 32l5k2;l35k  32l k235k'
+    console.log(str4.match(/\d+/g))
+
+    //字符串替换
+    var str5 = 'fkalslkfjaslkfjalksdjlaksd'
+    console.log(str5.replace(/a/g, ' A '))
+
+    //[]表示范围
+    var str6 = 'apc cpc bpc ipc opc rpc'
+    console.log(str6.match(/[ab]pc/g))
+
+    // ^表示开始
+    // $表示结尾
+
+    //^在[]中表示排除
+    var str7 = 'apc cpc bpc ipc opc rpc'
+    console.log(str7.match(/[^abc]pc/g))
+
+    //.任意字符
+    var str8 = '<p>221232132132<br>1352465432</p></p>2132123212</p><br><br>45465465'
+    console.log(str8.replace(/<[^<>]+>/g, ''))
+
+    // {n} 出现n次
+    // {n,} 最少出现n次,最多不限
+    // {n,m} 最少出现n次,最多出现m次
+    // +  {1,}  一次以及以上
+    // ?  {0,1}  零次或一次
+    // *  {0,}  任意次
+
+    //正向预查
+    var str9 = 'Windows 1.03 and Windows 2.0 fisrt Released in 1985 and 1987 respectively.Windows 95 and Windows 98 are the successor.Then Windows 2000 and Windows Xp appeared.Windows Vista is the Latest version of the family.'
+    console.log(str9.match(/Windows(?=[\d.]+\b)/))
+
+    var str10 = '普通话/粤语◎字　　幕　中文◎IMDb评分 7.7/10  118 votes◎文件格式　BD-RMVB◎视频尺寸　1024 x 5长　98  MiN '
+    var str11= '◎上映日期　2018-03-02(美国) ◎IMDb评分 6.8/10 from 36,124 users ◎豆瓣评分　6.5/10 from 2,506 users ◎文件格式　rmvb + aac ◎视频尺寸　1280 x 720'
+    console.log(str10.match(/[^IMDb评分]+(?=\/10)/i)[0])
+    console.log(str11.match(/[^IMDb评分]+(?=\/10)/)[0])
+    console.log(str10.match(/[^豆瓣评分]+(?=\/10)/)[0])
+
+  </script>
+</body>
+</html>
