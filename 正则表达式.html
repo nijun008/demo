@@ -58,6 +58,12 @@
     console.log(str11.match(/[^IMDb评分]+(?=\/10)/)[0])
     console.log(str10.match(/[^豆瓣评分]+(?=\/10)/)[0])
 
+    //截取开头数字
+    var str12 = ' /10 哈哈 '
+    var str13 = '  4.52125d'
+    console.log(str12,str13)
+    console.log(str12.replace(/[^0-9\.]/g,'').slice(0, 3))
+    console.log(str13.replace(/[^0-9\.]/g,'').slice(0, 3))
   </script>
 </body>
 </html>
