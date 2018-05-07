@@ -12,6 +12,7 @@ var urls = []
 var movieUrls = []
 var successMovie = []
 var errorMovie = []
+var requestErr = []
 
 for(let i = startPage;i<=endPage;i++) {
   urls.push('http://www.dytt8.net/html/gndy/dyzz/list_23_' + i + '.html')
@@ -41,7 +42,7 @@ var movieSchema = new mongoose.Schema({
   }
 })
 //数据库模型
-var Movie = mongoose.model('newMovie', movieSchema)
+var Movie = mongoose.model('movie', movieSchema)
 
 //请求设置
 function getHtml (url, callback) {
@@ -65,6 +66,7 @@ function getMovieUrls(url, callback) {
         movieUrls.push(host + $(item).attr('href'))
       })
     } else {
+      requestErr.push(url)
       console.log('请求出错：' + url)
     }
     console.log('找到' + movieUrls.length + '条记录')
@@ -86,23 +88,25 @@ function getMovie(movieUrl, callback) {
       var rateHTML = $('#Zoom span').text()
       var rateIndex = rateHTML.indexOf('豆瓣评分')
       var rate
+      var rateStr
       if (rateIndex > -1) {
-        if(rateHTML.slice(rateIndex + 5, rateIndex + 8) == '/10') {
+        rateStr = rateHTML.slice(rateIndex + 4, rateIndex + 9)
+        rate = rateStr.replace(/[^0-9\.]/g,'').slice(0, 3)
+        if (rate >= 10 || rate < 0) {
           rate = 0
-        } else {
-          rate = rateHTML.slice(rateIndex + 5, rateIndex + 8)
         }
       } else {
         rate = 0
       }
 
       var imdbRate
-      var imdbRateIndex = Math.min(rateHTML.indexOf('IMDb评分'), rateHTML.indexOf('IMDB评分'))
+      var imdbRateStr
+      var imdbRateIndex = Math.max(rateHTML.indexOf('IMDb评分'), rateHTML.indexOf('IMDB评分'))
       if (imdbRateIndex > -1) {
-        if(rateHTML.slice(imdbRateIndex + 7, imdbRateIndex + 10) == '/10') {
+        imdbRateStr = rateHTML.slice(imdbRateIndex + 6, imdbRateIndex + 11)
+        imdbRate = imdbRateStr.replace(/[^0-9\.]/g,'').slice(0, 3)
+        if (imdbRate >= 10 || imdbRate <= 0) {
           imdbRate = 0
-        } else {
-          imdbRate = rateHTML.slice(imdbRateIndex + 7, imdbRateIndex + 10)
         }
       } else {
         imdbRate = 0
@@ -122,6 +126,7 @@ function getMovie(movieUrl, callback) {
         errorMovie.push(name)
       })
     } else {
+      requestErr.push(movieUrl)
       console.log('请求出错：' + movieUrl)
     }
     console.log('第' + successMovie.length + '部电影完成')
@@ -152,6 +157,8 @@ mongoose.connect('mongodb://localhost:27017/splider', function (err) {
         if(err) {
           console.log(err)
         }
+        console.log('请求失败数:' + requestErr.length)
+        console.log('请求失败的链接:' + requestErr)
         console.log('成功条目数:' + successMovie.length)
         console.log('失败条目数:' + errorMovie.length)
         console.log('失败的电影:', errorMovie)
