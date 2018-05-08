@@ -173,6 +173,18 @@
       }
     }
     console.log(numPlus(100))
+
+    //闭包
+    function closure() {
+      var name = 'nijun'
+      return (function () {
+        return name
+      })()
+    }
+
+    var myName = closure()
+    console.log(myName)
+    
   </script>
 </body>
 </html>
