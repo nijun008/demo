@@ -81,7 +81,97 @@
     }
     m();
 
-    
+    var Test = function (module) {
+        module = module || {}
+        var table = []
+        module.list = table
+        module.parse = function (url) {
+            var result,
+            arr,
+            kv,
+            ln,
+            r,
+            search = url.split('?')[1]
+            if(!search) return
+            arr = search.split('&')
+            if(ln = arr.length) {
+                for(var i=0;i<ln;i++) {
+                    kv = arr[i].split("=")
+                    if(kv.length == 2) {
+                        result = result || {}
+                        r = parseInt(kv[1])
+                        result[kv[0]] = isNaN(r) ? kv[1] : r
+                    }
+                }
+            }
+            if(result) {
+                table.push(result)
+                return result
+            }
+        }
+        module.getOne = function (key, v) {
+            for(var i=0;i<table.length;i++) {
+                if(table[i][key] == v)
+                    return table[i]
+            }
+        }
+        module.getList = function (key, v) {
+            var list = []
+            for(var i=0;i<table.length;i++) {
+                if(table[i][key] == v) {
+                    list.push(table[i])
+                }
+            }
+            return list
+        }
+        return module
+    }
+
+    console.log(Test())
+
+    var urls = [
+        'http://www.nijun.top?name=a&id=1000&sex=1&age=20',
+        'http://www.nijun.top?name=b&id=1001&sex=1&age=18',
+        'http://www.nijun.top?name=c&id=1002&sex=0&age=18',
+        'http://www.nijun.top?name=d&id=1003&sex=1&age=28',
+        'http://www.nijun.top?name=e&id=1004&sex=0&age=21'
+    ]
+
+    var test = new Test()
+
+    for (var i = 0;i<urls.length;i++) {
+        test.parse(urls[i])
+    }
+
+    setTimeout(function () {
+        test.parse('http://www.nijun.top?name=f&id=1005&sex=-1&age=100')
+    },0)
+
+    console.log(test.getOne('age',18))
+    console.log(test.getList('age',20))
+
+    test.sort = function (x) {
+        var list = []
+            list = this.list.sort(function (a, b) {
+                if(a.age == b.age) {
+                    if (a.sex == b.sex) {
+                        return (a.id - b.id) * x
+                    } else {
+                        return (a.sex - b.sex) * x
+                    }
+                } else {
+                    return (a.age - b.age) * x
+                }
+            })
+        return list
+    }
+    console.log(test.sort(1)[0])
+    console.log(test.sort(-1)[0])
+
+    setTimeout(function () {
+        console.log(test.sort(-1)[0])
+    },0)
+
   </script>
 </body>
 </html>
