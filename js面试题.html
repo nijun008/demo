@@ -165,6 +165,7 @@
             })
         return list
     }
+    
     console.log(test.sort(1)[0])
     console.log(test.sort(-1)[0])
 
@@ -172,6 +173,26 @@
         console.log(test.sort(-1)[0])
     },0)
 
+    //数组去重
+    var arr = [1,1,1,1,1,2,2,2,32,54,52,132,1,132,1,2,1352,43,21,321,32,132,41,321,32,413,24,321,32,4132,43,24,321,324,3]
+    function noRepeat (arr) {
+        var result = []
+        var obj = {}
+        for(var i = 0;i<arr.length;i++) {
+            if(!obj[arr[i]]) {
+                result.push(arr[i])
+                obj[arr[i]] = 1
+            } else {
+                obj[arr[i]] ++
+            }
+        }
+        return result
+    }
+    console.log(noRepeat(arr))
+    //排序
+    console.log(noRepeat(arr).sort(function (a, b) {
+        return (a - b)
+    }))
   </script>
 </body>
 </html>
