@@ -9,9 +9,9 @@ var fs = require("fs")
 //初始配置
 const config = {
   //起始页(含)
-  startPage: 24,
+  startPage: 61,
   //终止页(含)
-  endPage: 25,
+  endPage: 86,
   //host
   host: 'http://www.dytt8.net',
   //请求列表页
@@ -72,6 +72,8 @@ async.mapLimit(config.urls, 1, function (url, callback) {
       url: url,
       timeout: 10000,
       headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36' }
+    }).on('error', function () {
+      config.requestErr.push(url)
     }).pipe(fs.createWriteStream(config.dir + FileName(url)))
 
     setTimeout(function() {
@@ -114,24 +116,6 @@ function getDetailsUrls(url, callback) {
     }
     setTimeout(function() {
       callback(null, '抓取完成:' + url)
-    }, config.timeOut)
-  })
-}
-
-//获取详情信息
-function getMovie(movieUrl, callback) {
-  getHtml(movieUrl, function (err, res, body) {
-    if(!err && res.statusCode == 200) {
-      var html = iconv.decode(body, 'gb2312')
-      var $ = cheerio.load(html, { decodeEntities: false })
-      
-    } else {
-      config.requestErr.push(movieUrl)
-      console.log('请求出错：' + movieUrl)
-    }
-    console.log('第' + config.successMovie.length + '项完成')
-    setTimeout(function() {
-      callback(null, '抓取完成:' + movieUrl)
     }, config.timeOut)
   })
 }
@@ -516,7 +500,7 @@ var jdBHb5zdLYamiMwM9aSyKnS7zidJD6Jrll = function(m, r, d) {
     return t
 }
 function getImgSrc(b) {
-  var c = jdBHb5zdLYamiMwM9aSyKnS7zidJD6Jrll(b, "gymmh2IiYI3pXWmRGAgfO3Zfx7TTIZiY")
+  var c = jdBHb5zdLYamiMwM9aSyKnS7zidJD6Jrll(b, "6x3WAYacNBUDMJy0OiYSXGb6b7LuUz11")
   return 'http:' + c
 }
 
