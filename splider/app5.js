@@ -10,9 +10,9 @@ var fs = require("fs")
 //初始配置
 const config = {
   //起始页(含)
-  startPage: 201,
+  startPage: 301,
   //终止页(含)
-  endPage: 300,
+  endPage: 600,
   //页面编码格式
   ecode: 'gb2312',
   //host
@@ -24,7 +24,7 @@ const config = {
   //请求详情页
   detailsUrls: [],
   //请求并发数
-  queueSum: 2,
+  queueSum: 1,
   //请求间隔ms
   timeOut: 20,
   //重试url
@@ -133,7 +133,10 @@ function getDetailsUrls(url, callback) {
 
 //获取详情
 //@retry 是否为重试请求
+var now = 1
 function getDetails(url, callback, retry) {
+  console.log('正在执行：' + now)
+  now ++
   request({
     url: url,
     timeout: 10000,
