@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>console特效</title>
+</head>
+<body>
+  <div id="demo">
+    <p>一个段落</p>
+  </div>
+
+  <script type="text/javascript">
+    console.warn('警告信息')
+    console.error('错误信息')
+    console.log('%c带%c颜色%c的文字','color: #ddd','color: red;font-size: 20px;','color: blue')
+    console.log('%c换\n行\n的\n文\n本','color: green')
+
+    console.log('%o', document.getElementById('demo'))  //打印节点HTML结构
+    console.log('%O', document.getElementById('demo'))  //打印节点dom对象
+
+    //清除控制台
+    // setTimeout(function () {
+    //   console.clear()
+    // }, 2000);
+  </script>
+</body>
+</html>
