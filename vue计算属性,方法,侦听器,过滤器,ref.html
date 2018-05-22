@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>vue计算属性和方法</title>
+  <style type="text/css">
+    [v-cloak] { display: none }
+  </style>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <input v-model="message">
+    <p>{{ message }}</p>
+    <p>这是methods{{ test() }}</p>
+    <p>这是computed{{ computedTest }}</p>
+    <p>这是过滤器filter{{ myDate | myFilter }}</p>
+    <div style="background-color: #ddd" ref="demo" id="demo">123</div>
+  </div>
+
+  <script type="text/javascript" src="node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    var myApp = new Vue({
+      el: '#app',
+      data: {
+        message: 'hello',
+        date: '',
+        myDate: new Date()
+      },
+      created() {
+        setInterval(() => {
+          this.myDate = new Date()
+        }, 1000)
+      },
+      computed: {
+        computedTest () {
+          return Date.now()
+        }
+      },
+      watch: {
+        message (newval, oldval) {
+          console.log(newval)
+          if(newval === 'change') {
+            console.log(this.$refs.demo)
+            this.$refs.demo.style.backgroundColor = '#777'
+          }
+        }
+      },
+      methods: {
+        test () {
+          return Date.now()
+        }
+      },
+      filters: {
+        myFilter: function (val) {
+          let y = val.getFullYear()
+          let m = (val.getMonth() + 1) >= 10 ? val.getMonth() + 1 : '0' + (val.getMonth() + 1)
+          let d = val.getDate() >= 10 ? val.getDate() : '0' + val.getDate()
+          let h = val.getHours() >= 10 ? val.getHours() : '0' + val.getHours()
+          let i = val.getMinutes() >= 10 ? val.getMinutes() : '0' + val.getMinutes()
+          let s = val.getSeconds() >= 10 ? val.getSeconds() : '0' + val.getSeconds()
+          return y + '-' + m + '-' + d + ' ' + h +':' + i + ':' + s
+        }
+      }
+    })
+  </script>
+</body>
+</html>
