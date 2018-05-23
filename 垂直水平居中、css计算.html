@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>垂直水平居中</title>
+  <style type="text/css">
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .child{
+      background: #ddd;
+    }
+    #demo1{
+      display: flex;
+      height: 200px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #demo2{
+      height: 400px;
+      display: table;
+      width: 100%;
+    }
+    #demo2 .child{
+      padding: 20px;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+    }
+    #demo3{
+      width: 100%;
+      margin-bottom: 0;
+      margin: 40px 0;
+    }
+    #demo3:after{
+      content: '';
+      zoom: 1;
+      width: 100%;
+      height: 0;
+      display: block;
+      clear: both;
+    }
+    #demo3 div{
+      background: green;
+      width: calc(25% - 30px);  /*宽度计算，4个div每个减30px，那么总共多出120px*/
+      float: left;
+      height: 100px;
+    }
+    #demo3 div:not(:first-child) {
+      margin-left: 40px;  /*这里除第一个div外，每个div左边距120 / 3 = 40px*/
+    }
+  </style>
+</head>
+<body>
+  <div id="demo1">
+    <div class="child">
+      <p>123</p>
+      <p>4566</p>
+    </div>
+  </div>
+
+  <div id="demo2">
+    <div class="child">
+      <div style="display: inline-block;width: 20%;">
+        <p>123</p>
+        <p>4566</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="demo3">
+    <div class="child1">宽度计算</div>
+    <div class="child1">宽度计算</div>
+    <div class="child1">宽度计算</div>
+    <div class="child1">宽度计算</div>
+  </div>
+
+  <div id="demo4">
+    <div class="child">
+      <p>123</p>
+      <p>4566</p>
+    </div>
+  </div>
+</body>
+</html>
