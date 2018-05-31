@@ -47,20 +47,27 @@
   set.add(...arr)
   console.log(set)
 
+  //用Promise加载图片
   const preloadImage = function (path) {
     return new Promise(function (resolve, reject) {
       const image = new Image();
-      image.onload  = resolve;
-      image.onerror = reject;
+      image.onload  = resolve(path);
+      image.onerror = reject()
       image.src = path;
     });
   };
-
-  var img = document.querySelectorAll('.loadimg')
-  img.forEach(function (item, index, input) {
-    var src = item.getAttribute('data-src')
-    item.setAttribute('src', src)
+  preloadImage('https://eimg.smzdm.com/201711/22/5a152bd861e969533.jpg').then(src => {
+    console.log(src)
+    document.querySelectorAll('.loadimg')[1].setAttribute('src', src)
+  }).catch(err => {
+    console.log('图片加载失败')
   })
+
+  // var img = document.querySelectorAll('.loadimg')
+  // img.forEach(function (item, index, input) {
+  //   var src = item.getAttribute('data-src')
+  //   item.setAttribute('src', src)
+  // })
 
   function runAsync () {
     var p = new Promise(function (resolve, reject) {
@@ -96,6 +103,29 @@
   !function () {
     console.log(this)
   }()
+
+
+  //promise
+  var isNum = function (x) {
+    const promise = new Promise(function (resole, reject) {
+      if(typeof x === 'number') {
+        resole(x)
+      } else {
+        reject(new Error(typeof x))
+      }
+    })
+
+    return promise
+  }
+
+  isNum('123').then(x => {
+    console.log('是数字',x)
+  }).catch(error => {
+    console.log('不是数字',error)
+  })
+
+  'http://pic.sogou.com/pics/channel/getAllRecomPicByTag.jsp?category=%E5%A3%81%E7%BA%B8&tag=%E5%85%A8%E9%83%A8&start=30&len=15&width=1366&height=768'
+  
 </script>
 </body>
 </html>
