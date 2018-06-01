@@ -4,10 +4,16 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
-Vue.prototype.axios = axios
 
-require('./mock.js')
+import myTest from './components/myTest'
+
+Vue.prototype.$axios = axios
+
+Vue.component('myTest', myTest)
+
 Vue.config.productionTip = false
+
+require('./mock')
 
 /* eslint-disable no-new */
 new Vue({

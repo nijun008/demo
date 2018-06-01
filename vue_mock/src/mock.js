@@ -2,8 +2,23 @@
 const Mock = require('mockjs')
 // 获取 mock.Random 对象
 const Random = Mock.Random
-// mock一组数据
-const produceNewsData = function () {
+// 请求延迟时间
+Mock.setup({
+  timeout: '500-2000'
+})
+
+// Mock.mock( 请求地址, 请求类型 , 返回的数据)
+Mock.mock('/api/news', 'get', newData)
+Mock.mock('/api/userInfo', 'get', userInfo)
+Mock.mock('/api/tags', 'get', Mock.mock({
+  'title|20': ['HTML']
+}))
+Mock.mock('/api/banner', 'get', Random.image('1920x1080', '#941290', '#666', 'png', '一张图片'))
+
+
+
+// 数据返回
+function newData () {
   let articles = []
   for (let i = 0; i < 10; i++) {
     let newArticleObject = {
@@ -20,5 +35,10 @@ const produceNewsData = function () {
   }
 }
 
-// Mock.mock( url, post/get , 返回的数据)
-Mock.mock('/news', 'get', produceNewsData)
+function userInfo () {
+  return Mock.mock({
+    'username|5-10': '倪军',
+    'isAdmin|1': true
+  })
+}
+
