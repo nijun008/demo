@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript语言精粹</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+  var obj = {
+    a: undefined,
+    b: 1
+  }
+  //从undefined中取某个属性将会报错,不确定是否存在的时候增加判断
+  //console.log(obg.a.b)  //报错
+  if (obj.a && obj.a.b) {
+    console.log(obj.a.b)  //不报错
+  }
+
+  //函数四种调用方式,主要区别是this绑定
+  // 1.方法调用
+  // 2.函数直接调用
+  // 3.构造函数调用
+  // 4.apply,call,调用
+
+
+</script>
+</body>
+</html>
