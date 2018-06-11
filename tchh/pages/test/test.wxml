@@ -1,0 +1,13 @@
+<view>
+  <text wx:if="{{message}}">{{ message }}</text>
+  <text wx:else>没有消息</text>
+  <view>
+    <view wx:for="{{ lists }}" wx:for-index="i" wx:for-item="val">
+      {{ i }} {{ val.desc }}
+      <text>{{ val.url }}</text>
+    </view>
+  </view>
+  <button bindtap="clickhand">点我</button>
+  <map></map>
+  <button bindtap="myrequest">发起request</button>
+</view>
