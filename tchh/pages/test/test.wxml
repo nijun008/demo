@@ -8,6 +8,12 @@
     </view>
   </view>
   <button bindtap="clickhand">点我</button>
-  <map></map>
+  <map longitude="{{location.longitude}}" latitude="{{location.latitude}}"></map>
   <button bindtap="myrequest">发起request</button>
+  <button bindtap="chooseimg">选择图片</button>
+  <image wx:for="{{ imgs }}" wx:for-item="path" src="path"></image>
+  <button bindtap="getlocation">获取位置</button>
+  <button bindtap="opentoast">toast</button>
+  <button bindtap="openloading">loading</button>
+  <button bindtap="openmodal">modal</button>
 </view>
