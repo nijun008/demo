@@ -11,9 +11,12 @@
   <map longitude="{{location.longitude}}" latitude="{{location.latitude}}"></map>
   <button bindtap="myrequest">发起request</button>
   <button bindtap="chooseimg">选择图片</button>
-  <image wx:for="{{ imgs }}" wx:for-item="path" src="path"></image>
+  <image wx:for="{{ imgs }}" wx:for-item="path" src="{{path}}"></image>
   <button bindtap="getlocation">获取位置</button>
   <button bindtap="opentoast">toast</button>
   <button bindtap="openloading">loading</button>
   <button bindtap="openmodal">modal</button>
+  <button bindtap="previewimg">预览图片</button>
+  <button bindtap="chooselocation">选择位置</button>
+  <button bindtap="xiala">刷新</button>
 </view>

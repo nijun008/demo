@@ -6,7 +6,10 @@ Page ({
       { desc: '标题二', url: "这是内容2！这是内容1" },
       { desc: '标题三', url: "这是内容3！这是内容1" },
     ],
-    imgs: [],
+    imgs: [
+      'http://img.zcool.cn/community/01205b5a144401a801213490519188.jpg@1280w_1l_2o_100sh.jpg',
+      'http://img2.imgtn.bdimg.com/it/u=3298062377,4223428236&fm=214&gp=0.jpg'
+    ],
     location:{
       longitude: 104.415296,
       latitude: 31.136743,
@@ -103,5 +106,25 @@ Page ({
       title: '转发标题',
       path: '/pages/test'
     }
+  },
+  previewimg: function () {
+    var _self = this
+    wx.previewImage({
+      urls: this.data.imgs
+    })
+  },
+  chooselocation: function () {
+    wx.chooseLocation({
+      success: function (res) {
+        console.log(res)
+      }
+    })
+  },
+  xiala: function () {
+    wx.startPullDownRefresh({
+      success: function (msg){
+        console.log(msg)
+      }
+    })
   }
 })
