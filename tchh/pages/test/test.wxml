@@ -19,4 +19,32 @@
   <button bindtap="previewimg">预览图片</button>
   <button bindtap="chooselocation">选择位置</button>
   <button bindtap="xiala">刷新</button>
+  <view>
+    <icon type="success"></icon>
+    <icon type="success_no_circle" color="#fb0200"></icon>
+    <icon type="warn" color="#fb0200"></icon>
+  </view>
+  <swiper 
+    indicator-dots="true"
+    indicator-color="#666666"
+    indicator-active-color="#000000"
+    autoplay="true"
+    display-multiple-items="2">
+    <swiper-item wx:for="{{ imgs }}" wx:for-item="path">
+      <image src="{{path}}" width="100%"></image>
+    </swiper-item>
+  </swiper>
+  <view>123</view>
+  <progress percent="50" show-info active-color="#000"></progress>
+  <picker mode="date" bindchange='pickerhandle'>
+    <picker-view>
+      选择日期
+    </picker-view>
+  </picker>
+  <view>456</view>
+  <picker mode="region" bindchange='pickerhandle'>
+    <picker-view>
+      选择地址
+    </picker-view>
+  </picker>
 </view>

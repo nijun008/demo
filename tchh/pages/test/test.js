@@ -42,12 +42,14 @@ Page ({
   chooseimg: function () {
     console.log(this, '选择图片')
     var _self = this
+    var imgs = _self.data.imgs
     wx.chooseImage({
-      count: 2,
+      count: 6,
       success: function (res) {
+        imgs = imgs.concat(res.tempFilePaths)
         console.log(res.tempFilePaths)
         _self.setData({
-          imgs: res.tempFilePaths
+          imgs: imgs
         })
       }
     })
@@ -126,5 +128,8 @@ Page ({
         console.log(msg)
       }
     })
+  },
+  pickerhandle: function (e) {
+    console.log(e)
   }
 })
