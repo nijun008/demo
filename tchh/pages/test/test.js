@@ -13,7 +13,8 @@ Page ({
     location:{
       longitude: 104.415296,
       latitude: 31.136743,
-    }
+    },
+    zp: ''
   },
   onLoad: function (page) {
     console.log(page)
@@ -131,5 +132,19 @@ Page ({
   },
   pickerhandle: function (e) {
     console.log(e)
+  },
+  paizhao: function (e) {
+    var pai = wx.createCameraContext()
+    pai.takePhoto({
+      quality: 'high',
+      success: (res) => {
+        this.setData({
+          zp: res.tempImagePath
+        })
+      },
+      fail: function () {
+        console.log('拍照失败')
+      }
+    })
   }
 })
