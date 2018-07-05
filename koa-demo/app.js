@@ -1,9 +1,11 @@
 const Koa = require('koa')
+const fs = require('fs')
 
 const app = new Koa()
 
 const index = (ctx) => {
-  ctx.response.body = 'Hello Koa.js'
+  let resData =  fs.readFileSync('./view/index.html','utf-8')
+  ctx.response.body = resData
 }
 
 app.use(index)

@@ -15,8 +15,6 @@ Mock.mock('/api/tags', 'get', Mock.mock({
 }))
 Mock.mock('/api/banner', 'get', Random.image('1920x1080', '#941290', '#666', 'png', '一张图片'))
 
-
-
 // 数据返回
 function newData () {
   let articles = []
@@ -41,4 +39,3 @@ function userInfo () {
     'isAdmin|1': true
   })
 }
-

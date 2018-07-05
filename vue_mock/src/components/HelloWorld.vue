@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>News</h1>
     <ul>
-      <li v-for="item in news.articles" class="new">
+      <li v-for="(item,i) in news.articles" class="new" :key="i">
         <img :src="item.thumbnail_pic_s">
         <h4>{{ item.title }}</h4>
         <p>{{ item.author_name }}</p>
@@ -22,11 +22,10 @@ export default {
     }
   },
   created () {
-    this.axios.get('/news')
-      .then(res => {
-        this.news = res.data
-        console.log(this.news)
-      })
+    this.$axios.get('/news').then(res => {
+      this.news = res.data
+      console.log(this.news)
+    })
   }
 }
 </script>

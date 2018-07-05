@@ -93,7 +93,7 @@ def myDef4(l = None):
 print(myDef4())
 print(myDef4())
 
-# 数组切片
+# 数组切片 含:不含
 print(myLists[0:2])
 # 前两个
 print(myLists[:2])
@@ -102,5 +102,51 @@ print(myLists[-2:])
 # 字符串切片
 print('abcdefg'[:2])
 
+# 迭代
 for i, val in enumerate(myTuple):
   print(i,val)
+
+# generator, 保存的不是列表, 是算法
+def myDef5(max):
+  n, a, b = 0, 0, 1
+  while n < max:
+    yield b
+    a, b = b, a + b
+    n = n + 1
+  return 'done'
+
+for n in myDef5(6):
+  print(n)
+
+# 高阶函数, 可以接受函数为参数
+def myDef6(a, b, f):
+  return f(a) - f(b)
+
+print(myDef6(-5,6,abs))
+
+# 匿名函数, lambda(关键字) x(函数参数):
+print(list(filter(lambda x: x % 2 == 1, range(1, 20))))
+
+# 对象
+# __name, __ 开头为私有属性，外部无法访问, 通过内部方法获取或修改
+class Student(object):
+  def __init__(self, name, score):
+    self.__name = name
+    self.__score = score
+
+  def print_score(self):
+    print('%s : %s' % (self.__name, self.__score))
+
+  def get_name(self):
+    return self.__name
+
+  def get_score(self):
+    return self.__score
+
+  def set_name(self, name):
+    self.__name = name
+
+xiaoming = Student('xiao ming', 88)
+
+xiaoming.set_name('da ming')
+xiaoming.print_score()
