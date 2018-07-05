@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <h1>加密</h1>
+
+  <input id="user" type="" name="">
+  <input id="psd" type="password" name="">
+  <a id="submit" href="javascript:;">提交</a>
+  <script type="text/javascript" src="/public/jquery.min.js"></script>
+  <script type="text/javascript" src="/public/jsencrypt.min.js"></script>
+  <script type="text/javascript">
+
+  $(function () {
+    let pubKey
+    let keyHandler = new JSEncrypt()
+    let user
+    let psd
+    let post_user
+    let post_psd
+
+    $.ajax({
+      type: 'get',
+      url: '/getKey',
+      dataType: 'json',
+      success: function (res) {
+        console.log('获取的公钥',res.key)
+        pubKey = res.key
+        keyHandler.setPublicKey(pubKey)
+      }
+    })
+
+    $('#submit').on('click', function () {
+      user = $('#user').val()
+      psd = $('#psd').val()
+
+      console.log('加密前:')
+      console.log('user:' + user)
+      console.log('psd:' + psd)
+      post_user = keyHandler.encrypt(user, 'base64')
+      post_psd = keyHandler.encrypt(psd, 'base64')
+
+      // console.log(post_user)
+      // console.log(post_psd)
+      let reqData = {
+        user: post_user,
+        psd: post_psd
+      }
+      console.log('加密后发起请求:', reqData)
+
+      $.ajax({
+        type: 'post',
+        url: '/post',
+        data: reqData,
+        success: function (res) {
+          console.log(res)
+        }
+      })
+    })
+
+
+  })
+  </script>
+</body>
+</html>
