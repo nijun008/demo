@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>javaScript数据结构和算法</title>
+</head>
+<body>
+
+  <script type="text/javascript">
+
+  // 进制转换
+  function baseFn (num, base) {
+    if (!num || !base) {
+      throw 'arg must Number'
+    }
+    let stack = []
+    let rem
+    let baseString = ''
+    let digits = '0123456789ABCDEF'
+    while (num > 0) {
+      rem = Math.floor(num % base)
+      stack.push(rem)
+      num = Math.floor(num / base)
+    }
+
+    while (stack.length > 0) {
+      baseString += digits[stack.pop()]
+    }
+
+    return baseString
+  }
+
+  console.log(baseFn(1000, 10))
+
+
+  //队列,先入后出
+  function Queue() {
+    let items = []
+
+    this.enqueue = function (element) {
+      items.push(element)
+    }
+
+    this.dequeue = function () {
+      return items.shift()
+    }
+
+    this.front = function () {
+      return items[0]
+    }
+
+    this.isEmpty = function () {
+      return items.length === 0
+    }
+
+    this.size = function () {
+      return items.length
+    }
+
+    this.print = function () {
+      console.log(items.toString())
+    }
+  }
+
+  let queue = new Queue()
+
+  console.log(queue.isEmpty())
+
+  queue.enqueue('Join')
+
+  queue.print()
+
+  queue.enqueue('Jack')
+  queue.enqueue('Canmila')
+
+  queue.print()
+
+  queue.dequeue()
+  queue.print()
+  </script>
+</body>
+</html>
