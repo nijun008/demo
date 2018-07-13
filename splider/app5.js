@@ -10,9 +10,9 @@ var fs = require("fs")
 //初始配置
 const config = {
   //起始页(含)
-  startPage: 301,
+  startPage: 601,
   //终止页(含)
-  endPage: 600,
+  endPage: 610,
   //页面编码格式
   ecode: 'gb2312',
   //host

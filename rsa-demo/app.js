@@ -5,7 +5,7 @@ const Koa = require('koa')
 const static = require('koa-static')
 const koaBody = require('koa-body')
 const router = require('koa-router')()
-
+  
 const app = new Koa()
 
 const key = new Rsa({b: 512})
@@ -21,7 +21,7 @@ var public_key = new Rsa(pub_key_str)
 var private_key = new Rsa(pri_key_str)
 
 // 呃...大概是设置解密方式,加密解密需要统一
-public_key.setOptions({encryptionScheme: 'pkcs1'})
+//public_key.setOptions({encryptionScheme: 'pkcs1'})
 private_key.setOptions({encryptionScheme: 'pkcs1'})
 
 router.get('/', (ctx) => {

@@ -1,3 +1,4 @@
+# _*- coding: utf-8 _*_
 print('中文')
 
 # 字符串占位符
@@ -150,3 +151,20 @@ xiaoming = Student('xiao ming', 88)
 
 xiaoming.set_name('da ming')
 xiaoming.print_score()
+
+# 读取文件
+with open('./txt.txt', 'r') as f:
+  # print(f.read())
+
+  for line in f.readlines():
+    print(line.strip())
+
+# 获取系统信息
+import os
+print(os.name)
+
+print('1' * 5)
+
+# 时间
+import time
+print(time)
