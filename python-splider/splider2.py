@@ -5,7 +5,7 @@ import json
 base_url = 'http://fanyi.baidu.com/sug'
 
 data = {
-  'kw': 'girl'
+  'kw': 'from'
 }
 
 data = parse.urlencode(data).encode()
@@ -14,12 +14,17 @@ headers = {
   'Content-Length': len(data)
 }
 
-res = request.urlopen(base_url, data = data)
+req = request.Request(url = base_url, data = data, headers = headers)
+
+res = request.urlopen(req)
 
 json_data = res.read().decode()
 
-print(json_data)
+# print(json_data)
 
 json_data = json.loads(json_data)
 
-print(json_data)
+# print(json_data)
+
+for item in json_data['data']:
+  print(item['k'], ':', item['v'])
