@@ -1,0 +1,9 @@
+<text>今日干货</text>
+<view>
+  <view class='category-box' wx:for="{{category}}" wx:key="i" wx:for-item="cate">
+    <text class="category-title">{{cate}}</text>
+    <view wx:for="{{ today[cate] }}" wx:key="j" wx:for-item="item">
+      <text class="item-title" url="{{ item.url }}">{{ item.desc }}</text>
+    </view>
+  </view>
+</view>

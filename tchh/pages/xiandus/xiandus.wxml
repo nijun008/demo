@@ -1,0 +1,6 @@
+<view>
+  <text>闲读主分类</text>
+  <view wx:for="{{ xiandus }}" wx:for-item="xiandu" wx:key="i">
+    <navigator url='{{"/pages/xianduchild/xianduchild?name=" + xiandu.en_name}}'>{{ xiandu.name }}</navigator>
+  </view>
+</view>

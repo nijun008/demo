@@ -1,0 +1,8 @@
+<!--pages/xianduchild/xianduchild.wxml-->
+<view>
+  闲读子分类
+</view>
+<view wx:for="{{ xianduchildren }}" wx:key="i" wx:for-item="item">
+  <text>{{ item.title }}</text>
+  <image src='{{ item.icon }}'></image>
+</view>

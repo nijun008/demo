@@ -1,14 +1,17 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/test/test"
+    "pages/test/test",
+    "pages/today/today",
+    "pages/xiandus/xiandus",
+    "pages/xianduchild/xianduchild"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "backgroundColor": "#1296db",
@@ -26,6 +29,10 @@
         "text": "测试",
         "iconPath": "static/images/sale.png",
         "selectedIconPath": "static/images/sale.png"
+      },
+      {
+        "pagePath": "pages/xiandus/xiandus",
+        "text": "闲读"
       }
     ]
   },

@@ -1,0 +1,13 @@
+/* pages/today/today.wxss */
+.category-box{
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+}
+.category-title {
+  font-size: 40rpx;
+  color: mediumturquoise;
+}
+.item-title {
+  font-size: 30rpx;
+  color: #0a84e3;
+}
