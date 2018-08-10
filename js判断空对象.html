@@ -29,6 +29,15 @@
     }
     nullFn1(a)
     nullFn1(b)
+
+    let timeData = ['2018-05-12 12:24:24','2018-05-12 08:24:24','2018-05-12 07:24:24','2018-05-12 12:36:24','2018-48-12 12:33:24','2018-05-12 14:24:24','2018-05-12 13:24:24','2018-05-12 12:24:00','2018-05-12 12:24:23','2018-05-12 12:24:45',]
+
+    for(let i = 0; i < timeData.length; i ++) {
+        if (timeData[i].split(':').length = 3) {
+            timeData[i] = timeData[i].split(':').splice(0,2).join(':')
+            console.log(timeData[i])
+        }
+    }
   </script>
 </body>
 </html>
