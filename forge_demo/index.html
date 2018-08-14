@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=no" />
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/style.min.css" type="text/css">
+    <style>
+      body {
+        margin: 0;
+      }
+      #viewer {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        background-color: #F0F8FF;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- The Viewer will be instantiated here -->
+  <div id="viewer"></div>
+
+  <!-- The Viewer JS -->
+  <!-- <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/three.min.js"></script> -->
+  <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/viewer3D.min.js"></script>
+
+  <!-- Developer JS -->
+  <script>
+    var viewerDiv = document.getElementById('viewer');
+    var viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv)
+    var options = {
+      'env' : 'Local',
+      'document' : './3D/3D.svf'
+    }
+    var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwyMDE4LTA4LTE0LTA3LTA1LTAyLWQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0MjdlL1JvYm90QXJtLmR3Zng';
+    Autodesk.Viewing.Initializer(options, function onInitialized(){
+      viewer.start(options.document, options)
+    });
+
+    /**
+    * Autodesk.Viewing.Document.load() success callback.
+    * Proceeds with model initialization.
+    */
+    function onDocumentLoadSuccess(doc) {
+      // A document contains references to 3D and 2D viewables.
+      var viewables = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {'type':'geometry'}, true);
+      if (viewables.length === 0) {
+          console.error('Document contains no viewables.');
+          return;
+      }
+
+      // Choose any of the avialble viewables
+      var initialViewable = viewables[0];
+      var svfUrl = doc.getViewablePath(initialViewable);
+      var modelOptions = {
+          sharedPropertyDbPath: doc.getPropertyDbPath()
+      };
+
+      var viewerDiv = document.getElementById('viewer');
+      viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
+      viewer.start(svfUrl, modelOptions, onLoadModelSuccess, onLoadModelError);
+    }
+
+    /**
+     * Autodesk.Viewing.Document.load() failuire callback.
+     */
+    function onDocumentLoadFailure(viewerErrorCode) {
+        console.error('onDocumentLoadFailure() - errorCode:' + viewerErrorCode);
+    }
+
+    /**
+     * viewer.loadModel() success callback.
+     * Invoked after the model's SVF has been initially loaded.
+     * It may trigger before any geometry has been downloaded and displayed on-screen.
+     */
+    function onLoadModelSuccess(model) {
+        console.log('onLoadModelSuccess()!');
+        console.log('Validate model loaded: ' + (viewer.model === model));
+        console.log(model);
+    }
+
+    /**
+     * viewer.loadModel() failure callback.
+     * Invoked when there's an error fetching the SVF file.
+     */
+    function onLoadModelError(viewerErrorCode) {
+        console.error('onLoadModelError() - errorCode:' + viewerErrorCode);
+    }
+  </script>
+  </body>
+</html>
