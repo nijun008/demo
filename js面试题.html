@@ -204,6 +204,67 @@
             return (a - b)
         }
     }))
+
+    // 数组迭代为树形数组
+    let arrSource = [
+        { name: '一', id: '1', prt_id: null },
+        { name: '二', id: '2', prt_id: '1' },
+        { name: '三', id: '3', prt_id: '2' },
+        { name: '二', id: '4', prt_id: '1' },
+        { name: '四', id: '5', prt_id: '3' },
+        { name: '一', id: '6', prt_id: null },
+        { name: '三', id: '7', prt_id: '4' },
+        { name: '二', id: '8', prt_id: '6' },
+        { name: '五', id: '9', prt_id: '10' },
+        { name: '四', id: '10', prt_id: '11' },
+        { name: '三', id: '11', prt_id: '8' },
+    ]
+
+    function treeArray(arrSource) {
+        let result = [], 
+            childrenLists = []
+        arrSource.forEach((item, index) => {
+            if (item.prt_id) {
+                childrenLists.push(item)
+            } else {
+                result.push(item)
+            }
+        })
+
+        function arrIteration (lists, prj, prjIndex, childrenLists) {
+            lists.forEach(parent => {
+                if (prj.prt_id == parent.id) {
+                    if (parent.CHILDREN instanceof Array) {
+                        parent.CHILDREN.push(prj)
+                    } else {
+                        parent.CHILDREN = [prj]
+                    }
+                    childrenLists.splice(prjIndex, 1)
+                } else if (parent.CHILDREN instanceof Array && parent.CHILDREN.length > 0) {
+                    arrIteration (parent.CHILDREN, prj, prjIndex, childrenLists)
+                }
+            })
+        }
+
+        function childCheck (parentLists, childrenLists) {
+            if (childrenLists instanceof Array && childrenLists.length > 0) {
+                childrenLists.forEach((child, chindIndex) => {
+                    arrIteration (parentLists, child, chindIndex, childrenLists)
+                    setTimeout(function () {
+                        childCheck (parentLists, childrenLists)
+                    }, 0)
+                })
+            }
+        }
+
+        childCheck (result, childrenLists)
+
+        return result
+    }
+
+    console.log(treeArray(arrSource))
+
+
   </script>
 </body>
 </html>
