@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>图片懒加载</title>
+  <style type="text/css">
+    .img-box {
+      height: 400px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="img-box lazy">
+    <img src="http://iph.href.lu/879x400?text=懒加载&fg=1ba1f8" 
+      data-src="http://iph.href.lu/879x400?text=懒加载完成&fg=1ba1f8">
+  </div>
+  <div class="img-box lazy">
+    <img src="http://iph.href.lu/879x400?text=懒加载&fg=1ba1f8" 
+      data-src="http://iph.href.lu/879x400?text=懒加载完成&fg=1ba1f8">
+  </div>
+  <div class="img-box lazy">
+    <img src="http://iph.href.lu/879x400?text=懒加载&fg=1ba1f8" 
+      data-src="http://iph.href.lu/879x400?text=懒加载完成&fg=1ba1f8">
+  </div>
+  <div class="img-box lazy">
+    <img src="http://iph.href.lu/879x400?text=懒加载&fg=1ba1f8" 
+      data-src="http://iph.href.lu/879x400?text=懒加载完成&fg=1ba1f8">
+  </div>
+  <div class="img-box lazy">
+    <img src="http://iph.href.lu/879x400?text=懒加载&fg=1ba1f8" 
+      data-src="http://iph.href.lu/879x400?text=懒加载完成&fg=1ba1f8">
+  </div>
+  <div class="img-box lazy">
+    <img src="http://iph.href.lu/879x400?text=懒加载&fg=1ba1f8" 
+      data-src="http://iph.href.lu/879x400?text=懒加载完成&fg=1ba1f8">
+  </div>
+  <div class="img-box lazy">
+    <img src="http://iph.href.lu/879x400?text=懒加载&fg=1ba1f8" 
+      data-src="http://iph.href.lu/879x400?text=懒加载完成&fg=1ba1f8">
+  </div>
+  <div class="img-box lazy">
+    <img src="http://iph.href.lu/879x400?text=懒加载&fg=1ba1f8" 
+      data-src="http://iph.href.lu/879x400?text=懒加载完成&fg=1ba1f8">
+  </div>
+  <div class="img-box lazy">
+    <img src="http://iph.href.lu/879x400?text=懒加载&fg=1ba1f8" 
+      data-src="http://iph.href.lu/879x400?text=懒加载完成&fg=1ba1f8">
+  </div>
+</body>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var io = new IntersectionObserver( 
+    target => {
+      target.forEach(item => {
+        if (item.isIntersecting) {
+          $('.lazy').eq(0).find('img').attr('src', $('.lazy').eq(0).find('img').attr('data-src'))
+        }
+      })
+    },
+    {
+      /* 使用默认参数。下面详细说明 */
+    }
+  );
+  // 开始观测某个元素
+  io.observe(document.querySelector('.lazy'))
+</script>
+</html>
