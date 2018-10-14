@@ -54,15 +54,23 @@
     target => {
       target.forEach(item => {
         if (item.isIntersecting) {
-          $('.lazy').eq(0).find('img').attr('src', $('.lazy').eq(0).find('img').attr('data-src'))
+          $(item.target).find('img').attr('src', $(item.target).find('img').attr('data-src'))
+          item.target.classList.remove('lazy')
+          io.unobserve(item.target)
         }
       })
-    },
-    {
-      /* 使用默认参数。下面详细说明 */
     }
   );
-  // 开始观测某个元素
-  io.observe(document.querySelector('.lazy'))
+  
+  function lazyOnload(selector) {
+    let lazy = document.querySelectorAll(selector)
+    lazy.forEach(dom => {
+      io.observe(dom)
+    })
+  }
+
+
+  lazyOnload('.lazy')
+
 </script>
 </html>
