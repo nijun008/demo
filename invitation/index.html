@@ -4,44 +4,67 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>使用animate.css</title>
-    <link rel="stylesheet" href="./css/index.css">
+    <title>倪俊&岳晴</title>
     <link rel="stylesheet" href="./css/zepto.fullpage.css">
     <link rel="stylesheet" href="./css/animate.css">
-    <style>
-        .hide {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/index.css">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=S6EO9oPso0n8aTMvfH1g0aLUX6vGZx1l"></script>
 </head>
 <body>
+    <div id="play-btn"><i class="iconfont" style="font-size: 20px;">&#xe617;</i></div>
     <div class="wp">
         <div class="wp-inner">
             <div class="page page1">
-                <div class="js-animate animated" data-animate="bounce" data-time="0">bounce</div>
-                <div class="js-animate animated" data-animate="bounce" data-time="1500">bounce</div>
-                <div class="js-animate animated" data-animate="bounce" data-time="3000">bounce</div>
+                <div class="mask">
+                    <div class="js-animate animated" data-animate="swing" data-time="0">2015</div>
+                    <div class="js-animate animated" data-animate="bounce" data-time="1500">bounce</div>
+                    <div class="js-animate animated" data-animate="bounce" data-time="3000">bounce</div>
+                    <div class="js-animate animated" data-animate="bounce" data-time="4000">bounce</div>
+                </div>
             </div>
             <div class="page page2">
-                <div class="js-animate animated" data-animate="bounceIn" data-time="0">bounceIn</div>
-                <div class="js-animate animated" data-animate="bounceIn" data-time="1500">bounceIn</div>
-                <div class="js-animate animated" data-animate="bounceIn" data-time="3000">bounceIn</div>
+                <div class="mask">
+                    <div class="js-animate animated" data-animate="bounceIn" data-time="0">2016</div>
+                    <div class="js-animate animated" data-animate="bounceIn" data-time="1500">bounceIn</div>
+                    <div class="js-animate animated" data-animate="bounceIn" data-time="3000">bounceIn</div>
+                </div>
             </div>
             <div class="page page3">
-                <div class="js-animate animated" data-animate="fadeInLeft" data-time="0">fadeInLeft</div>
-                <div class="js-animate animated" data-animate="fadeInLeft" data-time="1500">fadeInLeft</div>
-                <div class="js-animate animated" data-animate="fadeInLeft" data-time="3000">fadeInLeft</div>
+                <div class="mask">
+                    <div class="js-animate animated" data-animate="fadeInLeft" data-time="0">2017</div>
+                    <div class="js-animate animated" data-animate="fadeInLeft" data-time="1500">fadeInLeft</div>
+                    <div class="js-animate animated" data-animate="fadeInLeft" data-time="3000">fadeInLeft</div>
+                </div>
             </div>
             <div class="page page4">
-                <div class="js-animate animated" data-animate="rollIn" data-time="0">rollIn</div>
-                <div class="js-animate animated" data-animate="rollIn" data-time="1500">rollIn</div>
-                <div class="js-animate animated" data-animate="rollIn" data-time="3000">rollIn</div>
+                <div class="mask">
+                    <div class="js-animate animated" data-animate="rollIn" data-time="0">2018</div>
+                    <div class="js-animate animated" data-animate="rollIn" data-time="1500">rollIn</div>
+                    <div class="js-animate animated" data-animate="rollIn" data-time="3000">rollIn</div>
+                </div>
             </div>
+            <div class="page page5">
+                <div class="mask">
+                    <div class="js-animate animated" data-animate="rollIn" data-time="0">我们结婚啦~</div>
+                    <div class="js-animate animated" data-animate="rollIn" data-time="1500">rollIn</div>
+                    <div class="js-animate animated" data-animate="rollIn" data-time="3000">rollIn</div>
+                </div>
+            </div>
+            <div class="page page6" style="position: relative;">
+                <div id="map"></div>
+                <div id="location-btn"><i class="iconfont" style="font-size: 32px;">&#xe616;</i></div>
+                <div id="map-msg">
+                    <p class="js-animate animated" data-animate="bounceInLeft" data-time="0"><i class="iconfont red-icon">&#xe63e;</i>德阳市中江县冯店镇，距离成都约70公里</p>
+                    <p class="js-animate animated" data-animate="bounceInRight" data-time="1000"><i class="iconfont red-icon">&#xe622;</i>G42沪蓉高速（成都——南充段），冯店出口驶离高速，需约一小时</p>
+                    <p class="js-animate animated" data-animate="bounceInUp" data-time="2000"><i class="iconfont red-icon">&#xe72b;</i>成都十陵车站购买冯店镇车票乘坐大巴，需约一小时；茶店子车站班次较少，不建议乘坐</p>
+                </div>
         </div>
     </div>
-    <span class="start"><b></b></span>
+    <span class="start"><i class="iconfont" style="color: #fff;font-size: 30px;">&#xe606;</i></span>
+    <audio id="mp3" src="./music.mp3" autoplay loop></audio>
     <script src="./js/js.fullpage.js"></script>
     <script>
+        // 滚屏动画控制
         var forEach = [].forEach;
         document.getElementsByClassName('wp-inner')[0].fullpage({
             change: function (e) {
@@ -62,6 +85,112 @@
                 });
             }
         });
+
+
+        // 地图
+        var mapCenter = [104.893589,30.64927]
+        var endPoint = [104.893589,30.64927]
+        var map = new BMap.Map("map", {minZoom: 10,maxZoom: 14})
+
+        map.centerAndZoom(new BMap.Point(mapCenter[0], mapCenter[1]), 11);
+
+        function ComplexCustomOverlay(point, text, mouseoverText){
+          this._point = point;
+          this._text = text;
+          this._overText = mouseoverText;
+        }
+        ComplexCustomOverlay.prototype = new BMap.Overlay();
+        ComplexCustomOverlay.prototype.initialize = function(map){
+          this._map = map;
+          var div = this._div = document.createElement("div");
+          div.style.position = "absolute";
+          div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+          div.style.backgroundColor = "#E60000";
+          div.style.borderRadius = "3px";
+          div.style.color = "white";
+          div.style.height = "18px";
+          div.style.padding = "2px 4px";
+          div.style.lineHeight = "18px";
+          div.style.whiteSpace = "nowrap";
+          div.style.MozUserSelect = "none";
+          div.style.fontSize = "12px"
+          var span = this._span = document.createElement("span");
+          div.appendChild(span);
+          span.appendChild(document.createTextNode(this._text));      
+          var that = this;
+
+          var arrow = this._arrow = document.createElement("div");
+          // arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
+          arrow.style.position = "absolute";
+          arrow.style.width = "0";
+          arrow.style.height = "0";
+          arrow.style.top = "22px";
+          arrow.style.left = "10px";
+          arrow.style.overflow = "hidden";
+          arrow.style.border = "6px solid transparent";
+          arrow.style.borderTop = "6px solid #E60000";
+          div.appendChild(arrow);
+     
+          // div.onmouseover = function(){
+          //   this.style.backgroundColor = "#6BADCA";
+          //   this.style.borderColor = "#0000ff";
+          //   this.getElementsByTagName("span")[0].innerHTML = that._overText;
+          //   arrow.style.backgroundPosition = "0px -20px";
+          // }
+
+          // div.onmouseout = function(){
+          //   this.style.backgroundColor = "#EE5D5B";
+          //   this.style.borderColor = "#BC3B3A";
+          //   this.getElementsByTagName("span")[0].innerHTML = that._text;
+          //   arrow.style.backgroundPosition = "0px 0px";
+          // }
+
+          map.getPanes().labelPane.appendChild(div);
+          
+          return div;
+        }
+        ComplexCustomOverlay.prototype.draw = function(){
+          var map = this._map;
+          var pixel = map.pointToOverlayPixel(this._point);
+          this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+          this._div.style.top  = pixel.y - 30 + "px";
+        }
+            
+        var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(104.893589,30.64927), "婚礼","N and Y");
+
+        map.addOverlay(myCompOverlay);
+
+        document.querySelector('#location-btn').addEventListener('click', () => {
+            map.panTo(new BMap.Point(mapCenter[0], mapCenter[1]))
+        })
+
+        
+        // 音乐播放控制
+        window.onload = function () {
+            let mp3 = document.querySelector('#mp3')
+            let playBtn = document.querySelector('#play-btn')
+            let play = !mp3.paused && mp3.readyState === 4
+
+            if (play) {
+                playBtn.style.animationPlayState = 'running'
+            } else {
+                playBtn.style.animationPlayState = 'paused'
+            }
+
+            playBtn.addEventListener('click', function(event) {
+                if (play) {
+                    this.style.animationPlayState = 'paused'
+                    mp3.pause()
+                    play = false
+                } else {
+                    if (mp3.readyState === 4) {
+                        this.style.animationPlayState = 'running'
+                        mp3.play()
+                        play = true
+                    } 
+                }
+            })
+        }
     </script>
 </body>
 </html>

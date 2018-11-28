@@ -1,76 +1,174 @@
 .wp{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;            
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;            
 }
 .page{
-    font-size: 72px;
-    line-height: 200px;
-    text-align: center;
+  text-align: center;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.mask {
+  height: 100%;
+  background-color: rgba(210, 210, 210, 0.6);
+  color: #fff;
 }
 .page1{
-    background: red;
+  background-image: url(../img/1.jpg);
 }
 .page2{
-    background: yellow;
+  background: yellow;
 }
 .page3{
-    background: maroon;
+  background: maroon;
 }
 .page4{
-    background: green;
+  background: green;
 }
-
+.page5 {
+  background: green;
+}
 /* 箭头 */
 @-webkit-keyframes start {
-    0%,30% {
-        opacity: 0;
-        -webkit-transform: translate(0,10px);
-    }
-    60% {
-        opacity: 1;
-        -webkit-transform: translate(0,0);
-    }
-    100% {
-        opacity: 0;
-        -webkit-transform: translate(0, -5px);
-    }
+  0%,30% {
+    opacity: 0;
+    -webkit-transform: translate(0,10px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translate(0,0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(0, -5px);
+  }
 }
 @keyframes start {
-    0%,30% {
-        opacity: 0;
-        transform: translate(0,10px);
-    }
-    60% {
-        opacity: 1;
-        transform: translate(0,0);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(0, -5px);
-    }
+  0%,30% {
+    opacity: 0;
+    transform: translate(0,10px);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(0,0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, -5px);
+  }
 }
 .start{
-    position: fixed;
-    left: 50%;
-    margin-left: -17px;
-    top: 95%;
-    margin-top: -34px;
-    width: 34px;
-    height: 34px;
+  position: fixed;
+  left: 50%;
+  margin-left: -17px;
+  top: 95%;
+  margin-top: -34px;
+  width: 34px;
+  height: 34px;
 }
-.start b{
-    position: absolute;
-    left: 50%;
-    top: 10px;
-    margin-left: -9px;
-    width: 19px;
-    height: 12px;
-    background: url(img/arrow.png);
-    background-size: 100% 100%;
-    -webkit-animation: start 2s infinite ease-in-out;
-    animation: start 2s infinite ease-in-out;
+.start i{
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  margin-left: -9px;
+  width: 19px;
+  height: 12px;
+  background-size: 100% 100%;
+  -webkit-animation: start 2s infinite ease-in-out;
+  animation: start 2s infinite ease-in-out;
+}
+
+
+
+@font-face {
+  font-family: 'iconfont';  /* project id 934283 */
+  src: url('http://at.alicdn.com/t/font_934283_9iew70dda7p.eot');
+  src: url('http://at.alicdn.com/t/font_934283_9iew70dda7p.eot?#iefix') format('embedded-opentype'),
+  url('http://at.alicdn.com/t/font_934283_9iew70dda7p.woff') format('woff'),
+  url('http://at.alicdn.com/t/font_934283_9iew70dda7p.ttf') format('truetype'),
+  url('http://at.alicdn.com/t/font_934283_9iew70dda7p.svg#iconfont') format('svg');
+}
+@-webkit-keyframes rotate { 
+  from {
+    -webkit-transform: rotate(0deg)
+  }
+  to {
+    -webkit-transform: rotate(360deg)
+  }
+}
+@keyframes rotate{
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(359deg)
+  }
+}
+#play-btn {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  z-index: 999;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  line-height: 33px;
+  padding-right: 2px;
+  border: 1px solid #555;
+  text-align: center;
+  -webkit-transition-duration: 1s;
+  -webkit-animation: rotate 3s linear infinite;
+  animation: rotate 3s linear infinite;
+  animation-play-state: paused;
+  color: #555;
+}
+.anchorBL {
+  display: none !important;
+}
+/*.playing {
+  -webkit-transition-duration: 1s;
+  -webkit-animation: rotate 3s linear infinite;
+  animation: rotate 3s linear infinite;
+}*/
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.hide {
+  display: none;
+}
+#map-msg {
+  height: 158px;
+  padding: 5px;
+  text-align: left;
+  line-height: 22px;
+  font-size: 14px;
+  padding-left: 3%;
+  background-color: #f6f6f6;
+}
+#map {
+  width: 100%;
+  height: calc(100% - 158px);
+}
+#map-msg p{
+  margin: 8px 0;
+}
+.red-icon {
+  color: #e60000;
+  margin-right: 5px;
+  font-size: 18px;
+}
+#location-btn {
+  position: absolute;
+  bottom: 158px;
+  right: 6px;
+  color: #555;
+  padding: 6px;
 }
