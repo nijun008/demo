@@ -7,30 +7,30 @@
   overflow: hidden;            
 }
 .page{
-  text-align: center;
-  background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
-.mask {
+.img-wrap {
+  position: absolute;
+  width: 100%;
   height: 100%;
-  background-color: rgba(210, 210, 210, 0.6);
-  color: #fff;
 }
-.page1{
-  background-image: url(../img/1.jpg);
+.img-wrap img {
+  max-width: 100%;
 }
 .page2{
-  background: yellow;
+  background-image: url(../bg/2.jpg);
 }
 .page3{
-  background: maroon;
+  background-image: url(../bg/3.jpg);
 }
 .page4{
-  background: green;
+  background-image: url(../bg/4.jpg);
 }
 .page5 {
-  background: green;
+  background-image: url(../bg/5.jpg);
 }
 /* 箭头 */
 @-webkit-keyframes start {
@@ -108,6 +108,36 @@
     transform: rotate(359deg)
   }
 }
+.animation-100 {
+  animation-duration: 0.1s;
+}
+.animation-200 {
+  animation-duration: 0.2s;
+}
+.animation-300 {
+  animation-duration: 0.3s;
+}
+.animation-400 {
+  animation-duration: 0.4s;
+}
+.animation-500 {
+  animation-duration: 0.5s;
+}
+.animation-600 {
+  animation-duration: 0.6s;
+}
+.animation-700 {
+  animation-duration: 0.7s;
+}
+.animation-800 {
+  animation-duration: 0.8s;
+}
+.animation-900 {
+  animation-duration: 0.9s;
+}
+.animation-1100 {
+  animation-duration: 1.1s;
+}
 #play-btn {
   position: fixed;
   top: 16px;
@@ -171,4 +201,20 @@
   right: 6px;
   color: #555;
   padding: 6px;
+}
+
+.full-bg {
+  background-size: cover;
+  background-position: center;
+}
+.photo-wrap {
+  width: 100%;
+  height: 100%;
+}
+.ele-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

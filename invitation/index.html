@@ -15,11 +15,43 @@
     <div class="wp">
         <div class="wp-inner">
             <div class="page page1">
-                <div class="mask">
-                    <div class="js-animate animated" data-animate="swing" data-time="0">2015</div>
-                    <div class="js-animate animated" data-animate="bounce" data-time="1500">bounce</div>
-                    <div class="js-animate animated" data-animate="bounce" data-time="3000">bounce</div>
-                    <div class="js-animate animated" data-animate="bounce" data-time="4000">bounce</div>
+                <div class="photo-wrap">
+                    <div 
+                        class="full-bg js-animate animated" 
+                        style="background-image: url(./photo/1.jpg);width: 100%;height: 100%;"
+                        data-animate="swing" data-time="0"></div>
+                </div>
+                <div class="ele-wrap">
+                    <h4 class="js-animate animated animation-500" 
+                        data-animate="bounceInDown" 
+                        data-time="500"
+                        data-sec="zoomOut"
+                        data-sectime="1000"
+                        style="position: absolute;top: 40%;width: 100%;text-align: center;">准备</h4>
+                    <h4 class="js-animate animated animation-500"
+                        data-animate="bounceInRight" 
+                        data-time="1200"
+                        data-sec="bounceOutUp" 
+                        data-sectime="1200"
+                        style="position: absolute;top: 40%;left: 10%">准备</h4>
+                    <h4 class="js-animate animated animation-500" 
+                        data-animate="bounceInLeft" 
+                        data-time="1200"
+                        data-sec="bounceOutDown" 
+                        data-sectime="1200"
+                        style="position: absolute;top: 40%;right: 10%">好了吗</h4>
+
+                    <div class="js-animate animated animation-500"
+                        data-animate="bounceInDown" 
+                        data-time="2000"
+                        data-sec="rotateOutDownLeft"
+                        data-sectime="2000"
+
+                        style="position: absolute;top: 40%;width: 100%;text-align: center;">
+                        <h4>这</h4>
+                        <h4 style="margin-top: 10%;">是一个</h4>
+                    </div>
+
                 </div>
             </div>
             <div class="page page2">
@@ -72,6 +104,9 @@
                 forEach.call(document.querySelectorAll('.page')[e.cur].querySelectorAll('.js-animate'), function (v) {
                     v.classList.remove(v.dataset['animate']);
                     v.classList.add('hide');
+                    if (v.dataset['sec']) {
+                        v.classList.remove(v.dataset['sec']);
+                    }
                 });
             },
             afterChange: function (e) {
@@ -81,6 +116,12 @@
                     setTimeout(function () {
                         v.classList.add(v.dataset['animate']);
                         v.classList.remove('hide');
+                        if (v.dataset['sec']) {
+                            var time = v.dataset.sectime;
+                            setTimeout( function() {
+                                v.classList.add(v.dataset['sec']);
+                            }, time);
+                        }
                     }, time);
                 });
             }
@@ -88,81 +129,69 @@
 
 
         // 地图
-        var mapCenter = [104.893589,30.64927]
-        var endPoint = [104.893589,30.64927]
-        var map = new BMap.Map("map", {minZoom: 10,maxZoom: 14})
+        if (window.BMap) {
+            var mapCenter = [104.893589,30.64927]
+            var endPoint = [104.893589,30.64927]
+            var map = new BMap.Map("map", {minZoom: 10,maxZoom: 14})
 
-        map.centerAndZoom(new BMap.Point(mapCenter[0], mapCenter[1]), 11);
+            map.centerAndZoom(new BMap.Point(mapCenter[0], mapCenter[1]), 11);
 
-        function ComplexCustomOverlay(point, text, mouseoverText){
-          this._point = point;
-          this._text = text;
-          this._overText = mouseoverText;
+            function ComplexCustomOverlay(point, text, mouseoverText){
+              this._point = point;
+              this._text = text;
+              this._overText = mouseoverText;
+            }
+            ComplexCustomOverlay.prototype = new BMap.Overlay();
+            ComplexCustomOverlay.prototype.initialize = function(map){
+              this._map = map;
+              var div = this._div = document.createElement("div");
+              div.style.position = "absolute";
+              div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+              div.style.backgroundColor = "#E60000";
+              div.style.borderRadius = "3px";
+              div.style.color = "white";
+              div.style.height = "18px";
+              div.style.padding = "2px 4px";
+              div.style.lineHeight = "18px";
+              div.style.whiteSpace = "nowrap";
+              div.style.MozUserSelect = "none";
+              div.style.fontSize = "12px"
+              var span = this._span = document.createElement("span");
+              div.appendChild(span);
+              span.appendChild(document.createTextNode(this._text));      
+              var that = this;
+
+              var arrow = this._arrow = document.createElement("div");
+              // arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
+              arrow.style.position = "absolute";
+              arrow.style.width = "0";
+              arrow.style.height = "0";
+              arrow.style.top = "22px";
+              arrow.style.left = "10px";
+              arrow.style.overflow = "hidden";
+              arrow.style.border = "6px solid transparent";
+              arrow.style.borderTop = "6px solid #E60000";
+              div.appendChild(arrow);
+
+              map.getPanes().labelPane.appendChild(div);
+              
+              return div;
+            }
+            ComplexCustomOverlay.prototype.draw = function(){
+              var map = this._map;
+              var pixel = map.pointToOverlayPixel(this._point);
+              this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+              this._div.style.top  = pixel.y - 30 + "px";
+            }
+                
+            var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(104.893589,30.64927), "婚礼","N and Y");
+
+            map.addOverlay(myCompOverlay);
+
+            document.querySelector('#location-btn').addEventListener('click', () => {
+                map.panTo(new BMap.Point(mapCenter[0], mapCenter[1]))
+            })
         }
-        ComplexCustomOverlay.prototype = new BMap.Overlay();
-        ComplexCustomOverlay.prototype.initialize = function(map){
-          this._map = map;
-          var div = this._div = document.createElement("div");
-          div.style.position = "absolute";
-          div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
-          div.style.backgroundColor = "#E60000";
-          div.style.borderRadius = "3px";
-          div.style.color = "white";
-          div.style.height = "18px";
-          div.style.padding = "2px 4px";
-          div.style.lineHeight = "18px";
-          div.style.whiteSpace = "nowrap";
-          div.style.MozUserSelect = "none";
-          div.style.fontSize = "12px"
-          var span = this._span = document.createElement("span");
-          div.appendChild(span);
-          span.appendChild(document.createTextNode(this._text));      
-          var that = this;
-
-          var arrow = this._arrow = document.createElement("div");
-          // arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
-          arrow.style.position = "absolute";
-          arrow.style.width = "0";
-          arrow.style.height = "0";
-          arrow.style.top = "22px";
-          arrow.style.left = "10px";
-          arrow.style.overflow = "hidden";
-          arrow.style.border = "6px solid transparent";
-          arrow.style.borderTop = "6px solid #E60000";
-          div.appendChild(arrow);
-     
-          // div.onmouseover = function(){
-          //   this.style.backgroundColor = "#6BADCA";
-          //   this.style.borderColor = "#0000ff";
-          //   this.getElementsByTagName("span")[0].innerHTML = that._overText;
-          //   arrow.style.backgroundPosition = "0px -20px";
-          // }
-
-          // div.onmouseout = function(){
-          //   this.style.backgroundColor = "#EE5D5B";
-          //   this.style.borderColor = "#BC3B3A";
-          //   this.getElementsByTagName("span")[0].innerHTML = that._text;
-          //   arrow.style.backgroundPosition = "0px 0px";
-          // }
-
-          map.getPanes().labelPane.appendChild(div);
-          
-          return div;
-        }
-        ComplexCustomOverlay.prototype.draw = function(){
-          var map = this._map;
-          var pixel = map.pointToOverlayPixel(this._point);
-          this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
-          this._div.style.top  = pixel.y - 30 + "px";
-        }
-            
-        var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(104.893589,30.64927), "婚礼","N and Y");
-
-        map.addOverlay(myCompOverlay);
-
-        document.querySelector('#location-btn').addEventListener('click', () => {
-            map.panTo(new BMap.Point(mapCenter[0], mapCenter[1]))
-        })
 
         
         // 音乐播放控制
