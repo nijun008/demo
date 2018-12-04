@@ -3367,3 +3367,105 @@
   -webkit-animation-name: slideOutUp;
   animation-name: slideOutUp;
 }
+
+@-webkit-keyframes zoomCycle {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    opacity: .2;
+    -webkit-transform: scale3d(2, 2, 2);
+    transform: scale3d(2, 2, 2);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes zoomCycle {
+  0% {
+    opacity: .2;
+    -webkit-transform: scale3d(2, 2, 2);
+    transform: scale3d(2, 2, 2);
+  }
+
+  30% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  90% {
+    opacity: .3;
+    -webkit-transform: scale3d(3, 3, 3);
+    transform: scale3d(3, 3, 3);
+  }
+
+  100% {
+    opacity: .3;
+    -webkit-transform: scale3d(3, 3, 3);
+    transform: scale3d(3, 3, 3);
+  }
+}
+.zoomCycle {
+  -webkit-animation-name: zoomCycle;
+  animation-name: zoomCycle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes minzoomCycle {
+
+  0% {
+    opacity: .1;
+    -webkit-transform: scale3d(.1, .1, .1);
+    transform: scale3d(.1, .1, .1);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes minzoomCycle {
+
+  0% {
+    opacity: .1;
+    -webkit-transform: scale3d(.1, .1, .1);
+    transform: scale3d(.1, .1, .1);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(.6, .6, .6);
+    transform: scale3d(.6, .6, .6);
+  }
+}
+
+.minzoomCycle {
+  -webkit-animation-name: minzoomCycle;
+  animation-name: minzoomCycle;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.shake {
+  animation: swing 1s ease 0s infinite normal both running
+}
