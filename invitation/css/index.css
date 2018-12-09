@@ -162,6 +162,12 @@
 .animation-10000 {
   animation-duration: 10s;
 }
+.flashing {
+  animation: fadeIn 0.7s ease 0s infinite alternate;
+}
+.pulseing {
+  animation: pulse 0.7s ease 0s infinite alternate;
+}
 #play-btn {
   position: fixed;
   top: 16px;
@@ -227,7 +233,7 @@
   padding: 6px;
 }
 
-.full-bg {
+.full-bg, .photo-box {
   background-size: cover;
   background-position: center;
 }
@@ -265,9 +271,12 @@
   margin-left: -20px;
   line-height: 44px;
   text-align: center;
-  background-color: #f8f0dd;
+  background-color: #ecf1f7;
 }
 .circle-box img {
   max-width: 70%;
   vertical-align: middle;
+}
+.page1, .page2, .page3, .page4 {
+  color: #333;
 }

@@ -3370,15 +3370,15 @@
 
 @-webkit-keyframes zoomCycle {
   0% {
+    opacity: 0;
+    -webkit-transform: scale3d(2, 2, 2);
+    transform: scale3d(2, 2, 2);
+  }
+
+  80% {
     opacity: 1;
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
-  }
-
-  50% {
-    opacity: .2;
-    -webkit-transform: scale3d(2, 2, 2);
-    transform: scale3d(2, 2, 2);
   }
 
   100% {
@@ -3390,41 +3390,36 @@
 
 @keyframes zoomCycle {
   0% {
-    opacity: .2;
+    opacity: 0;
+    -webkit-transform: scale3d(2, 2, 2);
+    transform: scale3d(2, 2, 2);
+  }
+  
+  5% {
+    opacity: 0;
     -webkit-transform: scale3d(2, 2, 2);
     transform: scale3d(2, 2, 2);
   }
 
-  30% {
-    opacity: 1;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-
-  50% {
+  80% {
     opacity: 1;
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
   }
 
   90% {
-    opacity: .3;
-    -webkit-transform: scale3d(3, 3, 3);
-    transform: scale3d(3, 3, 3);
-  }
-
-  100% {
-    opacity: .3;
-    -webkit-transform: scale3d(3, 3, 3);
-    transform: scale3d(3, 3, 3);
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
   }
 }
 .zoomCycle {
-  -webkit-animation-name: zoomCycle;
+  /*-webkit-animation-name: zoomCycle;
   animation-name: zoomCycle;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
-  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;*/
+  animation: zoomCycle 10s ease 0s infinite alternate;
 }
 
 @-webkit-keyframes minzoomCycle {
