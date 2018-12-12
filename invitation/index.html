@@ -22,11 +22,11 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            margin-left: -100px;
-            margin-top: -100px;
+            margin-left: -150px;
+            margin-top: -150px;
             display: block;
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             border-radius: 3px;
             font-size: 30px;
             color: rgba(64, 158, 255, .5);
@@ -35,6 +35,7 @@
         }
         .loading-box p {
             font-size: 16px;
+            margin: 16px 0;
         }
         .loading:before,
         .loading:after,
@@ -93,23 +94,41 @@
                 box-shadow: 0 1em 0 -.2em;
             }
         }
+        .load-img {
+            visibility: hidden;
+        }
     </style>
     <script type="text/javascript">
         var loadSum = 0
+        var isMobile = null
+
         function loadDone () {
             loadSum ++
         }
+
+        function pcTip () {
+            console.log('body onload')
+            if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+               console.log('mobile')
+               isMobile = true
+            } else {
+                console.log('pc')
+                loadSum = loadSum - 5
+                isMobile = false
+                document.getElementById('loading-txt').innerHTML = '请使用手机或其它移动设备打开!'
+            }
+        } 
     </script>
 </head>
 <body>
     <div id="loading-mask">
         <div class="loading-box">
             <div class="loading"></div>
-            <p>加载中</p>
+            <p id="loading-txt">加载中</p>
         </div>
     </div>
     <div id="play-btn"><i class="iconfont" style="font-size: 20px;">&#xe617;</i></div>
-    <img class="load-img" onload="loadDone()" src="./public/photo/1.jpg">
+    <img class="load-img" onload="loadDone();pcTip()" src="./public/photo/1.jpg">
     <img class="load-img" onload="loadDone()" src="./public/photo/2.jpg">
     <img class="load-img" onload="loadDone()" src="./public/photo/3.jpg">
     <img class="load-img" onload="loadDone()" src="./public/photo/4.jpg">
@@ -936,12 +955,14 @@
     <script>
         // 滚屏动画控制
 
-        var loadTimer = setInterval(()=> {
-            console.log(loadSum)
-            if (loadSum >= 17) {
-                start()
-            }
-        }, 300);
+        if (isMobile !== false) {
+            var loadTimer = setInterval(()=> {
+                console.log(loadSum)
+                if (loadSum >= 17) {
+                    start()
+                }
+            }, 300);
+        }
 
         var domLists = [];
 
@@ -950,7 +971,9 @@
 
             var forEach = [].forEach;
 
-            document.getElementById('loading-mask').style.display = 'none'
+            setTimeout(() => {
+                document.getElementById('loading-mask').style.display = 'none'
+            }, 100);
             document.getElementsByClassName('wp-inner')[0].fullpage({
                 change: function (e) {
                     clearTime()
