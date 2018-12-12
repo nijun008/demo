@@ -4,21 +4,141 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>倪俊&岳晴</title>
-    <link rel="stylesheet" href="./css/zepto.fullpage.css">
-    <link rel="stylesheet" href="./css/animate.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <title>倪俊&岳晴 的婚礼邀请函</title>
+    <link rel="stylesheet" href="./public/css/zepto.fullpage.css">
+    <link rel="stylesheet" href="./public/css/animate.css">
+    <link rel="stylesheet" href="./public/css/index.css">
+    <style type="text/css">
+        #loading-mask {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #e2ecf5;
+            z-index: 99;
+        }
+        .loading-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -100px;
+            margin-top: -100px;
+            display: block;
+            width: 200px;
+            height: 200px;
+            border-radius: 3px;
+            font-size: 30px;
+            color: rgba(64, 158, 255, .5);
+            vertical-align: top;
+            text-align: center;
+        }
+        .loading-box p {
+            font-size: 16px;
+        }
+        .loading:before,
+        .loading:after,
+        .loading {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            color: inherit;
+            vertical-align: middle;
+            pointer-events: none;
+            border-radius: 50%;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation: loading 1.8s infinite ease-in-out;
+            animation: loading 1.8s infinite ease-in-out;
+        }
+        .loading {
+            color: currentcolor;
+            position: relative;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-animation-delay: -0.16s;
+            animation-delay: -0.16s;
+            top: -1em;
+        }
+        .loading:before {
+            right: 100%;
+            -webkit-animation-delay: -0.32s;
+            animation-delay: -0.32s;
+        }
+        .loading:after {
+            left: 100%;
+        }
+        .loading:before,
+        .loading:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            width: inherit;
+            height: inherit;
+        }
+        @-webkit-keyframes loading {
+            0%, 80%, 100% {
+                box-shadow: 0 1em 0 -1em;
+            }
+            40% {
+                box-shadow: 0 1em 0 -.2em;
+            }
+        }
+        @keyframes loading {
+            0%, 80%, 100% {
+                box-shadow: 0 1em 0 -1em;
+            }
+            40% {
+                box-shadow: 0 1em 0 -.2em;
+            }
+        }
+    </style>
+    <script type="text/javascript">
+        var loadSum = 0
+        function loadDone () {
+            loadSum ++
+        }
+    </script>
 </head>
 <body>
+    <div id="loading-mask">
+        <div class="loading-box">
+            <div class="loading"></div>
+            <p>加载中</p>
+        </div>
+    </div>
     <div id="play-btn"><i class="iconfont" style="font-size: 20px;">&#xe617;</i></div>
+    <img class="load-img" onload="loadDone()" src="./public/photo/1.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/2.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/3.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/4.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/6.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/7.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/8.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/9.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/10.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/11.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/12.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/13.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/14.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/15.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/16.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/17.jpg">
+    <img class="load-img" onload="loadDone()" src="./public/photo/18.jpg">
     <div class="wp">
         <div class="wp-inner">
             <div class="page page1">
                 <div class="photo-wrap">
                     <div 
-                        class="full-bg js-animate animated animation-10000" 
-                        style="background-image: url(./photo/5.jpg);width: 100%;height: 100%;"
+                        class="full-bg js-animate animated animation-8000" 
+                        style="background-image: url(./public/photo/1.jpg);width: 100%;height: 100%;position: absolute;top:0;left: 0;"
                         data-sec="zoomCycle" data-time="0">
+                    </div>
+                    <div 
+                        class="full-bg js-animate animated animation-2000" 
+                        style="background-image: url(./public/photo/2.jpg);width: 100%;height: 100%;position: absolute;top:0;left: 0;"
+                        data-sec="myzoomIn" data-time="12500">
                     </div>
                     <div class="text-frame js-animate animated"
                         data-animate="rotateIn" data-time="500">
@@ -274,12 +394,7 @@
                 <div class="photo-wrap">
                     <div
                         class="full-bg js-animate animated animation-1000" 
-                        style="background-image: url(./photo/7.jpg);width: 100%;height: 50%;"
-                         data-animate="myzoomIn">
-                    </div>
-                    <div
-                        class="full-bg js-animate animated animation-1000" 
-                        style="background-image: url(./photo/30.jpg);width: 100%;height: 50%;"
+                        style="background-image: url(./public/photo/3.jpg);width: 100%;height: 100%;"
                          data-animate="myzoomIn">
                     </div>
                 </div>
@@ -288,28 +403,28 @@
                         data-animate="bounceInDown"
                         data-time="0"
                         style="position: absolute;top: 60%;width: 80%;left: 15%;text-align: center;">
-                        <img style="max-width: 100%;" src="./meta/wedding.png">
+                        <img style="max-width: 100%;" src="./public/meta/wedding.png">
                     </div>
                     <div style="position: absolute;top: 69%;left: 0;width: 100%;text-align: center;height: 20%;">
                         <img class="js-animate animated animation-1000" 
                             data-animate="minzoomCycle" 
-                            data-time="500" src="./meta/hun.png"
+                            data-time="500" src="./public/meta/hun.png"
                             style="position: absolute;left: 15%;">
                         <img class="js-animate animated animation-1000" 
                             data-animate="minzoomCycle" 
-                            data-time="600" src="./meta/li.png"
+                            data-time="600" src="./public/meta/li.png"
                             style="position: absolute;left: 30%;">
                         <img class="js-animate animated animation-1000" 
                             data-animate="minzoomCycle" 
-                            data-time="700" src="./meta/yao.png"
+                            data-time="700" src="./public/meta/yao.png"
                             style="position: absolute;left: 44%; top: 5%;">
                         <img class="js-animate animated animation-1000" 
                             data-animate="minzoomCycle" 
-                            data-time="800" src="./meta/qing.png"
+                            data-time="800" src="./public/meta/qing.png"
                             style="position: absolute;left: 56%;top: 5%;">
                         <img class="js-animate animated animation-1000" 
                             data-animate="minzoomCycle"
-                            data-time="900" src="./meta/han.png"
+                            data-time="900" src="./public/meta/han.png"
                             style="position: absolute;left: 69%;top: 5%;">
                     </div>
                     <div class="js-animate animated animation-500 radius-box" 
@@ -337,7 +452,7 @@
                             class="js-animate animated animation-800 circle-box" 
                             data-animate="myzoomIn" data-time="3000"
                             data-sec="shake" data-sectime="800">
-                            <img src="./meta/zuanshi.png">
+                            <img src="./public/meta/zuanshi.png">
                         </div>
                     </div>
                     <div
@@ -350,7 +465,7 @@
                         class="js-animate animated animation-2000" 
                         data-animate="zoomIn" data-time="5000"
                         style="position: absolute;top: 95%;left: 0;width: 100%;text-align: center;">
-                        <img src="./meta/invitation.png" style="max-width: 75%;">
+                        <img src="./public/meta/invitation.png" style="max-width: 75%;">
                     </div>
                 </div>
             </div>
@@ -358,49 +473,49 @@
                 <div class="photo-wrap">
                     <div 
                         class="full-bg js-animate animated animation-5000" 
-                        style="background-image: url(./photo/1.jpg);width: 100%;height: 100%;"
+                        style="background-image: url(./public/photo/6.jpg);width: 100%;height: 100%;"
                         data-sec="zoomCycle" data-time="0">
                      </div>
                      <div 
-                        class="full-bg js-animate animated animation-600" 
-                        style="background-image: url(./photo/2.jpg);width: 100%;height: 100%;position: absolute;top: 0;left: 0;"
-                        data-animate="zoomIn" data-time="9500">
+                        class="full-bg js-animate animated animation-800"
+                        style="background-image: url(./public/photo/4.jpg);width: 100%;height: 100%;position: absolute;top: 0;left: 0;"
+                        data-animate="zoomIn" data-time="10500">
                      </div>
                      <div class="text-frame js-animate animated"
                         data-animate="bounceInUp" data-time="1000"
                         data-sec="fadeOutUp"
-                        data-sectime="8000">
+                        data-sectime="9000">
                          
                     </div>
                     <div class="text-frame js-animate animated"
                         data-animate="bounceInDown" data-time="1000"
                         data-sec="fadeOutDown"
-                        data-sectime="8000">
+                        data-sectime="9000">
                     </div>
                 </div>
                 <div class="ele-wrap">
                     <h4 class="js-animate animated animation-800" 
                         data-animate="myzoomIn" 
-                        data-time="500"
+                        data-time="1500"
                         data-sec="zoomOut"
                         data-sectime="800"
                         style="position: absolute;top: 40%;width: 100%;text-align: center;">她是</h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="bounceInRight"
-                        data-time="1500"
+                        data-time="2500"
                         data-sec="flipOutY"
                         data-sectime="1000"
                         style="position: absolute;top: 40%;width: 100%;text-align: center;">人见</h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="bounceInLeft"
-                        data-time="2000"
+                        data-time="3000"
                         data-sec="flipOutY"
                         data-sectime="500"
                         style="position: absolute;top: 50%;width: 100%;text-align: center;">人爱</h4>
 
                     <div class="js-animate animated animation-500"
                         data-animate="bounceInDown"
-                        data-time="3000"
+                        data-time="4000"
                         data-sec="zoomOutDown"
                         data-sectime="500"
                         style="position: absolute;top: 45%;width: 100%;text-align: center;">
@@ -409,7 +524,7 @@
                     </div>
                     <h2 class="js-animate animated animation-500"
                         data-animate="fadeInUp"
-                        data-time="4000"
+                        data-time="5000"
                         data-sec="zoomOut"
                         data-sectime="3000"
                         style="position: absolute;top: 35%;width: 100%;text-align: center;">
@@ -417,7 +532,7 @@
                     </h2>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="4500"
+                        data-time="5500"
                         data-sec="zoomOut"
                         data-sectime="2600"
                         style="position: absolute;top: 25%;left: 18%;text-align: center;">
@@ -425,7 +540,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="4700"
+                        data-time="5700"
                         data-sec="zoomOut"
                         data-sectime="2400"
                         style="position: absolute;top: 35%;right: 20%;text-align: center;">
@@ -433,7 +548,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="4900"
+                        data-time="5900"
                         data-sec="zoomOut"
                         data-sectime="2200"
                         style="position: absolute;top: 48%;left: 22%;text-align: center;">
@@ -441,7 +556,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="5100"
+                        data-time="6100"
                         data-sec="zoomOut"
                         data-sectime="2000"
                         style="position: absolute;top: 50%;right: 48%;text-align: center;">
@@ -449,7 +564,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="5300"
+                        data-time="6300"
                         data-sec="zoomOut"
                         data-sectime="1800"
                         style="position: absolute;top: 30%;left: 50%;text-align: center;">
@@ -457,7 +572,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="5500"
+                        data-time="6500"
                         data-sec="zoomOut"
                         data-sectime="1600"
                         style="position: absolute;top: 63%;right: 33%;text-align: center;">
@@ -465,7 +580,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="5700"
+                        data-time="6700"
                         data-sec="zoomOut"
                         data-sectime="1400"
                         style="position: absolute;top: 36%;left: 25%;text-align: center;">
@@ -473,7 +588,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="5900"
+                        data-time="6900"
                         data-sec="zoomOut"
                         data-sectime="1200"
                         style="position: absolute;top: 53%;right: 25%;text-align: center;">
@@ -481,7 +596,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="6100"
+                        data-time="7100"
                         data-sec="zoomOut"
                         data-sectime="1000"
                         style="position: absolute;top: 55%;left: 30%;text-align: center;">
@@ -489,7 +604,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="6300"
+                        data-time="7300"
                         data-sec="zoomOut"
                         data-sectime="800"
                         style="position: absolute;top: 20%;right: 30%;text-align: center;">
@@ -497,31 +612,31 @@
                     </h4>
                     <h4 class="js-animate animated animation-800"
                         data-animate="bounceInUp"
-                        data-time="8000"
+                        data-time="9000"
                         data-sec="zoomOut"
-                        data-sectime="1500"
+                        data-sectime="1000"
                         style="position: absolute;top: 30%;width: 100%;text-align: center;">
                         于一身
                     </h4>
                     <h4 class="js-animate animated animation-800"
                         data-animate="bounceInLeft"
-                        data-time="8000"
+                        data-time="9000"
                         data-sec="zoomOut"
-                        data-sectime="1500"
+                        data-sectime="1000"
                         style="position: absolute;top: 40%;width: 100%;text-align: center;">
                         的
                     </h4>
                     <h4 class="js-animate animated animation-800"
                         data-animate="zoomInDown"
-                        data-time="8000"
+                        data-time="9000"
                         data-sec="zoomOut"
-                        data-sectime="1500"
+                        data-sectime="1000"
                         style="position: absolute;top: 50%;width: 100%;text-align: center;">
                         新娘
                     </h4>
                     <div class="js-animate animated animation-800"
                         data-animate="fadeInDown"
-                        data-time="9500"
+                        data-time="10500"
                         data-sec="flashing"
                         data-time="900"
                         style="position: absolute;top: 70%;width: 40%;right: 10%;height: 20%;text-align: center;background-color: rgba(255,255,255, .7);border-radius: 10px;">
@@ -529,14 +644,14 @@
                     </div>
                     <div class="js-animate animated animation-800"
                         data-animate="fadeInDown"
-                        data-time="9500"
+                        data-time="10500"
                         style="position: absolute;top: 70%;width: 40%;right: 10%;height: 20%;text-align: center;">
                         <p style="margin-top: 43%;color: #3a3f58;">新 娘</p>
-                        <img src="./meta/bride.png" style="position: absolute;bottom: -6px;width: 120%;left: -10%;">
+                        <img src="./public/meta/bride.png" style="position: absolute;bottom: -6px;width: 120%;left: -10%;">
                     </div>
                     <h3 class="js-animate animated animation-800"
                         data-animate="fadeInRight"
-                        data-time="9500"
+                        data-time="10500"
                         style="position: absolute;top: 71%;width: 40%;right: 10%;text-align: center;">
                         岳 晴
                     </h3>
@@ -546,49 +661,49 @@
                 <div class="photo-wrap">
                     <div 
                         class="full-bg js-animate animated animation-5000" 
-                        style="background-image: url(./photo/3.jpg);width: 100%;height: 100%;"
+                        style="background-image: url(./public/photo/7.jpg);width: 100%;height: 100%;"
                         data-sec="zoomCycle" data-time="0">
                     </div>
                     <div 
                         class="full-bg js-animate animated animation-600" 
-                        style="background-image: url(./photo/4.jpg);width: 100%;height: 100%;position: absolute;top: 0;left: 0;"
-                        data-animate="zoomIn" data-time="9500">
+                        style="background-image: url(./public/photo/8.jpg);width: 100%;height: 100%;position: absolute;top: 0;left: 0;"
+                        data-animate="zoomIn" data-time="10500">
                     </div>
                     <div class="text-frame js-animate animated"
                         data-animate="lightSpeedIn" data-time="1000"
                         data-sec="lightSpeedOut"
-                        data-sectime="6500">
+                        data-sectime="7500">
                          
                     </div>
                     <div class="text-frame js-animate animated"
                         data-animate="lightSpeedIn" data-time="2000"
                         data-sec="lightSpeedOut"
-                        data-sectime="7000">
+                        data-sectime="8000">
                     </div>
                 </div>
                 <div class="ele-wrap">
                     <h4 class="js-animate animated animation-800" 
                         data-animate="myzoomIn" 
-                        data-time="500"
+                        data-time="1500"
                         data-sec="zoomOut"
                         data-sectime="800"
                         style="position: absolute;top: 40%;width: 100%;text-align: center;">他不仅</h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="bounceInRight"
-                        data-time="1500"
+                        data-time="2500"
                         data-sec="flipOutY"
                         data-sectime="1000"
                         style="position: absolute;top: 40%;width: 100%;text-align: center;">风趣</h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="bounceInLeft"
-                        data-time="2000"
+                        data-time="3000"
                         data-sec="flipOutY"
                         data-sectime="500"
                         style="position: absolute;top: 50%;width: 100%;text-align: center;">幽默</h4>
 
                     <div class="js-animate animated animation-500"
                         data-animate="bounceInDown"
-                        data-time="3000"
+                        data-time="4000"
                         data-sec="zoomOutDown"
                         data-sectime="500"
                         style="position: absolute;top: 45%;width: 100%;text-align: center;">
@@ -597,7 +712,7 @@
                     </div>
                     <h2 class="js-animate animated animation-500"
                         data-animate="fadeInUp"
-                        data-time="4000"
+                        data-time="5000"
                         data-sec="zoomOut"
                         data-sectime="3000"
                         style="position: absolute;top: 35%;width: 100%;text-align: center;">
@@ -605,7 +720,7 @@
                     </h2>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="4500"
+                        data-time="5500"
                         data-sec="zoomOut"
                         data-sectime="2600"
                         style="position: absolute;top: 25%;left: 18%;text-align: center;">
@@ -613,7 +728,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="4700"
+                        data-time="5700"
                         data-sec="zoomOut"
                         data-sectime="2400"
                         style="position: absolute;top: 35%;right: 20%;text-align: center;">
@@ -621,7 +736,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="4900"
+                        data-time="5900"
                         data-sec="zoomOut"
                         data-sectime="2200"
                         style="position: absolute;top: 48%;left: 22%;text-align: center;">
@@ -629,7 +744,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="5100"
+                        data-time="6100"
                         data-sec="zoomOut"
                         data-sectime="2000"
                         style="position: absolute;top: 50%;right: 48%;text-align: center;">
@@ -637,7 +752,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="5300"
+                        data-time="6300"
                         data-sec="zoomOut"
                         data-sectime="1800"
                         style="position: absolute;top: 30%;left: 50%;text-align: center;">
@@ -645,7 +760,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="5500"
+                        data-time="6500"
                         data-sec="zoomOut"
                         data-sectime="1600"
                         style="position: absolute;top: 63%;right: 33%;text-align: center;">
@@ -653,7 +768,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="5700"
+                        data-time="6700"
                         data-sec="zoomOut"
                         data-sectime="1400"
                         style="position: absolute;top: 36%;left: 25%;text-align: center;">
@@ -661,7 +776,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="5900"
+                        data-time="6900"
                         data-sec="zoomOut"
                         data-sectime="1200"
                         style="position: absolute;top: 53%;right: 25%;text-align: center;">
@@ -669,7 +784,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="6100"
+                        data-time="7100"
                         data-sec="zoomOut"
                         data-sectime="1000"
                         style="position: absolute;top: 55%;left: 30%;text-align: center;">
@@ -677,7 +792,7 @@
                     </h4>
                     <h4 class="js-animate animated animation-500"
                         data-animate="fadeInRight"
-                        data-time="6300"
+                        data-time="7300"
                         data-sec="zoomOut"
                         data-sectime="800"
                         style="position: absolute;top: 20%;right: 30%;text-align: center;">
@@ -685,31 +800,31 @@
                     </h4>
                     <h4 class="js-animate animated animation-800"
                         data-animate="bounceInUp"
-                        data-time="8000"
+                        data-time="9000"
                         data-sec="zoomOut"
-                        data-sectime="1500"
+                        data-sectime="1000"
                         style="position: absolute;top: 30%;width: 100%;text-align: center;">
                         能做饭
                     </h4>
                     <h4 class="js-animate animated animation-800"
                         data-animate="bounceInLeft"
-                        data-time="8000"
+                        data-time="9000"
                         data-sec="zoomOut"
-                        data-sectime="1500"
+                        data-sectime="1000"
                         style="position: absolute;top: 40%;width: 100%;text-align: center;">
                         会挣钱
                     </h4>
                     <h4 class="js-animate animated animation-800"
                         data-animate="zoomInDown"
-                        data-time="8000"
+                        data-time="9000"
                         data-sec="zoomOut"
-                        data-sectime="1500"
+                        data-sectime="1000"
                         style="position: absolute;top: 50%;width: 100%;text-align: center;">
                         新郎
                     </h4>
                     <div class="js-animate animated animation-800"
                         data-animate="fadeInDown"
-                        data-time="9500"
+                        data-time="10500"
                         data-sec="pulseing"
                         data-time="900"
                         style="position: absolute;top: 70%;width: 40%;left: 10%;height: 20%;text-align: center;background-color: rgba(255,255,255, .7);border-radius: 10px;">
@@ -717,14 +832,14 @@
                     </div>
                     <div class="js-animate animated animation-800"
                         data-animate="fadeInDown"
-                        data-time="9500"
+                        data-time="10500"
                         style="position: absolute;top: 70%;width: 40%;left: 10%;height: 20%;text-align: center;">
                         <p style="margin-top: 43%;color: #3a3f58;">新 郎</p>
-                        <img src="./meta/lang.png" style="position: absolute;bottom: -6px;width: 120%;left: -10%;">
+                        <img src="./public/meta/lang.png" style="position: absolute;bottom: -6px;width: 120%;left: -10%;">
                     </div>
                     <h3 class="js-animate animated animation-800"
                         data-animate="fadeInRight"
-                        data-time="9500"
+                        data-time="10500"
                         style="position: absolute;top: 71%;width: 40%;left: 10%;text-align: center;">
                         倪 俊
                     </h3>
@@ -733,58 +848,58 @@
             <div class="page page5">
                 <div class="photo-wrap">
                     <div class="photo-box js-animate animated animation-2000" 
-                        data-animate="bounceIn" 
+                        data-animate="fadeIn" 
                         data-time="500"
                         style="position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 1;
-                        background-image: url(./photo/1.jpg);"></div>
+                        background-image: url(./public/photo/9.jpg);"></div>
                     <div class="photo-box js-animate animated animation-2000" 
-                        data-animate="bounceLeft" 
+                        data-animate="fadeInDown" 
                         data-time="3000"
                         style="position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 2;
-                        background-image: url(./photo/2.jpg);"></div>
+                        background-image: url(./public/photo/10.jpg);"></div>
                     <div class="photo-box js-animate animated animation-2000" 
-                        data-animate="bounceInDown" 
+                        data-animate="bounceInUp" 
                         data-time="6000"
                         style="position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 3;
-                        background-image: url(./photo/3.jpg);"></div>
+                        background-image: url(./public/photo/11.jpg);"></div>
                     <div class="photo-box js-animate animated animation-2000" 
                         data-animate="fadeIn" 
                         data-time="9000"
                         style="position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 4;
-                        background-image: url(./photo/4.jpg);"></div>
+                        background-image: url(./public/photo/12.jpg);"></div>
                     <div class="photo-box js-animate animated animation-2000" 
                         data-animate="flipInX" 
                         data-time="12000"
                         style="position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 5;
-                        background-image: url(./photo/5.jpg);"></div>
+                        background-image: url(./public/photo/18.jpg);"></div>
                     <div class="photo-box js-animate animated animation-2000" 
                         data-animate="rotateInDownRight" 
                         data-time="15000"
                         style="position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 6;
-                        background-image: url(./photo/6.jpg);"></div>
+                        background-image: url(./public/photo/14.jpg);"></div>
                     <div class="photo-box js-animate animated animation-2000" 
-                        data-animate="rotateIn" 
+                        data-animate="rotateIn"
                         data-time="18000"
-                        style="position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 7;
-                        background-image: url(./photo/7.jpg);"></div>
+                        style="position: absolute;width: 100%;height: 38%;top: 0;left: 0;z-index: 7;
+                        background-image: url(./public/photo/15.jpg);"></div>
                     <div class="photo-box js-animate animated animation-2000" 
-                        data-animate="slideInLeft" 
+                        data-animate="rotateInDownRight" 
+                        data-time="18000"
+                        style="position: absolute;width: 100%;height: 62%;top: 38%;left: 0;z-index: 8;
+                        background-image: url(./public/photo/16.jpg);"></div>
+                    <div class="photo-box js-animate animated animation-2000" 
+                        data-animate="rotateInDownRight" 
                         data-time="21000"
-                        style="position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 8;
-                        background-image: url(./photo/8.jpg);"></div>
-                    <div class="photo-box js-animate animated animation-2000" 
-                        data-animate="rollIn" 
-                        data-time="24000"
                         style="position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 9;
-                        background-image: url(./photo/9.jpg);"></div>
+                        background-image: url(./public/photo/17.jpg);"></div>
                     <div class="photo-box js-animate animated animation-2000" 
-                        data-animate="zoomIn" 
-                        data-time="27000"
+                        data-animate="zoomIn"
+                        data-time="24000"
                         style="position: absolute;width: 100%;height: 100%;top: 0;left: 0;z-index: 10;
-                        background-image: url(./photo/10.jpg);"></div>
+                        background-image: url(./public/photo/13.jpg);"></div>
                     <h4 class="js-animate animated animation-2000" 
-                        data-animate="myzoomIn" 
-                        data-time="30000"
+                        data-animate="myzoomIn"
+                        data-time="24000"
                         style="position: absolute;width: 100%;bottom: 6%;left: 0;z-index: 11;text-align: center;line-height: 28px;">
                         12月25日<br>
                         德阳市中江县冯店镇
@@ -810,85 +925,63 @@
                     <p class="js-animate animated" data-animate="bounceInDown" data-time="0"><i class="iconfont red-icon">&#xe63e;</i>德阳市中江县冯店镇，距离成都约70公里</p>
                     <p class="js-animate animated" data-animate="bounceInLeft" data-time="1000"><i class="iconfont red-icon">&#xe622;</i>G42沪蓉高速（成都——南充段），冯店出口驶离高速，需约一小时</p>
                     <p class="js-animate animated" data-animate="bounceInRight" data-time="2000"><i class="iconfont red-icon">&#xe72b;</i>成都十陵车站购买冯店镇车票乘坐大巴，需约一小时；茶店子车站班次较少，不建议乘坐</p>
-                    <p class="js-animate animated" data-animate="bounceInUp" data-time="3000"><i class="iconfont red-icon">&#xe72b;</i>有任何疑问请致电 新郎&新娘</p>
+                    <p class="js-animate animated" data-animate="bounceInUp" data-time="3000"><i class="iconfont red-icon">&#xe636;</i>有任何疑问请致电 新郎&新娘</p>
                 </div>
         </div>
     </div>
     <span class="start"><i class="iconfont" style="color: #fff;font-size: 30px;">&#xe606;</i></span>
-    <audio id="mp3" src="./music.mp3" autoplay loop></audio>
-    <script src="./js/js.fullpage.js"></script>
+    <audio id="mp3" src="./public/music/music.mp3" autoplay loop></audio>
+    <script src="./public/js/js.fullpage.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=S6EO9oPso0n8aTMvfH1g0aLUX6vGZx1l"></script>
     <script>
         // 滚屏动画控制
 
-        // var forEach = [].forEach;
-        // document.getElementsByClassName('wp-inner')[0].fullpage({
-        //     change: function (e) {
-        //         // 移除动画属性
-        //         forEach.call(document.querySelectorAll('.page')[e.cur].querySelectorAll('.js-animate'), function (v) {
-        //             v.classList.remove(v.dataset['animate']);
-        //             v.classList.add('hide');
-        //             if (v.dataset['sec']) {
-        //                 v.classList.remove(v.dataset['sec']);
-        //             }
-        //         });
-        //         timers.forEach((timer, index, arr) => {
-        //             clearTimeout(timer);
-        //             timer = null
-        //             arr.splice(index, 1)
-        //         })
-        //     },
-        //     afterChange: function (e) {
-        //         // 添加动画属性
-        //         forEach.call(document.querySelectorAll('.page')[e.cur].querySelectorAll('.js-animate'), function(v) {
-        //             var time = v.dataset.time;
-        //             setTimeout(function () {
-        //                 v.classList.add(v.dataset['animate']);
-        //                 v.classList.remove('hide');
-        //                 if (v.dataset['sec']) {
-        //                     var time = v.dataset.sectime || 0
-        //                     setTimeout( function() {
-        //                         v.classList.remove(v.dataset['animate']);
-        //                         v.classList.add(v.dataset['sec']);
-        //                     }, time);
-        //                 }
-        //             }, time);
-        //         });
-        //     }
-        // });
-
-        var forEach = [].forEach;
-        var domLists = []
-        document.getElementsByClassName('wp-inner')[0].fullpage({
-            change: function (e) {
-                clearTime()
-                // 移除动画属性
-                forEach.call(document.querySelectorAll('.page')[e.cur].querySelectorAll('.js-animate'), function (v) {
-                    v.classList.remove(v.dataset['animate']);
-                    v.classList.add('hide');
-                    if (v.dataset['sec']) {
-                        v.classList.remove(v.dataset['sec']);
-                    }
-                });
-            },
-            afterChange: function (e) {
-                domLists = document.querySelectorAll('.page')[e.cur].querySelectorAll('.js-animate')
-                domLists.forEach(v => {
-                    var time = v.dataset.time;
-                    v.timer = setTimeout(function () {
-                        v.classList.add(v.dataset['animate']);
-                        v.classList.remove('hide');
-                        if (v.dataset['sec']) {
-                            var time = v.dataset.sectime || 0
-                            v.sectimer = setTimeout( function() {
-                                v.classList.remove(v.dataset['animate']);
-                                v.classList.add(v.dataset['sec']);
-                            }, time);
-                        }
-                    }, time);
-                })
+        var loadTimer = setInterval(()=> {
+            console.log(loadSum)
+            if (loadSum >= 17) {
+                start()
             }
-        });
+        }, 300);
+
+        var domLists = [];
+
+        function start() {
+            clearInterval(loadTimer);
+
+            var forEach = [].forEach;
+
+            document.getElementById('loading-mask').style.display = 'none'
+            document.getElementsByClassName('wp-inner')[0].fullpage({
+                change: function (e) {
+                    clearTime()
+                    // 移除动画属性
+                    forEach.call(document.querySelectorAll('.page')[e.cur].querySelectorAll('.js-animate'), function (v) {
+                        v.classList.remove(v.dataset['animate']);
+                        v.classList.add('hide');
+                        if (v.dataset['sec']) {
+                            v.classList.remove(v.dataset['sec']);
+                        }
+                    });
+                },
+                afterChange: function (e) {
+                    domLists = document.querySelectorAll('.page')[e.cur].querySelectorAll('.js-animate')
+                    forEach.call(domLists, v => {
+                        var time = v.dataset.time;
+                        v.timer = setTimeout(function () {
+                            v.classList.add(v.dataset['animate']);
+                            v.classList.remove('hide');
+                            if (v.dataset['sec']) {
+                                var time = v.dataset.sectime || 0
+                                v.sectimer = setTimeout( function() {
+                                    v.classList.remove(v.dataset['animate']);
+                                    v.classList.add(v.dataset['sec']);
+                                }, time);
+                            }
+                        }, time);
+                    })
+                }
+            });
+        }
 
         function clearTime() {
             domLists.forEach((dom, i, arr) => {
@@ -903,7 +996,6 @@
                 }
             })
         }
-
 
         // 地图
         if (window.BMap) {
@@ -970,7 +1062,6 @@
             })
         }
 
-        
         // 音乐播放控制
         window.onload = function () {
             let mp3 = document.querySelector('#mp3')
