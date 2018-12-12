@@ -1,3 +1,7 @@
+html, body {
+  width: 100%;
+  overflow: hidden;
+}
 .wp{
   position: absolute;
   top: 0;
