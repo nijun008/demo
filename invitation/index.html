@@ -1096,6 +1096,8 @@
             let playBtn = document.querySelector('#play-btn')
             let play = !mp3.paused && mp3.readyState === 4
 
+            mp3.load()
+
             if (play) {
                 playBtn.style.animationPlayState = 'running'
             } else {
@@ -1110,7 +1112,6 @@
                 } else {
                     if (mp3.readyState === 4) {
                         this.style.animationPlayState = 'running'
-                        mp3.load()
                         mp3.play()
                         play = true
                     } 
