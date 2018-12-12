@@ -979,8 +979,8 @@
                     clearTime()
                     // 移除动画属性
                     forEach.call(document.querySelectorAll('.page')[e.cur].querySelectorAll('.js-animate'), function (v) {
-                        v.classList.remove(v.dataset['animate']);
                         v.classList.add('hide');
+                        v.classList.remove(v.dataset['animate']);
                         if (v.dataset['sec']) {
                             v.classList.remove(v.dataset['sec']);
                         }
@@ -990,6 +990,7 @@
                     if (e.cur === 5 && !mapFlag) {
                         initMap()
                     }
+                    
                     domLists = document.querySelectorAll('.page')[e.cur].querySelectorAll('.js-animate')
                     forEach.call(domLists, v => {
                         var time = v.dataset.time;
@@ -1094,9 +1095,20 @@
         window.onload = function () {
             let mp3 = document.querySelector('#mp3')
             let playBtn = document.querySelector('#play-btn')
-            let play = !mp3.paused && mp3.readyState === 4
+            let play
 
             mp3.load()
+
+            document.addEventListener("WeixinJSBridgeReady", function () { 
+                mp3.play()
+                if (!mp3.paused) {
+                    this.style.animationPlayState = 'running'
+                    mp3.play()
+                    play = true
+                }
+            }, false)
+
+            play = !mp3.paused && mp3.readyState === 4
 
             if (play) {
                 playBtn.style.animationPlayState = 'running'
