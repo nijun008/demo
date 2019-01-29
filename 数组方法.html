@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>数组方法</title>
+</head>
+<body>
+  <script type="text/javascript">
+    // 检查数组是否含某一项
+    const arr = [1, 2, 3]
+    console.log(arr.includes(2))
+    console.log(arr.includes(4))
+
+    // 数组某一项是否符合条件
+    const arr2 = [
+      { name: 'nijun', age: 18 },
+      { name: 'yueqing', age: 18 }
+    ]
+    console.log(arr2.some(item => item.name === 'nijun'))
+    // 数组所有项是否符合条件
+    console.log(arr2.every(item => item.name === 'nijun'))
+    console.log(arr2.every(item => item.age === 18))
+  </script>
+</body>
+</html>
