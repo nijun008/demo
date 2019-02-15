@@ -264,6 +264,26 @@
 
     console.log(treeArray(arrSource))
 
+    var obj1 = {
+        test: 'test',
+        get: function () {
+            console.log(this)
+        }
+    }
+    var obj2 = NaN
+    var obj3 = false
+    var obj4 = null
+    var obj5 = '14'
+
+    console.log(typeof obj1) // object
+    console.log(typeof obj1.get) // function
+    console.log(typeof obj2) // number
+    console.log(typeof obj3) // boolean
+    console.log(typeof obj4) // object
+    console.log(typeof obj5) // string
+    console.log(typeof Array) // function
+    console.log(typeof Object) // function
+
 
   </script>
 </body>
