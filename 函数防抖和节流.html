@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>函数防抖和节流</title>
+</head>
+<body>
+<script type="text/javascript">
+  window.onload = function () {
+    // 函数防抖
+    window.onresize = debounce(resizeFn, 200)
+  }
+
+  function debounce (fn, time = 300) {
+    let timer = null
+    return function () {
+      if (timer) clearTimeout(timer)
+      timer = setTimeout(fn, time)
+    }
+  }
+
+  function resizeFn () {
+    console.log('resize')
+  }
+</script>
+</body>
+</html>
