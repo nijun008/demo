@@ -6,20 +6,51 @@
 <body>
 <script type="text/javascript">
   window.onload = function () {
-    // 函数防抖
-    window.onresize = debounce(resizeFn, 200)
+    // 防抖
+    window.onresize = debounce(resizeFn, 1000)
+
+    // 节流
+    window.onmousemove = throttle(mouseMoveFn, 1000)
   }
 
+
+  /*
+    防抖
+  */
   function debounce (fn, time = 300) {
     let timer = null
-    return function () {
+    return function (...rest) {
       if (timer) clearTimeout(timer)
-      timer = setTimeout(fn, time)
+      timer = setTimeout(() => {
+        fn(...rest)
+      }, time)
     }
   }
 
-  function resizeFn () {
+  function resizeFn (event) {
+    console.log(event)
     console.log('resize')
+  }
+
+
+  /*
+    节流
+  */
+  function throttle (fn, time = 300) {
+    let timer = null
+    return function (...rest) {
+      if (!timer) {
+        fn(...rest)
+        timer = setTimeout( () => {
+          timer = null
+        }, time)
+      }
+    }
+  }
+
+  function mouseMoveFn(event) {
+    console.log(event)
+    console.log('mouseMove')
   }
 </script>
 </body>
