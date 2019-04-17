@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>1</title>
+</head>
+<body>
+<script type="text/javascript">
+  /**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
+  let result
+  for(let index = 0; index < nums.length; index ++) {
+    for (let i = 0; i < nums.length; i ++) {
+      if (nums[index] + nums[i] === target && index !== i) {
+        result = [index, i]
+        break
+      }
+    }
+    if (result) {
+      break
+    }
+  }
+
+  return result
+}
+
+console.log(twoSum([52,5262,414,51,3,3568], 417))
+</script>
+</body>
+</html>
