@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2019.09面试题</title>
+</head>
+<body>
+  <script type="text/javascript">
+    // 产生一组0~100不重复随机数
+    let randomArr = []
+
+    function randomFn() {
+      let num = Math.ceil(Math.random()*100)
+
+      if(randomArr.find(item => item === num)) {
+        return randomFn()
+      } else {
+        randomArr.push(num)
+        return num
+      }
+    }
+
+    console.log(randomFn())
+    console.log(randomFn())
+    console.log(randomArr)
+
+    
+  </script>
+</body>
+</html>
