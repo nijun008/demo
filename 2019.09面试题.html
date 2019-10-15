@@ -5,6 +5,7 @@
 </head>
 <body>
   <script type="text/javascript">
+
     // 产生一组0~100不重复随机数
     let randomArr = []
 
@@ -19,15 +20,16 @@
       }
     }
 
-    console.log(randomFn())
-    console.log(randomFn())
-    console.log(randomArr)
+    console.log('生成随机数：', randomFn())
+    console.log('生成随机数：', randomFn())
+    console.log('生成的数组：', randomArr)
+
 
     // setTimeout 与 立即执行函数
     for (var i = 0; i < 5; i++) {
       (function (i) {
         setTimeout(function timer() {
-          console.log(i)
+          console.log('i(var)的值是：', i)
         }, 1000)
       })(i)
     }
@@ -35,7 +37,7 @@
     // let 的块级作用域
     for(let i = 0; i < 5; i++) {
       setTimeout(function () {
-        console.log(i)
+        console.log('i(let)的值是：',i)
       }, 1000);
     }
 

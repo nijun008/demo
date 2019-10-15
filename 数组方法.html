@@ -5,20 +5,35 @@
 </head>
 <body>
   <script type="text/javascript">
-    // 检查数组是否含某一项
-    const arr = [1, 2, 3]
-    console.log(arr.includes(2))
-    console.log(arr.includes(4))
+    // from()方法从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例
+    console.log(Array.from('script'))
 
-    // 数组某一项是否符合条件
-    const arr2 = [
-      { name: 'nijun', age: 18 },
-      { name: 'yueqing', age: 18 }
-    ]
-    console.log(arr2.some(item => item.name === 'nijun'))
-    // 数组所有项是否符合条件
-    console.log(arr2.every(item => item.name === 'nijun'))
-    console.log(arr2.every(item => item.age === 18))
+    console.log(Array.from([1,2,3,4,5], x => x * 2))
+
+    // isArray() 方法用于确定传递的值是否是一个 Array
+    console.log(Array.isArray([1, 2, 3]))
+
+    console.log(Array.isArray('5125'))
+
+    console.log(Array.isArray({a: 2}))
+
+    console.log(Array.isArray())
+
+    // includes() 方法用来判断一个数组是否包含一个指定的值
+    var arr = [1, 2, 3]
+
+    console.log(arr.includes(2))
+
+    console.log(arr.includes(5))
+
+    // some() 方法测试数组中是不是有元素通过了被提供的函数测试
+    console.log(arr.some(x => x ===1))
+    console.log(arr.some(x => x ===100))
+
+    // every() 方法测试一个数组内的所有元素是否都能通过某个指定函数的测试
+    console.log(arr.every(x => typeof x === 'number'))
+
+    // 
   </script>
 </body>
 </html>
