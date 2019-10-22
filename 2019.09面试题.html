@@ -41,6 +41,25 @@
       }, 1000);
     }
 
+    // promise与setTimeout
+    
+    console.log('promise 1')
+
+    setTimeout(() => {
+      console.log('promise 2')
+    }, 0)
+
+    new Promise((resolve, reject) => {
+      console.log('promise 3')
+      reject()
+    }).then(res => {
+      console.log('promise 4')
+    }, (err) => {
+      console.log('promise 5')
+    })
+
+    console.log('promise 6')
+
   </script>
 </body>
 </html>
