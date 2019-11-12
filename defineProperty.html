@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>defineProperty</title>
+  <style type="text/css">
+    #box {
+      font-size: 80px;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">obj.a</div>
+
+  <script type="text/javascript">
+    let obj = {}
+    Object.defineProperty(obj, 'a', {
+      get(value) {
+        console.log('getter')
+        return value
+      },
+      set(value) {
+        document.querySelector('#box').innerHTML = value
+      }
+    })
+
+    console.log(obj.a)
+
+    setInterval(() =>{
+      obj.a = Math.random()
+    }, 1000);
+  </script>
+</body>
+</html>
