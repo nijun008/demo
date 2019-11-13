@@ -4,6 +4,7 @@
     <div class="link-box">
       <router-link to="/">home</router-link>
       <router-link to="/slotDemo">slotDemo</router-link>
+      <router-link to="/menuView">el-menu</router-link>
     </div>
     <router-view/>
   </div>

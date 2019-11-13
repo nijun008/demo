@@ -15,5 +15,10 @@ export default new Router({
       name: 'slotDemo',
       component: () => import('@/views/slotDemo')
     },
+    {
+      path: '/menuView',
+      name: 'menuView',
+      component: () => import('@/views/menuView')
+    },
   ]
 })
