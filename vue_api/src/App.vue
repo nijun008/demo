@@ -2,9 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <div class="link-box">
-      <router-link to="/">home</router-link>
-      <router-link to="/slotDemo">slotDemo</router-link>
-      <router-link to="/menuView">el-menu</router-link>
+      <router-link v-for="link in routers" :key="link.path" :to="link.path">{{ link.name }}</router-link>
     </div>
     <router-view/>
   </div>
@@ -13,7 +11,15 @@
 <script>
 
 export default {
-  name: 'app'
+  name: 'app',
+  data() {
+    return {
+      routers: []
+    }
+  },
+  created() {
+    this.routers = this.$router.options.routes
+  }
 }
 </script>
 

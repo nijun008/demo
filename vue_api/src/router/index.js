@@ -20,5 +20,10 @@ export default new Router({
       name: 'menuView',
       component: () => import('@/views/menuView')
     },
+    {
+      path: '/vModel',
+      name: 'vModel',
+      component: () => import('@/views/vModel')
+    },
   ]
 })
