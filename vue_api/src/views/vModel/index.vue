@@ -11,6 +11,7 @@
 <script>
 import myComponent from './components/myComponent'
 export default {
+  name: 'vModel',
   components: {myComponent},
   data() {
     return {

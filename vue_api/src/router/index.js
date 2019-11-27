@@ -8,17 +8,26 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/home')
+      component: () => import('@/views/home'),
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/slotDemo',
       name: 'slotDemo',
-      component: () => import('@/views/slotDemo')
+      component: () => import('@/views/slotDemo'),
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/menuView',
       name: 'menuView',
-      component: () => import('@/views/menuView')
+      component: () => import('@/views/menuView'),
+      meta: {
+        keepAlive: true
+      }
     },
     {
       path: '/vModel',
