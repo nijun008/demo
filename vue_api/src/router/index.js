@@ -10,7 +10,8 @@ export default new Router({
       name: 'home',
       component: () => import('@/views/home'),
       meta: {
-        keepAlive: true
+        keepAlive: true,
+        title: '主页'
       }
     },
     {
@@ -18,7 +19,8 @@ export default new Router({
       name: 'slotDemo',
       component: () => import('@/views/slotDemo'),
       meta: {
-        keepAlive: true
+        keepAlive: true,
+        title: '插槽slot'
       }
     },
     {
@@ -26,13 +28,18 @@ export default new Router({
       name: 'menuView',
       component: () => import('@/views/menuView'),
       meta: {
-        keepAlive: true
+        keepAlive: true,
+        title: '递归菜单栏'
       }
     },
     {
       path: '/vModel',
       name: 'vModel',
-      component: () => import('@/views/vModel')
+      component: () => import('@/views/vModel'),
+      meta: {
+        keepAlive: true,
+        title: '自定义组件v-model'
+      }
     },
   ]
 })

@@ -11,8 +11,9 @@
 </template>
 
 <script>
-  import menuItem from '../../components/menu'
+import menuItem from '../../components/menu'
 export default {
+  name: 'menuView',
   components: { menuItem },
   data() {
     return {

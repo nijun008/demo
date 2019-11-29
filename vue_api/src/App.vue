@@ -2,22 +2,21 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <div class="link-box">
-      <router-link v-for="link in routers" :key="link.path" :to="link.path">{{ link.name }}</router-link>
+      <router-link v-for="link in routers" :key="link.path" :to="link.path">{{ link.meta.title }}</router-link>
     </div>
     <div class="tag-box">
-      <el-tag
-        class="alive-tag"
-        v-for="(tag, index) in aliveLists" 
-        :key="tag.path" closable
-        :effect="tag.fullPath === $route.fullPath?'dark': 'plain'"
-        @click="aliveClick(tag)" 
-        @close="aliveClose(tag, index)">
-        {{ tag.name }}
-      </el-tag>
+      <el-tabs v-model="currentName" type="border-card" closable @tab-remove="aliveClose" @tab-click="aliveClick">
+        <el-tab-pane
+          v-for="item in aliveLists"
+          :key="item.name"
+          :label="item.meta.title"
+          :name="item.name">
+          <keep-alive :include="includeLists">
+            <router-view/>
+          </keep-alive>
+        </el-tab-pane>
+      </el-tabs>
     </div>
-    <keep-alive :exclude="'vModel'">
-      <router-view/>
-    </keep-alive>
   </div>
 </template>
 
@@ -28,11 +27,18 @@ export default {
   data() {
     return {
       routers: [],
-      aliveLists: []
+      aliveLists: [],
+      currentName: 'home'
+    }
+  },
+  computed: {
+    includeLists() {
+      return this.aliveLists.map(item => item.name)
     }
   },
   created() {
     this.routers = this.$router.options.routes
+    window.console.log(this.$route)
     if (this.$route.name && this.$route.meta.keepAlive) {
       this.aliveLists.push(this.$route)
     }
@@ -42,16 +48,20 @@ export default {
       if (!this.aliveLists.find(item => item.fullPath === newRoute.fullPath) && newRoute.meta.keepAlive) {
         this.aliveLists.push(newRoute)
       }
+      this.currentName = newRoute.name
     }
   },
   methods: {
     aliveClick(tag) {
-      if (tag.fullPath !== this.$route.fullPath) {
-        this.$router.push({path: tag.fullPath})
+      if (tag.name !== this.$route.name) {
+        this.$router.push({name: tag.name})
       }
     },
-    aliveClose(tag, index) {
+    aliveClose(name) {
       if (this.aliveLists.length < 2) return
+
+      let index = this.aliveLists.findIndex(item => item.name === name)
+      let tag = this.aliveLists[index]
 
       this.aliveLists.splice(index, 1)
       if (tag.fullPath === this.$route.fullPath) {
