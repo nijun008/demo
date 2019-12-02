@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>闭包应用</title>
+</head>
+<body>
+
+<script type="text/javascript">
+// 函数内状态
+function timerFn() {
+  let timer = null
+  let count = 0
+  return function ({falg}) {
+    console.log(falg)
+    if (timer) {
+      clearInterval(timer)
+      timer = null
+      console.log('clear')
+    } else {
+      console.log('start')
+      timer = setInterval(() => {
+        count ++
+        console.log(count)
+      }, 1000)
+      return count
+    }
+  }
+}
+
+let timer = timerFn()
+console.log(timer({ falg: true }))
+</script>
+</body>
+</html>
