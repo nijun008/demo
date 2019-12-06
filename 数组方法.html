@@ -33,7 +33,18 @@
     // every() 方法测试一个数组内的所有元素是否都能通过某个指定函数的测试
     console.log(arr.every(x => typeof x === 'number'))
 
-    // 
+    // 取数组最大值
+    let arr1 = [
+      { age: 2, name: '张5' },
+      { age: null, name: '张8' },
+      { name: '张1' },
+      { age: 7, name: '张2' },
+      { age: 4, name: '张5' },
+      { age: 16, name: '张1' },
+    ]
+
+    let max = Math.max(...arr1.filter(item => item.age).map(item => item.age))
+    console.log(max)
   </script>
 </body>
 </html>
