@@ -26,11 +26,32 @@
       }
     })
 
-    console.log(obj.a)
-
     setInterval(() =>{
       obj.a = Math.random()
-    }, 1000);
+    }, 1000)
+
+    let obj2 = {
+      a: 33,
+      b: 25
+    }
+
+    Object.keys(obj2).forEach(key => {
+      Object.defineProperty(obj2, key, {
+        get(value) {
+          return valye
+        },
+        set(value) {
+          console.log(value)
+        }
+      })
+    })
+
+    setInterval(() =>{
+      obj2.a = 34
+      Object.keys(obj2).forEach(key => {
+        obj2[key] = Math.ceil(Math.random() * 100)
+      })
+    }, 1500);
   </script>
 </body>
 </html>
