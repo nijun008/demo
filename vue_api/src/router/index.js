@@ -41,5 +41,14 @@ export default new Router({
         title: '自定义组件v-model'
       }
     },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: () => import('@/views/cart'),
+      meta: {
+        keepAlive: true,
+        title: '购物车'
+      }
+    },
   ]
 })
