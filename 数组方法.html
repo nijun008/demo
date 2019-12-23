@@ -45,6 +45,49 @@
 
     let max = Math.max(...arr1.filter(item => item.age).map(item => item.age))
     console.log(max)
+
+
+    // 数组扁平化
+    let arr2 = [[[1,2], 4,],6]
+    let arr3 = arr2.flat(4)
+    
+    let arr4 = [
+      { name: 'name',
+        id: '571ll25l1',
+        children: [
+          {
+            name: 'name-1',
+            id: 'k221jlk1j5',
+          },
+          {
+            name: 'name-2',
+            id: 'k215112k1j5',
+            children: [
+              {
+                name: 'name-2-1',
+                id: '12lklj5l1k21'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: 'name2',
+        id: '2klj51l'
+      }
+    ]
+    
+    function myFlat(arr, result = [], children = 'children') {
+      arr.reduce((acc, cur) => {
+        result.push(cur)
+        cur[children] && cur[children].length > 0 && myFlat(cur[children], result)
+      }, result)
+      return result
+    }
+
+    let arr5 = myFlat(arr4)
+
+    console.log(arr5)
   </script>
 </body>
 </html>
