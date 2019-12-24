@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  @keyframes turning {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  body {
+    background-color: gray;
+  }
+  .wrap-box {
+    position: relative;
+    margin: 0 auto;
+    width: 300px;
+    height: 600px;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  .lang-box {
+    position: absolute;
+    left: 50%;
+    top: -700px;
+    margin-left: -500px;
+    width: 1000px;
+    height: 1000px;
+    animation: 15s turning linear infinite;
+  }
+  .lang-box > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 155, 98, .4);
+    border-radius: 44%;
+  }
+  .lang-two {
+    transform: rotate(45deg);
+  }
+  /* .lang-three {
+    transform: rotate(60deg);
+  } */
+</style>
+
+<body>
+  <div class="wrap-box">
+    <div class="lang-box">
+      <div class="lang-one"></div>
+      <div class="lang-two"></div>
+      <div class="lang-three"></div>
+    </div>
+  </div>
+</body>
+
+</html>
