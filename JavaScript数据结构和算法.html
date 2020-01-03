@@ -76,6 +76,56 @@
 
   queue.dequeue()
   queue.print()
+
+
+  class Stack {
+    constructor() {
+      this.items = []
+    }
+
+    push(item) {
+      this.items.push(item)
+    }
+    pop() {
+      return this.items.pop()
+    }
+    peek() {
+      return this.items[this.item.length - 1]
+    }
+    isEmpty() {
+      return this.items.length === 0
+    }
+    size() {
+      return this.items.length
+    }
+    clear() {
+      this.items = []
+    }
+  }
+
+  function numBaseTrans(decNum, base) {
+    if (base < 2 || base > 36) return ''
+    const numStack = new Stack()
+    let number = decNum
+    let rem
+    let result = ''
+    let formartSrt = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+    while(number > 0) {
+      rem = Math.floor(number % base)
+      numStack.push(rem)
+      number = Math.floor(number / base)
+    }
+
+    while(!numStack.isEmpty()) {
+      result += formartSrt[numStack.pop()]
+    }
+
+    return result
+  }
+
+  console.log(numBaseTrans(98151, 2))
+  console.log(numBaseTrans(512351, 16))
   </script>
 </body>
 </html>
