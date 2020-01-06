@@ -78,6 +78,7 @@
   queue.print()
 
 
+  // 栈
   class Stack {
     constructor() {
       this.items = []
@@ -102,7 +103,7 @@
       this.items = []
     }
   }
-
+  // 栈应用, 进制转换
   function numBaseTrans(decNum, base) {
     if (base < 2 || base > 36) return ''
     const numStack = new Stack()
@@ -126,6 +127,86 @@
 
   console.log(numBaseTrans(98151, 2))
   console.log(numBaseTrans(512351, 16))
+
+  // 对象实现双端队列
+  class DouQueue {
+    constructor () {
+      this.items = {}
+      this.count = 0
+      this.lowCount = 0
+    }
+
+    addBack(item) {
+      this.items[this.count] = item
+      this.count ++
+    }
+
+    removeBack() {
+      if (this.isEmpty()) return undefined
+      const result = this.items[this.count - 1]
+      delete this.items[this.count - 1]
+      return result
+    }
+
+    peekBack() {
+      if (this.isEmpty()) return undefined
+      return this.items[this.count - 1]
+    }
+
+    addFront(item) {
+      if (this.isEmpty()) {
+        this.addBack(item)
+      } else if (this.lowCount > 0) {
+        this.lowCount --
+        this.items[this.lowCount] = item
+      } else {
+        for(let i = this.count; i > 0; i --) {
+          this.items[i] = this.items[i - 1]
+        }
+        this.count ++
+        this.lowCount = 0
+        this.items[0] = item
+      }
+    }
+
+    removeFront() {
+      if (this.isEmpty()) return undefined
+      const result = this.items[this.lowCount]
+      delete this.items[this.lowCount]
+      this.lowCount ++
+      return result
+    }
+
+    peekFront() {
+      if (this.isEmpty()) return undefined
+      return this.items[this.lowCount]
+    }
+
+    isEmpty() {
+      return this.size() === 0
+    }
+
+    size() {
+      return this.count - this.lowCount
+    }
+
+    toString() {
+      if (this.isEmpty()) return ''
+      let str = `${this.items[this.lowCount]}`
+      for (let i = this.lowCount + 1; i < this.count; i++) {
+        str = `${str},${this.items[i]}`
+      }
+      return str
+    }
+
+    clear() {
+      this.items = {}
+      this.count = 0
+      this.lowCount = 0
+    }
+  }
+
+  const myQueue = new DouQueue()
   </script>
 </body>
 </html>
