@@ -145,6 +145,7 @@
       if (this.isEmpty()) return undefined
       const result = this.items[this.count - 1]
       delete this.items[this.count - 1]
+      this.count--
       return result
     }
 
@@ -207,6 +208,62 @@
   }
 
   const myQueue = new DouQueue()
+
+  // 队列击鼓传花
+  function hotPotato(list, num) {
+    const queue = new DouQueue()
+    let resultList = []
+    // 把玩家加入队列
+    list.forEach(item => {
+      queue.addBack(item)
+    })
+
+    
+
+    while (queue.size() > 1) {
+      // 队列交替模拟传花
+      for(let i = 0; i< num; i++) {
+        queue.addBack(queue.removeFront())
+      }
+      // 淘汰队列首部玩家
+      resultList.push(queue.removeFront())
+    }
+
+    return {
+      resultList,
+      winner: queue.removeFront()
+    }
+  }
+
+  let result = hotPotato(['John', 'Jack', 'Canmle', 'Lee', 'Jong', 'Leke', 'Lele'], 5)
+  console.log(result)
+
+  // 双端队列回文检查
+  function checkStr(str) {
+    if (!str) return false
+    if (str.length < 2) return true
+    let queue = new DouQueue()
+    str.split(' ').join('').split('').forEach(item => {
+      queue.addBack(item)
+    })
+
+    let result = true
+
+    let frontStr
+    let backStr
+
+    while(queue.size() > 1 && result) {
+      frontStr = queue.removeFront()
+      backStr = queue.removeBack()
+      if (frontStr !== backStr) {
+        result = false
+      }
+    }
+
+    return result
+  }
+
+  console.log(checkStr('abcdcba'))
   </script>
 </body>
 </html>
