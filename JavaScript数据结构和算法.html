@@ -264,6 +264,55 @@
   }
 
   console.log(checkStr('abcdcba'))
+
+  class Node {
+    constructor(element) {
+      this.element = element
+      this.next = null
+    }
+  }
+
+  class LinkedList {
+    constructor () {
+      this.head = null
+      this.count = 0
+    }
+
+    push(element) {
+      let node = new Node(element)
+      let current
+      if (!this.head) {
+        this.head = node
+      } else {
+        current = this.head
+        while(current.next) {
+          current = current.next
+        }
+        current.next = node
+      }
+      this.count ++
+    }
+
+    removeAt(index) {
+      if (index >= 0 & index < this.count) {
+        let current = this.head
+
+        if (index === 0) {
+          this.head = current.next
+        } else {
+          let preItem
+          for(let i = 0; i < index; i ++) {
+            preItem = current
+            current = current.next
+          }
+          preItem.next = current.next
+        }
+        this.count --
+        return current.element
+      }
+      return undefined
+    }
+  }
   </script>
 </body>
 </html>
