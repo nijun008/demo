@@ -272,10 +272,16 @@
     }
   }
 
+  function defaultEquals(a, b) {
+    return a === b
+  }
+
   class LinkedList {
+
     constructor () {
       this.head = null
       this.count = 0
+      this.equalsFn = defaultEquals
     }
 
     push(element) {
@@ -293,6 +299,17 @@
       this.count ++
     }
 
+    getElementAt(index) {
+      if (index >= 0 && index <= this.count) {
+        let node = this.head
+        for(let i = 0; i < index && node; i ++) {
+          node = node.next
+        }
+        return node
+      }
+      return undefined
+    }
+
     removeAt(index) {
       if (index >= 0 & index < this.count) {
         let current = this.head
@@ -300,17 +317,73 @@
         if (index === 0) {
           this.head = current.next
         } else {
-          let preItem
-          for(let i = 0; i < index; i ++) {
-            preItem = current
-            current = current.next
-          }
+          let preItem = this.getElementAt(index - 1)
+          current = preItem.next
           preItem.next = current.next
         }
         this.count --
         return current.element
       }
       return undefined
+    }
+
+    insert(element, index) {
+      if (index >= 0 && index <= this.count) {
+        let node = new Node(element)
+        if (index === 0) {
+          let current = this.head
+          node.next = current
+          this.head = node
+        } else {
+          let preItem = getElementAt(index - 1)
+          let current = preItem.next
+          node.next = current
+          preItem.next = node
+        }
+        this.count ++
+        return true
+      }
+      return false
+    }
+
+    toString() {
+      if (!this.head)  return ''
+      
+      let str = `${this.head.element}`
+      let current = this.head.next
+      for (let i = 1; i < this.count && current; i ++) {
+        str = `${str},${current.element}`
+        current = current.next
+      }
+      return str
+    }
+
+    indexOf(element) {
+      let current = this.head
+      for (let i = 0; i < this.count && node; i++) {
+        if (this.equalsFn(element, current.element)) {
+          return i
+        }
+        current = current.next
+      }
+      return -1
+    }
+
+    remove(element) {
+      let index = this.indexOf(element)
+      return this.removeAt(index)
+    }
+
+    size() {
+      return this.count
+    }
+
+    isEmpty() {
+      return this.size() === 0
+    }
+
+    getHead() {
+      return this.head
     }
   }
   </script>
