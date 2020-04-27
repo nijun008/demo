@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Input from './components/input'
-import List from './components/list'
+import CommentInput from '../components/CommentInput'
+import CommentList from '../components/CommentList'
 
 import './index.css'
 
@@ -45,11 +45,22 @@ class Comment extends Component {
     this._saveComment(list)
   }
 
+  deleteHandle(index) {
+    let list = this.state.commentList
+    list.splice(index, 1)
+
+    this.setState({
+      commentList: list
+    })
+
+    this._saveComment(list)
+  }
+
   render() {
     return (
       <div className="comment-wrap">
-        <Input submitComment={ this.submitComment.bind(this) }></Input>
-        <List commentList={ this.state.commentList }></List>
+        <CommentInput submitComment={ this.submitComment.bind(this) }></CommentInput>
+        <CommentList deleteHandle={ this.deleteHandle.bind(this) } commentList={ this.state.commentList }></CommentList>
       </div>
     )
   }

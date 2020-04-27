@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Input extends Component {
+class CommentInput extends Component {
   constructor(props) {
     super(props)
 
@@ -59,4 +59,4 @@ class Input extends Component {
   }
 }
 
-export default Input
+export default CommentInput

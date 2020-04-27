@@ -20,6 +20,10 @@ class Item extends Component {
     clearInterval(this.timer)
   }
 
+  deleteHandle(index) {
+    this.props.deleteHandle(index)
+  }
+
   
   _refreshTime() {
     let second = Math.ceil((new Date().getTime() - this.props.comment.createdTime) / 1000)
@@ -30,10 +34,15 @@ class Item extends Component {
   render() {
     const comment = this.props.comment
     return (
-      <div className="comment-item">
-        <div className="comment-user"><span>{ comment.userName }</span>:</div>
-        <div className="comment-content">{ comment.content }</div>
-        <div className="comment-time">{  this.state.timeStr }</div>
+      <div className="comment-item-box">
+        <div className="comment-item">
+          <div className="comment-user"><span>{ comment.userName }</span>:</div>
+          <div className="comment-content">{ comment.content }</div>
+        </div>
+        <div className="comment-time">
+          <span>{  this.state.timeStr }</span>
+          <span className="comment-del" onClick={ this.deleteHandle.bind(this, this.props.commentIndex) }>删除</span>
+        </div>
       </div>
     )
   }

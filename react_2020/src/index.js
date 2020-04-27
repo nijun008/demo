@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-import Comment from './views/comment'
+import Comment from './commentApp'
 
 class Header extends Component {
   render() {
