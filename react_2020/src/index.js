@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './App'
 import * as serviceWorker from './serviceWorker'
 import Comment from './commentApp'
+import { HashRouter as Router, Route, Link, Switch, BrowserRouter, HashRouter } from 'react-router-dom'
 
 class Header extends Component {
   render() {
@@ -25,13 +25,94 @@ class Footer extends Component {
   }
 }
 
-class Index extends Component {
+class About extends Component {
+  render() {
+    return (
+      <div>
+        <h1>About page</h1>
+      </div>
+    )
+  }
+}
+
+class NotFound extends Component {
+  render() {
+    return (
+      <div>
+        <h1>404 not found</h1>
+      </div>
+    )
+  }
+}
+
+class Home extends Component {
+  render() {
+    return(
+      <div>
+        <ul>
+          <li><Link to="/">首页</Link></li>
+          <li><Link to="/login">登录</Link></li>
+          <li><Link to="/comment">评论</Link></li>
+          <li><Link to="/about">关于</Link></li>
+          <li><Link to="/404">404</Link></li>
+        </ul>
+      </div>
+    )
+  }
+}
+
+class Login extends Component {
+  render() {
+    return (
+      <div>
+        <h1>Login</h1>
+      </div>
+    )
+  }
+}
+
+class MainContent extends Component {
+  render() {
+    return (
+      <div>
+        <Router>
+          <Home />
+          <Route path="/comment" component={ Comment }></Route>
+          <Route path="/about" component={ About }></Route>
+        </Router>
+      </div>
+    )
+  }
+}
+
+class Layout extends Component {
   render() {
     return (
       <div>
         <Header />
-        <Comment />
+        <HashRouter>
+          <Switch>
+            <Route path="/" component={ Home }>
+              <Home />
+              <Route path="comment" component={ Comment }></Route>
+              <Route path="about" component={ About }></Route>
+            </Route>
+            <Route path="/login" component={ Login }></Route>
+            <Route path="*" component={ NotFound }></Route>
+          </Switch>
+        </HashRouter>
         <Footer />
+      </div>
+    )
+  }
+}
+
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Layout></Layout>
       </div>
     )
   }
@@ -39,7 +120,7 @@ class Index extends Component {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Index />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
