@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import * as serviceWorker from './serviceWorker'
 import Comment from './commentApp'
-import { HashRouter as Router, Route, Link, Switch, BrowserRouter, HashRouter } from 'react-router-dom'
+import { HashRouter as Router, Route, Link, Switch, HashRouter } from 'react-router-dom'
 
 class Header extends Component {
   render() {
@@ -35,6 +35,16 @@ class About extends Component {
   }
 }
 
+class Home extends Component {
+  render() {
+    return (
+      <div>
+        <h1>Home page</h1>
+      </div>
+    )
+  }
+}
+
 class NotFound extends Component {
   render() {
     return (
@@ -45,7 +55,7 @@ class NotFound extends Component {
   }
 }
 
-class Home extends Component {
+class Nav extends Component {
   render() {
     return(
       <div>
@@ -65,21 +75,8 @@ class Login extends Component {
   render() {
     return (
       <div>
+        <Link to="/">去首页</Link>
         <h1>Login</h1>
-      </div>
-    )
-  }
-}
-
-class MainContent extends Component {
-  render() {
-    return (
-      <div>
-        <Router>
-          <Home />
-          <Route path="/comment" component={ Comment }></Route>
-          <Route path="/about" component={ About }></Route>
-        </Router>
       </div>
     )
   }
@@ -90,17 +87,15 @@ class Layout extends Component {
     return (
       <div>
         <Header />
-        <HashRouter>
+        <Router>
+          <Nav />
           <Switch>
-            <Route path="/" component={ Home }>
-              <Home />
-              <Route path="comment" component={ Comment }></Route>
-              <Route path="about" component={ About }></Route>
-            </Route>
-            <Route path="/login" component={ Login }></Route>
+            <Route path="/" exact component={ Home }></Route> 
+            <Route path="/comment" component={ Comment }></Route>
+            <Route path="/about" component={ About }></Route>
             <Route path="*" component={ NotFound }></Route>
           </Switch>
-        </HashRouter>
+        </Router>
         <Footer />
       </div>
     )
@@ -112,7 +107,13 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Layout></Layout>
+        <HashRouter>
+          <Switch>
+            <Route path="/login" component={ Login }></Route>
+            <Route path="/" component={ Layout }></Route>
+            <Route path="*" component={ NotFound }></Route>
+          </Switch>
+        </HashRouter>
       </div>
     )
   }
