@@ -4,10 +4,17 @@
   padding-bottom: 20vh;
 }
 .login-box {
-  width: 400px;
+  width: 360px;
   background-color: #fff;
-  padding: 20px;
+  padding: 30px;
 }
 .login-box .title {
   text-align: center;
+  color: #21b5ff;
+}
+.login-input-icon {
+  color: #bfbfbf;
+}
+.login-btn {
+  width: 100%;
 }
