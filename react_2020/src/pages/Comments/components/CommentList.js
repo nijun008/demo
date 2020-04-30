@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Item from './comment'
+import Comment from './Comment'
 
 class List extends Component {
 
@@ -16,7 +16,7 @@ class List extends Component {
       <div className="list-box">
         { 
           this.props.commentList.length > 0 
-          ? this.props.commentList.map((comment, index) => <Item  key={index} comment={ comment } commentIndex={index} deleteHandle={ this.deleteHandle.bind(this) }></Item>)
+          ? this.props.commentList.map((comment, index) => <Comment  key={index} comment={ comment } commentIndex={index} deleteHandle={ this.deleteHandle.bind(this) }></Comment>)
           : <span className="no-data">暂无评论</span>
         }
       </div>

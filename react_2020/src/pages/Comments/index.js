@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import CommentInput from '../components/CommentInput'
-import CommentList from '../components/CommentList'
+import CommentInput from './components/CommentInput'
+import CommentList from './components/CommentList'
 
 import './index.css'
 

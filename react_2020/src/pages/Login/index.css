@@ -1,0 +1,13 @@
+.login-wrap {
+  background-color: #f8f8f8;
+  height: 100vh;
+  padding-bottom: 20vh;
+}
+.login-box {
+  width: 400px;
+  background-color: #fff;
+  padding: 20px;
+}
+.login-box .title {
+  text-align: center;
+}

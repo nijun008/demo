@@ -1,0 +1,17 @@
+.sider-logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+
+.app-header-wrap {
+  background: #fff;
+}
+
+.app-main-wrap {
+  background: #fff;
+}
+.sider-trigger {
+  margin-left: 12px;
+  font-size: 18px;
+}
