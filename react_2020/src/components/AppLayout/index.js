@@ -4,7 +4,7 @@ import './index.css'
 
 import Comment from '../../pages/Comments'
 
-import { Layout, Menu } from 'antd'
+import { Layout, Menu, Row, Col } from 'antd'
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -30,7 +30,7 @@ class MyLayout extends Component {
     return (
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="sider-logo" />
+          <div className="sider-logo">Logo</div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1" icon={<UserOutlined />}>
               nav 1
@@ -45,29 +45,27 @@ class MyLayout extends Component {
         </Sider>
         <Layout className="site-layout">
           <Header className="app-header-wrap" style={{ padding: 0 }}>
-            {
-              <div className="sider-trigger" onClick={ this.sliderToggle }>
-                { this.state.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined /> }
-              </div>
-            }
+            <Row justify="space-between">
+              <Col>
+                <span className="sider-trigger" onClick={ this.sliderToggle }>
+                  { this.state.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined /> }
+                </span>
+              </Col>
+              <Col className="header-right-box">欢迎, 倪俊</Col>
+            </Row>
           </Header>
-          <Content
-            className="app-main-wrap"
-            style={{
-              margin: '24px 16px',
-              padding: 24,
-              minHeight: 280,
-            }}
-          >
-            <HashRouter>
-              <Switch>
-                <Route path="/" exact component={ () => <div>Home</div> }></Route> 
-                <Route path="/comment" component={ Comment }></Route>
-                <Route path="/about" component={ () => <div>about</div> }></Route>
-                <Route path="*" component={ () => <div>404</div> }></Route>
-              </Switch>
-            </HashRouter>
-          </Content>
+          <div className="app-main-bg">
+            <Content className="app-main-wrap">
+              <HashRouter>
+                <Switch>
+                  <Route path="/" exact component={ () => <div>Home</div> }></Route> 
+                  <Route path="/comment" component={ Comment }></Route>
+                  <Route path="/about" component={ () => <div>about</div> }></Route>
+                  <Route path="*" component={ () => <div>404</div> }></Route>
+                </Switch>
+              </HashRouter>
+            </Content>
+          </div>
         </Layout>
       </Layout>
     );

@@ -2,16 +2,29 @@
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
+  color: #FFF;
+  text-align: center;
+  line-height: 32px;
 }
-
+.header-right-box {
+  padding: 12px 24px 12px 0;
+  line-height: 32px;
+}
 .app-header-wrap {
   background: #fff;
 }
-
+.app-main-bg {
+  background-color: #f8f8f8;
+  height: calc(100vh - 64px);
+  padding: 20px;
+}
 .app-main-wrap {
+  padding: 16px;
   background: #fff;
+  height: 100%;
 }
 .sider-trigger {
   margin-left: 12px;
   font-size: 18px;
+  cursor: pointer;
 }
