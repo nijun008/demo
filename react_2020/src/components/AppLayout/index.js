@@ -9,11 +9,20 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined
+  UsergroupAddOutlined,
+  MessageOutlined,
+  ReadOutlined
 } from '@ant-design/icons'
 
 const { Header, Sider, Content } = Layout
+
+// 菜单列表
+const menuList = [
+  { title: '首页', path: '/', icon: <UserOutlined /> },
+  { title: '评论', path: '/comment', icon: <MessageOutlined /> },
+  { title: '用户管理', path: '/userManage', icon: <UsergroupAddOutlined /> },
+  { title: 'Book管理', path: '/bookManage', icon: <ReadOutlined /> }
+]
 
 class MyLayout extends Component {
   state = {
@@ -26,21 +35,23 @@ class MyLayout extends Component {
     })
   }
 
+  menuHandle = (menu) => {
+    this.props.history.push(menu.path)
+  }
+
   render() {
     return (
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className="sider-logo">Logo</div>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1" icon={<UserOutlined />}>
-              nav 1
-            </Menu.Item>
-            <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-              nav 2
-            </Menu.Item>
-            <Menu.Item key="3" icon={<UploadOutlined />}>
-              nav 3
-            </Menu.Item>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['/']}>
+            {
+              menuList.map(menu => (
+                <Menu.Item key={ menu.path } icon={ menu.icon} onClick={ () => { this.menuHandle(menu) } } >
+                  { menu.title }
+                </Menu.Item>
+              ))
+            }
           </Menu>
         </Sider>
         <Layout className="site-layout">
