@@ -15,9 +15,29 @@ class Login extends Component {
     }
   }
 
+  userNameChange = (e, formKey) => {
+    let userName = e.target.value
+    this.setState({
+      userName
+    })
+  }
+
+  passwordChange = (e, formKey) => {
+    let password = e.target.value
+    this.setState({
+      password
+    })
+  }
+
   loginHandle = () => {
-    console.log(this.state.userName)
-    console.log(this.state.password)
+
+    if (this.state.userName && this.state.password) {
+      if (this.state.userName.split(' ').join('') && this.state.password.split(' ').join('')) {
+        this.props.history.push('/')
+        return
+      }
+    }
+
   }
 
   render() {
@@ -28,13 +48,22 @@ class Login extends Component {
             <h2 className="title">Library Admin</h2>
             <Form name="login_form" className="login-form" onFinish={ this.loginHandle }>
               <Form.Item name="userName" rules={[{ required: true, message: '请输入用户名' }]}>
-                <Input prefix={<UserOutlined className="login-input-icon" />} placeholder="用户名"></Input>
+                <Input 
+                  prefix={<UserOutlined className="login-input-icon" />} 
+                  placeholder="用户名"
+                  onChange={ this.userNameChange }>
+                </Input>
               </Form.Item>
               <Form.Item name="password" rules={[{ required: true, message: '请输入密码' }]}>
-                <Input prefix={<LockOutlined className="login-input-icon" />} placeholder="密码"></Input>
+                <Input 
+                  prefix={<LockOutlined className="login-input-icon" />} 
+                  placeholder="密码" 
+                  type="password"
+                  onChange={ this.passwordChange }>
+                </Input>
               </Form.Item>
               <Form.Item>
-                <Button type="primary" className="login-btn">登录</Button>
+                <Button type="primary" className="login-btn" onClick={ this.loginHandle }>登录</Button>
               </Form.Item>
             </Form>
           </div>

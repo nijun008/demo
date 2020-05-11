@@ -3,6 +3,7 @@ import { Route, Link, Switch, HashRouter } from 'react-router-dom'
 import './index.css'
 
 import Comment from '../../pages/Comments'
+import UserManage from '../../pages/UserManage'
 
 import { Layout, Menu, Row, Col } from 'antd'
 import {
@@ -16,12 +17,12 @@ import {
 
 const { Header, Sider, Content } = Layout
 
-// 菜单列表
-const menuList = [
-  { title: '首页', path: '/', icon: <UserOutlined /> },
-  { title: '评论', path: '/comment', icon: <MessageOutlined /> },
-  { title: '用户管理', path: '/userManage', icon: <UsergroupAddOutlined /> },
-  { title: 'Book管理', path: '/bookManage', icon: <ReadOutlined /> }
+// 路由列表
+const routeList = [
+  { title: '首页', path: '/', icon: <UserOutlined />, component: () => <div>Home</div>, exact: true },
+  { title: '评论', path: '/comment', icon: <MessageOutlined />, component: () => <Comment /> },
+  { title: '用户管理', path: '/userManage', icon: <UsergroupAddOutlined />, component: () => <UserManage /> },
+  { title: 'Book管理', path: '/bookManage', icon: <ReadOutlined />, component: () => <div>Book管理</div> }
 ]
 
 class MyLayout extends Component {
@@ -46,7 +47,7 @@ class MyLayout extends Component {
           <div className="sider-logo">Logo</div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['/']}>
             {
-              menuList.map(menu => (
+              routeList.map(menu => (
                 <Menu.Item key={ menu.path } icon={ menu.icon} onClick={ () => { this.menuHandle(menu) } } >
                   { menu.title }
                 </Menu.Item>
@@ -69,9 +70,11 @@ class MyLayout extends Component {
             <Content className="app-main-wrap">
               <HashRouter>
                 <Switch>
-                  <Route path="/" exact component={ () => <div>Home</div> }></Route> 
-                  <Route path="/comment" component={ Comment }></Route>
-                  <Route path="/about" component={ () => <div>about</div> }></Route>
+                  {
+                    routeList.map(page => (
+                      <Route key={page.path} exact={ page.exact || false } path={ page.path } component={ page.component }></Route>
+                    ))
+                  }
                   <Route path="*" component={ () => <div>404</div> }></Route>
                 </Switch>
               </HashRouter>
