@@ -4,6 +4,7 @@ import './index.css'
 
 import Comment from '../../pages/Comments'
 import UserManage from '../../pages/UserManage'
+import BookManage from '../../pages/BookManage'
 
 import { Layout, Menu, Row, Col } from 'antd'
 import {
@@ -22,7 +23,7 @@ const routeList = [
   { title: '首页', path: '/', icon: <UserOutlined />, component: () => <div>Home</div>, exact: true },
   { title: '评论', path: '/comment', icon: <MessageOutlined />, component: () => <Comment /> },
   { title: '用户管理', path: '/userManage', icon: <UsergroupAddOutlined />, component: () => <UserManage /> },
-  { title: 'Book管理', path: '/bookManage', icon: <ReadOutlined />, component: () => <div>Book管理</div> }
+  { title: 'Book管理', path: '/bookManage', icon: <ReadOutlined />, component: () => <BookManage /> }
 ]
 
 class MyLayout extends Component {
