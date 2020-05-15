@@ -1,5 +1,9 @@
 import React from 'react'
-import { Table, Tag, Button } from 'antd'
+import { Table, Tag, Button, Row, Col } from 'antd'
+
+import './index.css'
+
+import BookFormModal from './components/BookFormModal'
 
 class BookManage extends React.Component {
 
@@ -13,31 +17,34 @@ class BookManage extends React.Component {
     ]
 
     this.state = {
+      formVisible: false,
       books: [
         { 
           id: '245515151',
-          state: 0,
-          bookNO: 'xxx-167',
+          status: 0,
+          NO: 'xxx-167',
           name: '授业ト ップ ',
           grade: 8.4,
           javGrade: 8.6,
+          issueDate: '2018-11-05',
           cast: [
             { name: '洗液香', id: 'xiyexiang' }
           ]
         },
         { 
           id: '342455151',
-          state: 1,
-          bookNO: 'xxx-359',
+          status: 1,
+          NO: 'xxx-359',
           name: '写真ニュース',
           grade: 8.4,
           javGrade: 8.6,
+          issueDate: '2018-11-05',
           cast: [
             {name: '剥夺业界已', id: 'xiyexiang'}
           ]
         },
         { 
-          id: '124551516', state: 2, bookNO: 'xxx-226', name: 'の双子タワー', grade: 8.4, javGrade: 8.6,
+          id: '124551516', status: 2, NO: 'xxx-226', name: 'の双子タワー', grade: 8.4, javGrade: 8.6, issueDate: '2018-11-05',
           cast: [
             { name: '造已女露依', id: 'xiyexiang' },
             { name: '亚森第', id: 'yasendi' }
@@ -46,7 +53,7 @@ class BookManage extends React.Component {
       ],
       bookCols: [
         { title: 'ID', dataIndex: 'id', key: 'id' },
-        { title: '番号', dataIndex: 'bookNO', key: 'bookNO' },
+        { title: '番号', dataIndex: 'NO', key: 'NO' },
         { title: '名称', dataIndex: 'name', key: 'name' },
         { title: '站内评分', dataIndex: 'grade', key: 'grade' },
         { title: 'jav评分', dataIndex: 'javGrade', key: 'javGrade' },
@@ -57,9 +64,10 @@ class BookManage extends React.Component {
             ))
           )
         },
-        { title: '状态', dataIndex: 'state', key: 'state', 
-          render: state => (
-            <Tag color={ stateFormat[state].tagColor }>{stateFormat[state].label}</Tag>
+        { title: '发行日期', dataIndex: 'issueDate', key: 'issueDate' },
+        { title: '状态', dataIndex: 'status', key: 'status', 
+          render: status => (
+            <Tag color={ stateFormat[status].tagColor }>{stateFormat[status].label}</Tag>
           ) 
         },
         { 
@@ -73,14 +81,29 @@ class BookManage extends React.Component {
     }
   }
 
+  fromVisibleToggle = (visible) => {
+    this.setState({
+      formVisible: visible
+    })
+  }
+
   tableDisableHandle = (row, index) => {
     console.log(row, index)
   }
 
   render() {
     return (
-      <div>
+      <div className="page-wrap book-manage-page">
+        <Row justify="space-between" className="table-row">
+          <Row>
+          <Button>查询</Button>
+          </Row>
+          <Row>
+            <Button onClick={ () => this.fromVisibleToggle(true) }>新增</Button>
+          </Row>
+        </Row>
         <Table dataSource={ this.state.books } columns={ this.state.bookCols } rowKey="id" />
+        <BookFormModal visible={ this.state.formVisible } close={ () => this.fromVisibleToggle(false) } />
       </div>
     )
   }
