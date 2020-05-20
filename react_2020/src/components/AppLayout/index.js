@@ -5,6 +5,7 @@ import './index.css'
 import Comment from '../../pages/Comments'
 import UserManage from '../../pages/UserManage'
 import BookManage from '../../pages/BookManage'
+import ActorManage from '../../pages/ActorManage'
 
 import { Layout, Menu, Row, Col } from 'antd'
 import {
@@ -13,7 +14,8 @@ import {
   UserOutlined,
   UsergroupAddOutlined,
   MessageOutlined,
-  ReadOutlined
+  ReadOutlined,
+  WomanOutlined
 } from '@ant-design/icons'
 
 const { Header, Sider, Content } = Layout
@@ -23,7 +25,8 @@ const routeList = [
   { title: '首页', path: '/', icon: <UserOutlined />, component: () => <div>Home</div>, exact: true },
   { title: '评论', path: '/comment', icon: <MessageOutlined />, component: () => <Comment /> },
   { title: '用户管理', path: '/userManage', icon: <UsergroupAddOutlined />, component: () => <UserManage /> },
-  { title: 'Book管理', path: '/bookManage', icon: <ReadOutlined />, component: () => <BookManage /> }
+  { title: 'Book管理', path: '/bookManage', icon: <ReadOutlined />, component: () => <BookManage /> },
+  { title: '演员管理', path: '/actorManage', icon: <WomanOutlined />, component: () => <ActorManage /> }
 ]
 
 class MyLayout extends Component {
