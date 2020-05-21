@@ -2,7 +2,6 @@ import React from 'react'
 import { Table, Tag, Button, Row, Col } from 'antd'
 
 import ActorFormModal from './components/ActorFormModal'
-import Item from 'antd/lib/list/Item'
 
 class BookManage extends React.Component {
 

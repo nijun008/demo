@@ -7,7 +7,7 @@ import UserManage from '../../pages/UserManage'
 import BookManage from '../../pages/BookManage'
 import ActorManage from '../../pages/ActorManage'
 
-import { Layout, Menu, Row, Col } from 'antd'
+import { Layout, Menu, Row, Col, Dropdown, Button } from 'antd'
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -15,7 +15,8 @@ import {
   UsergroupAddOutlined,
   MessageOutlined,
   ReadOutlined,
-  WomanOutlined
+  WomanOutlined,
+  DownOutlined
 } from '@ant-design/icons'
 
 const { Header, Sider, Content } = Layout
@@ -23,10 +24,10 @@ const { Header, Sider, Content } = Layout
 // 路由列表
 const routeList = [
   { title: '首页', path: '/', icon: <UserOutlined />, component: () => <div>Home</div>, exact: true },
-  { title: '评论', path: '/comment', icon: <MessageOutlined />, component: () => <Comment /> },
   { title: '用户管理', path: '/userManage', icon: <UsergroupAddOutlined />, component: () => <UserManage /> },
   { title: 'Book管理', path: '/bookManage', icon: <ReadOutlined />, component: () => <BookManage /> },
-  { title: '演员管理', path: '/actorManage', icon: <WomanOutlined />, component: () => <ActorManage /> }
+  { title: '演员管理', path: '/actorManage', icon: <WomanOutlined />, component: () => <ActorManage /> },
+  { title: '评论', path: '/comment', icon: <MessageOutlined />, component: () => <Comment /> },
 ]
 
 class MyLayout extends Component {
@@ -44,7 +45,18 @@ class MyLayout extends Component {
     this.props.history.push(menu.path)
   }
 
+  logOutHandle = () => {
+    this.props.history.push('/login')
+  }
+
   render() {
+
+    const dropMenu = (
+      <Menu>
+        <Menu.Item onClick={ this.logOutHandle }>退出</Menu.Item>
+      </Menu>
+    )
+
     return (
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
@@ -67,7 +79,12 @@ class MyLayout extends Component {
                   { this.state.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined /> }
                 </span>
               </Col>
-              <Col className="header-right-box">欢迎, 倪俊</Col>
+              <Col className="header-right-box">
+                <span>欢迎</span>
+                <Dropdown overlay={ dropMenu }>
+                  <Button type="link">Kreyn <DownOutlined /></Button>
+                </Dropdown>
+              </Col>
             </Row>
           </Header>
           <div className="app-main-bg">

@@ -31,13 +31,12 @@ class Login extends Component {
 
   loginHandle = () => {
 
-    if (this.state.userName && this.state.password) {
-      if (this.state.userName.split(' ').join('') && this.state.password.split(' ').join('')) {
-        this.props.history.push('/')
-        return
-      }
-    }
-
+    this.loginForm.validateFields().then(values => {
+      console.log(values)
+      this.props.history.push('/')
+    }).catch(err => {
+      console.log(err)
+    })
   }
 
   render() {
@@ -46,7 +45,7 @@ class Login extends Component {
         <Row className="login-wrap" justify="center" align="middle">
           <div className="login-box">
             <h2 className="title">Library Admin</h2>
-            <Form name="login_form" className="login-form" onFinish={ this.loginHandle }>
+            <Form ref={(loginForm) => this.loginForm = loginForm } className="login-form" onFinish={ this.loginHandle }>
               <Form.Item name="userName" rules={[{ required: true, message: '请输入用户名' }]}>
                 <Input 
                   prefix={<UserOutlined className="login-input-icon" />} 
