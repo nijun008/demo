@@ -1,5 +1,7 @@
 import React from 'react'
-import { Table, Tag, Button } from 'antd'
+import { Table, Tag, Button, Modal } from 'antd'
+
+import { getUsers, deleteUser } from '../../utils/http/user'
 
 class UserManage extends React.Component {
 
@@ -31,7 +33,10 @@ class UserManage extends React.Component {
           title: '操作',
           key: 'action',
           render: (text, row, index) => (
-            <Button type="primary" size="small" ghost onClick={ () => this.tableDisableHandle(row, index) }>禁用</Button>
+            <div className="table-handle-box">
+              <Button type="primary" size="small" ghost onClick={ () => this.tableDisableHandle(row, index) }>禁用</Button>
+              <Button danger size="small" ghost onClick={ () => this.tableDeleteHandle(row, index) }>删除</Button>
+            </div>
           )
         }
       ]
@@ -39,15 +44,33 @@ class UserManage extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      let users = this.state.users.map(item => item)
-      users.push({ id: '512551516', state: 2, nickName: '一分三千喷', wechatName: '堡垒' })
-      this.setState({ users })
-    }, 2000)
+    this._getUserData()
+  }
+
+  _getUserData = () => {
+    getUsers().then(({data}) => {
+      this.setState({
+        users: data
+      })
+    })
   }
 
   tableDisableHandle = (row, index) => {
     console.log(row, index)
+  }
+
+  tableDeleteHandle = (row, index) => {
+    Modal.confirm({
+      title: '提示',
+      content: '用户删除后无法恢复，是否继续?',
+      onOk:() => {
+        deleteUser({ id: row.id}).then(({data}) => {
+          console.log(data)
+          this._getUserData()
+        })
+      },
+      onCancel: () => false
+    })
   }
 
   render() {

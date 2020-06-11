@@ -1,6 +1,8 @@
 import React from 'react'
 import { Table, Tag, Button, Row, Col } from 'antd'
 
+import { getMovie } from '../../utils/http/movie'
+
 import './index.css'
 
 import BookFormModal from './components/BookFormModal'
@@ -23,7 +25,7 @@ class BookManage extends React.Component {
           id: '245515151',
           status: 0,
           NO: 'xxx-167',
-          name: '授业ト ップ ',
+          title: '授业ト ップ ',
           grade: 8.4,
           javGrade: 8.6,
           issueDate: '2018-11-05',
@@ -35,7 +37,7 @@ class BookManage extends React.Component {
           id: '342455151',
           status: 1,
           NO: 'xxx-359',
-          name: '写真ニュース',
+          title: '写真ニュース',
           grade: 8.4,
           javGrade: 8.6,
           issueDate: '2018-11-05',
@@ -44,7 +46,7 @@ class BookManage extends React.Component {
           ]
         },
         { 
-          id: '124551516', status: 2, NO: 'xxx-226', name: 'の双子タワー', grade: 8.4, javGrade: 8.6, issueDate: '2018-11-05',
+          id: '124551516', status: 2, NO: 'xxx-226', title: 'の双子タワー', grade: 8.4, javGrade: 8.6, issueDate: '2018-11-05',
           cast: [
             { name: '造已女露依', id: 'xiyexiang' },
             { name: '亚森第', id: 'yasendi' }
@@ -54,14 +56,16 @@ class BookManage extends React.Component {
       bookCols: [
         { title: 'ID', dataIndex: 'id', key: 'id' },
         { title: '番号', dataIndex: 'NO', key: 'NO' },
-        { title: '名称', dataIndex: 'name', key: 'name' },
+        { title: '名称', dataIndex: 'title', key: 'title' },
         { title: '站内评分', dataIndex: 'grade', key: 'grade' },
         { title: 'jav评分', dataIndex: 'javGrade', key: 'javGrade' },
         { title: '女优', dataIndex: 'cast', key: 'cast', 
           render: cast => (
-            cast.map((itme, index) => (
-            <span key={ itme.id }>{ index > 0 ? <span>、</span> : '' }<a>{ itme.name }</a></span>
-            ))
+            cast 
+            ? cast.map((itme, index) => (
+              <span key={ itme.id }>{ index > 0 ? <span>、</span> : '' }<a>{ itme.name }</a></span>
+              )) 
+            : <span>暂无</span>
           )
         },
         { title: '发行日期', dataIndex: 'issueDate', key: 'issueDate' },
@@ -79,6 +83,19 @@ class BookManage extends React.Component {
         }
       ]
     }
+  }
+
+  componentDidMount() {
+    this._getMovie()
+  }
+
+  _getMovie = () => {
+    getMovie().then(({ data }) => {
+
+      this.setState({
+        books: data
+      })
+    })
   }
 
   fromVisibleToggle = (visible) => {
@@ -103,7 +120,11 @@ class BookManage extends React.Component {
           </Row>
         </Row>
         <Table dataSource={ this.state.books } columns={ this.state.bookCols } rowKey="id" />
-        <BookFormModal visible={ this.state.formVisible } close={ () => this.fromVisibleToggle(false) } />
+        <BookFormModal
+          visible={ this.state.formVisible }
+          close={ () => this.fromVisibleToggle(false) }
+          updateList={ () => this._getMovie() }
+        />
       </div>
     )
   }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Modal, Form, Input, Select, DatePicker, Radio } from 'antd'
+import { Modal, Form, Input, Select, DatePicker, Radio, InputNumber } from 'antd'
+
+import { addMovie } from '../../../../utils/http/movie'
 
 class BookForm extends Component {
   formRef = React.createRef()
@@ -19,6 +21,12 @@ class BookForm extends Component {
       if (form.issueDate) {
         form.issueDate = values.issueDate.format('YYYY-MM-DD')
       }
+      
+      addMovie(form).then(({data}) => {
+        this.props.updateList()
+        this.props.close()
+      })
+      
       console.log(form)
     }).catch(err => false)
   }
@@ -43,10 +51,10 @@ class BookForm extends Component {
               <Input />
             </Form.Item>
             <Form.Item label="jav评分" name="javGrade">
-              <Input />
+              <InputNumber min={0} max={10} step={0.1}></InputNumber>
             </Form.Item>
             <Form.Item label="站内评分" name="grade">
-              <Input />
+            <InputNumber min={0} max={10} step={0.1}></InputNumber>
             </Form.Item>
             <Form.Item label="发行日期" name="issueDate">
               <DatePicker />
@@ -57,6 +65,9 @@ class BookForm extends Component {
                 <Radio value={1}>禁用</Radio>
                 <Radio value={2}>其他</Radio>
               </Radio.Group>
+            </Form.Item>
+            <Form.Item label="主演" name="starring">
+              <Input />
             </Form.Item>
             <Form.Item label="演员" name="cast">
               <Select></Select>
