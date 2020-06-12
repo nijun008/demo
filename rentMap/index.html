@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=false" />
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <title>地图</title>
     <style type="text/css">
       * {
@@ -72,10 +73,27 @@
         box-shadow: 0 0 5px #555;
       }
       .name-input {
-        width: 100px;
+        width: 80px;
       }
       .address-input {
         width: 260px;
+      }
+      .el-input__inner {
+        border-color: #333;
+        border-radius: 0;
+      }
+      .el-select .el-input.is-focus .el-input__inner {
+        border-color: #000;
+      }
+      .BMapLabel {
+        border: none !important;
+        display: block !important;
+        width: 100px !important;
+        overflow: hidden !important;
+        text-align: center !important;
+        background-color: #333 !important;
+        color: #fff !important;
+        border-radius: 6px;
       }
     </style>
   </head>
@@ -88,9 +106,14 @@
           <div v-for="(item, index) in destinationList" :key="'destination-' + index" 
             class="flex space-between list-item align-center margin-bottom-10"
           >
-            <input v-model="item.name" placeholder="名称" class="name-input">
-            <input v-model="item.address" placeholder="地址" class="address-input">
-            <span class="btn padding-">-</span>
+            <input v-model="item.name" placeholder="标签" class="name-input">
+            <el-select size="small" v-model="item.address" filterable remote placeholder="输入地址" 
+              :remote-method="(keyword) => serchAddress(keyword, item)" @change="() => addressChange(item)"
+              :loading="item.loading" value-key="uid"
+              style="width: 300px;">
+              <el-option v-for="(option, index) in item.options" :key="index" :label="option.title" :value="option"></el-option>
+            </el-select>
+            <span class="btn padding-" @click="() => removeAdress(index, item)">-</span>
           </div>
 
         </div>
@@ -114,6 +137,7 @@
       map.enableScrollWheelZoom(true)   //开启鼠标滚轮缩放
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script type="text/javascript">
       var app = new Vue({
         el: '#app',
@@ -121,29 +145,70 @@
           nameFormat: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
           destinationList: [
             {
-              name: 'A',
-              address: '',
-              point: []
+              name: '',
+              address: {},
+              options: [],
+              loading: false,
+              marker: null,
+              markerLabel: null
             }
           ]
         },
         methods: {
+          addMarker(item) {
+            item.marker = new BMap.Marker(item.address.point)
+            map.addOverlay(item.marker)   
+
+            item.markerLabel = new BMap.Label(item.address.title || '坐标' , { offset: new BMap.Size( -40, - 22)})
+            item.marker.setLabel(item.markerLabel)
+          },
           addDestinationHandle() {
-            console.log('add')
+            this.destinationList.push({
+              name: '',
+              address: {},
+              options: [],
+              loading: false,
+              marker: null,
+              markerLabel: null
+            })
           },
           findHandle() {
             console.log('find')
-            this.serchAddress()
           },
-          serchAddress() {
-            var options = {
+          addressChange(item) {
+            this.removeMarker(item)
+            this.addMarker(item)
+          },
+          removeMarker(item) {
+            if (item.marker) {
+              console.log(item.marker)
+              map.removeOverlay(item.marker)
+              item.marker = null
+              item.markerLabel = null
+            }
+          },
+          removeAdress(index, item) {
+            this.removeMarker(item)
+            this.destinationList.splice(index, 1)
+          },
+          serchAddress(keyword, item) {
+            let options = {
               onSearchComplete: function(results) {
                 console.log(results)
+                item.loading = false
+                let list = results.Ir || []
+                item.options = list
               }
             }
 
-            local = new BMap.LocalSearch(map, options)
-            local.search("川建社区")
+            if (keyword && keyword.split(' ').join('')) {
+              item.loading = true
+              local = new BMap.LocalSearch(map, options)
+              local.search(keyword)
+            } else {
+              item.loading = false
+              item.options = []
+            }
           }
         }
       })
