@@ -163,6 +163,10 @@
             item.marker.setLabel(item.markerLabel)
           },
           addDestinationHandle() {
+            if (this.destinationList.length > 4) {
+              this.$message.warning('不能添加更多地址啦!')
+              return
+            }
             this.destinationList.push({
               name: '',
               address: {},
@@ -173,7 +177,21 @@
             })
           },
           findHandle() {
-            console.log('find')
+            if (this.destinationList && this.destinationList.length > 1) {
+
+              let addressFilter = this.destinationList.filter(item => !item || !item.address || !item.address.point)
+              if (addressFilter && addressFilter.length > 0) {
+                this.$message.warning('还有空地址噢!')
+                return
+              }
+
+              let points = this.destinationList.map(item => item.address.point)
+
+              console.log(points)
+              
+            } else {
+              this.$message.warning('至少添加两个地址噢!')
+            }
           },
           addressChange(item) {
             this.removeMarker(item)
@@ -181,7 +199,6 @@
           },
           removeMarker(item) {
             if (item.marker) {
-              console.log(item.marker)
               map.removeOverlay(item.marker)
               item.marker = null
               item.markerLabel = null
@@ -194,7 +211,6 @@
           serchAddress(keyword, item) {
             let options = {
               onSearchComplete: function(results) {
-                console.log(results)
                 item.loading = false
                 let list = results.Ir || []
                 item.options = list
