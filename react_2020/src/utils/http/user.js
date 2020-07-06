@@ -7,7 +7,7 @@ export function getUsers (params) {
 
 // 新增用户
 export function addUser (params) {
-  return get('/api/admin/user/adduser', params)
+  return post('/api/admin/user/adduser', params)
 }
 
 // 删除用户

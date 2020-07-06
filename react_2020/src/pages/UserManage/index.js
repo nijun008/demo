@@ -1,7 +1,9 @@
 import React from 'react'
-import { Table, Tag, Button, Modal } from 'antd'
+import { Table, Tag, Button, Modal, Row } from 'antd'
 
 import { getUsers, deleteUser } from '../../utils/http/user'
+
+import UserFormModal from './components/UserFormModal'
 
 class UserManage extends React.Component {
 
@@ -15,6 +17,7 @@ class UserManage extends React.Component {
     ]
 
     this.state = {
+      fromVisible: false,
       users: [
         { id: '245515151', state: 0, nickName: '无', wechatName: '小二' },
         { id: '342455151', state: 1, nickName: '德玛西亚皇子', wechatName: '四阿哥' },
@@ -55,6 +58,12 @@ class UserManage extends React.Component {
     })
   }
 
+  fromVisibleToggle = (visible) => {
+    this.setState({
+      fromVisible: visible
+    })
+  }
+
   tableDisableHandle = (row, index) => {
     console.log(row, index)
   }
@@ -76,7 +85,16 @@ class UserManage extends React.Component {
   render() {
     return (
       <div>
+        <Row justify="space-between" className="table-row">
+          <Row>
+          <Button>查询</Button>
+          </Row>
+          <Row>
+            <Button onClick={ () => this.fromVisibleToggle(true) }>新增</Button>
+          </Row>
+        </Row>
         <Table dataSource={ this.state.users } columns={ this.state.userCols } rowKey="id" />
+        <UserFormModal visible={ this.state.fromVisible } close={ () => this.fromVisibleToggle(false) } />
       </div>
     )
   }
