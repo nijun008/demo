@@ -54,7 +54,7 @@ class BookForm extends Component {
               <InputNumber min={0} max={10} step={0.1}></InputNumber>
             </Form.Item>
             <Form.Item label="站内评分" name="grade">
-            <InputNumber min={0} max={10} step={0.1}></InputNumber>
+              <InputNumber min={0} max={10} step={0.1}></InputNumber>
             </Form.Item>
             <Form.Item label="发行日期" name="issueDate">
               <DatePicker />

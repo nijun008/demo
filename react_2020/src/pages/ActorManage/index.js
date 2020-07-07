@@ -1,7 +1,9 @@
 import React from 'react'
-import { Table, Tag, Button, Row, Col } from 'antd'
+import { Table, Tag, Button, Row } from 'antd'
 
 import ActorFormModal from './components/ActorFormModal'
+
+import { getActor } from '../../utils/http/actor'
 
 class BookManage extends React.Component {
 
@@ -16,7 +18,7 @@ class BookManage extends React.Component {
 
     this.state = {
       formVisible: false,
-      books: [
+      actors: [
         { 
           id: '245515151',
           status: 0,
@@ -47,7 +49,7 @@ class BookManage extends React.Component {
           ] 
         }
       ],
-      bookCols: [
+      tableCols: [
         { title: 'ID', dataIndex: 'id', key: 'id' },
         { title: '艺名', dataIndex: 'name', key: 'name' },
         { title: '评分', dataIndex: 'grade', key: 'grade' },
@@ -86,6 +88,18 @@ class BookManage extends React.Component {
     console.log(row, index)
   }
 
+  componentDidMount() {
+    this.getActorList()
+  }
+
+  getActorList = () => {
+    getActor().then(res => {
+      this.setState({
+        actors: res
+      })
+    })
+  }
+
   render() {
     return (
       <div className="page-wrap book-manage-page">
@@ -97,8 +111,12 @@ class BookManage extends React.Component {
             <Button onClick={ () => this.fromVisibleToggle(true) }>新增</Button>
           </Row>
         </Row>
-        <Table dataSource={ this.state.books } columns={ this.state.bookCols } rowKey="id" />
-        <ActorFormModal visible={ this.state.formVisible } close={ () => this.fromVisibleToggle(false) } />
+        <Table dataSource={ this.state.actors } columns={ this.state.tableCols } rowKey="id" />
+        <ActorFormModal 
+          visible={ this.state.formVisible } 
+          close={ () => this.fromVisibleToggle(false) }
+          updateList={ () => this.getActorList() }
+        />
       </div>
     )
   }

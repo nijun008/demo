@@ -21,7 +21,6 @@ class UserForm extends Component {
       if (form.debutDate) {
         form.debutDate = values.debutDate.format('YYYY-MM-DD')
       }
-      console.log(form)
 
       this._userSubmit(form)
     }).catch(err => false)
