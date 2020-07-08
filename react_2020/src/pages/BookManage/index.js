@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Tag, Button, Row, Col } from 'antd'
+import { Table, Tag, Button, Row } from 'antd'
 
 import { getMovie } from '../../utils/http/movie'
 
@@ -61,10 +61,10 @@ class BookManage extends React.Component {
         { title: 'jav评分', dataIndex: 'javGrade', key: 'javGrade' },
         { title: '女优', dataIndex: 'cast', key: 'cast', 
           render: cast => (
-            cast 
-            ? cast.map((itme, index) => (
-              <span key={ itme.id }>{ index > 0 ? <span>、</span> : '' }<a>{ itme.name }</a></span>
-              )) 
+            cast ? 
+            cast.map((itme, index) => (
+              <span key={ itme.id }>{ index > 0 ? <span>、</span> : '' }<a href="_blank">{ itme.name }</a></span>
+            )) 
             : <span>暂无</span>
           )
         },

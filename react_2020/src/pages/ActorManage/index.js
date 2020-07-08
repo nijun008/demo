@@ -26,9 +26,7 @@ class BookManage extends React.Component {
           grade: 8.4,
           debutDate: '2018-11-05',
           belongCompany: '蚊香社',
-          alias: [
-            { name: '洗液香', id: 'xiyexiang' }
-          ]
+          alias: '洗液香'
         },
         { 
           id: '342455151',
@@ -37,16 +35,11 @@ class BookManage extends React.Component {
           grade: 8.4,
           debutDate: '2018-11-05',
           belongCompany: '蚊香社',
-          alias: [
-            {name: '剥夺业界已', id: 'boduoyejieyi'}
-          ]
+          alias: '剥夺业界已'
         },
         { 
           id: '124551516', status: 2, name: '造已女露依', grade: 8.4, debutDate: '2018-11-05', belongCompany: '蚊香社',
-          alias: [
-            { name: '造已女露依', id: 'xiyexiang' },
-            { name: '亚森第', id: 'yasendi' }
-          ] 
+          alias: '造已女露依, 亚森第'
         }
       ],
       tableCols: [
@@ -55,9 +48,10 @@ class BookManage extends React.Component {
         { title: '评分', dataIndex: 'grade', key: 'grade' },
         { title: '别名', dataIndex: 'alias', key: 'alias', 
           render: alias => (
-            alias.map((itme, index) => (
-            <span key={ itme.id }>{ index > 0 ? <span>、</span> : '' }{ itme.name }</span>
-            ))
+            alias ?
+            alias.split(',').map((itme, index) => (
+            <span key={ 'alias-' + index }>{ index > 0 ? <span>、</span> : '' }{ itme }</span>
+            )) : ''
           )
         },
         { title: '所属公司', dataIndex: 'belongCompany', key: 'belongCompany' },
@@ -71,7 +65,10 @@ class BookManage extends React.Component {
           title: '操作',
           key: 'action',
           render: (text, row, index) => (
-            <Button type="primary" size="small" ghost onClick={ () => this.tableDisableHandle(row, index) }>禁用</Button>
+            <span>
+              <Button type="primary" size="small" ghost onClick={ () => this.tableEditHandle(row, index) }>编辑</Button>
+              <Button type="danger" size="small" ghost onClick={ () => this.tableDisableHandle(row, index) }>禁用</Button>
+            </span>
           )
         }
       ]
@@ -88,6 +85,10 @@ class BookManage extends React.Component {
     console.log(row, index)
   }
 
+  tableEditHandle = (row, index) => {
+    console.log(row, index)
+  }
+
   componentDidMount() {
     this.getActorList()
   }
@@ -95,7 +96,7 @@ class BookManage extends React.Component {
   getActorList = () => {
     getActor().then(res => {
       this.setState({
-        actors: res
+        actors: res.data || []
       })
     })
   }
