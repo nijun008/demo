@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>前端路由原理</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #nav {
+        text-align: center;
+        padding: 20px;
+        font-size: 16px;
+      }
+      #nav span {
+        cursor: pointer;
+        margin: 0 5px;
+        color: #333;
+      }
+      #nav span:hover {
+        text-decoration: underline;
+      }
+      .footer {
+        padding: 6px 0;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        background-color: #eee;
+        color: #888;
+        text-align: center;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="layout">
+      <div id="nav">
+        <span to="home">home</span>
+        <span to="list">list</span>
+        <span to="my">my</span>
+        <span to="other">other</span>
+        <span to="404">404</span>
+      </div>
+      <div id="main">
+        
+      </div>
+      <div class="footer">footer</div>
+    </div>
+
+    <script>
+      window.onload = function () {
+        hashChangeHandle ({ newURL: window.location.href })
+
+        window.addEventListener('hashchange', hashChangeHandle)
+        window.addEventListener('click', navHandle)
+      }
+
+      function navHandle (e) {
+        let newHash = e.target.getAttribute('to')
+        window.location.hash = newHash || ''
+      }
+
+      function hashChangeHandle ({ newURL }) {
+        const main = document.querySelector('#main')
+        let html = ''
+
+        let hashUrl = ''
+        let hashArr = newURL.split('#')
+        if (hashArr.length > 1) {
+          hashArr = hashArr.splice(-1, 1)
+          hashUrl = hashArr.join('')
+        }
+
+        switch (hashUrl) {
+          case '':
+            html = '<div>home</div>'
+            break
+          case 'home':
+            html = '<div>home</div>'
+            break
+          case 'list':
+            html = '<div>list</div>'
+            break
+          case 'my':
+            html = '<div>my</div>'
+            break
+          case 'other':
+            html = '<div>other</div>'
+            break
+          default:
+            html = '<div>404</div>'
+            break
+        }
+        main.innerHTML = html
+      }
+    </script>
+  </body>
+</html>
