@@ -29,7 +29,7 @@ export default {
   height: 100%;
   background-color: #373833;
   line-height: 2rem;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .nav-box {

@@ -7,14 +7,37 @@
         <div class="search-btn" @click="searchHandle">搜索</div>
       </div>
     </div>
+
+    <div class="navigation-box flex">
+      <div v-for="item in navList" :key="item.url">{{ item.title }}</div>
+      <div class="nav-add-btn" @click="addBtnClick">+</div>
+    </div>
   </div>
+
+  <a-modal 
+    v-model:visible="addNavVisible" 
+    title="新增导航"
+    :maskClosable="false"
+    @ok="navModalThen">
+    <a-form :model="navForm" ref="navFormRef" :label-col="{ span: 2 }" :wrapper-col="{ span: 20 }">
+      <a-form-item name="title" label="名称">
+        <a-input placeholder="如：学习网站"></a-input>
+      </a-form-item>
+      <a-form-item name="url" label="url">
+        <a-input placeholder="如：https://www.pornhub.com"></a-input>
+      </a-form-item>
+    </a-form>
+  </a-modal>
 </div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, reactive } from 'vue'
+import { getLocalStorage, setLocalStorage } from '@/utils/localStorage'
 export default {
   setup() {
+
+    // 搜索
     let keyWord = ref('')
 
     const searchHandle = () => {
@@ -25,6 +48,8 @@ export default {
     }
 
     onMounted(() => {
+      console.log(setLocalStorage())
+      console.log(getLocalStorage())
       let urls = [
         'http://www.baidu.com/s?4124',
         'https://www.baidu.com/s?4124',
@@ -44,9 +69,35 @@ export default {
       
     })
 
+    // 导航
+    let addNavVisible = ref(false)
+    let navForm = reactive({ title: '', url: '' })
+    let navList = reactive([])
+
+    const addBtnClick = () => {
+      addNavVisible.value = true
+    }
+
+    const navModalThen = () => {
+      navList.push({
+        title: navForm.title,
+        url: navForm.url
+      })
+
+      console.log(navList)
+      navForm = {}
+      addNavVisible.value = false
+    }
+
     return {
       keyWord,
-      searchHandle
+      searchHandle,
+
+      addNavVisible,
+      navForm,
+      navList,
+      addBtnClick,
+      navModalThen
     }
   },
   data () {
@@ -87,5 +138,12 @@ export default {
   cursor: pointer;
   background-color: #3f72af;
   color: #fff;
+}
+
+.navigation-box {
+  margin-top: 30px;
+}
+.nav-add-btn {
+  cursor: pointer;
 }
 </style>

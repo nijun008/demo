@@ -1,14 +1,26 @@
-<template>
+<!-- <template>
 <layout />
+</template> -->
+
+<template>
+  <a-config-provider :locale="locale">
+    <layout />
+  </a-config-provider>
 </template>
 
 <script>
 import layout from './layout'
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
 
 export default {
   name: 'App',
   components: {
     layout
+  },
+  data () {
+    return {
+      locale: zhCN
+    }
   }
 }
 </script>
@@ -17,14 +29,14 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 14px;
-  color: #000;
 }
 
 html,
 body {
   height: 100%;
+  font-size: 14px;
+  color: #000;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 ol,
