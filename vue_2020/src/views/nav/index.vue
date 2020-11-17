@@ -9,7 +9,7 @@
     </div>
 
     <div class="navigation-box flex">
-      <div v-for="item in navList" :key="item.url">{{ item.title }}</div>
+      <div class="nav-item" v-for="item in navList" :key="item.url" @click="toNav(item)">{{ item.title }}</div>
       <div class="nav-add-btn" @click="addBtnClick">+</div>
     </div>
   </div>
@@ -19,12 +19,18 @@
     title="新增导航"
     :maskClosable="false"
     @ok="navModalThen">
-    <a-form :model="navForm" ref="navFormRef" :label-col="{ span: 2 }" :wrapper-col="{ span: 20 }">
+    <a-form 
+      :model="navForm" 
+      ref="navFormRef"
+      :colon="true"
+      :label-col="{ span: 2, offset: 1 }"
+      :wrapper-col="{ span: 19, offset: 1 }"
+      :rules="rules">
       <a-form-item name="title" label="名称">
-        <a-input placeholder="如：学习网站"></a-input>
+        <a-input v-model:value="navForm.title" placeholder="如：学习网站"></a-input>
       </a-form-item>
-      <a-form-item name="url" label="url">
-        <a-input placeholder="如：https://www.pornhub.com"></a-input>
+      <a-form-item name="url" label="地址">
+        <a-input v-model:value="navForm.url" placeholder="如：https://www.pornhub.com"></a-input>
       </a-form-item>
     </a-form>
   </a-modal>
@@ -72,10 +78,21 @@ export default {
     // 导航
     let addNavVisible = ref(false)
     let navForm = reactive({ title: '', url: '' })
-    let navList = reactive([])
+    let navList = reactive(getLocalStorage('navList') || [])
 
     const addBtnClick = () => {
       addNavVisible.value = true
+    }
+
+    const toNav = (item) => {
+      if (item && item.url) {
+        let url = item.url
+        if (url.indexOf('http://') === -1 && url.indexOf('https://') === -1) {
+          url = 'http://' + url
+        }
+
+        window.open(url, '_blank')
+      }
     }
 
     const navModalThen = () => {
@@ -84,8 +101,10 @@ export default {
         url: navForm.url
       })
 
-      console.log(navList)
-      navForm = {}
+      setLocalStorage('navList', navList)
+
+      navForm.title = ''
+      navForm.url = ''
       addNavVisible.value = false
     }
 
@@ -96,12 +115,27 @@ export default {
       addNavVisible,
       navForm,
       navList,
+      toNav,
       addBtnClick,
       navModalThen
     }
   },
   data () {
+    const checkUrl = async (rule, value) => {
+      if (!(value.split(' ').join(''))) {
+        return Promise.reject('请输入url')
+      } else {
+        return Promise.resolve()
+      }
+    }
     return {
+      rules: {
+        title: [{ required: true, trigger: 'blur', message: '请输入导航标题' }],
+        url: [
+          { required: true, trigger: 'blur', message: '请输入导航url'  },
+          { validator: checkUrl, trigger: 'blur' }
+        ]
+      }
     }
   },
   methods: {
@@ -142,8 +176,24 @@ export default {
 
 .navigation-box {
   margin-top: 30px;
+  line-height: 2rem;
+}
+.nav-item {
+  cursor: pointer;
+  margin-right: 16px;
+  background-color: #efefef;
+  width: 140px;
+  padding-left: 16px;
+  padding-right: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .nav-add-btn {
   cursor: pointer;
+  background-color: #efefef;
+  padding: 0 20px;
+  font-size: 20px;
+  font-weight: 600;
 }
 </style>

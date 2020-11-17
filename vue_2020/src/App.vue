@@ -1,6 +1,3 @@
-<!-- <template>
-<layout />
-</template> -->
 
 <template>
   <a-config-provider :locale="locale">
