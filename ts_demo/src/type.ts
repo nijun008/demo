@@ -1,14 +1,14 @@
 console.log('hello ts')
 
-let num: Number
+let num: number
 num = 1
 
-let bool: Boolean = false
+let bool: boolean = false
 
 console.log(bool)
 
 // 参数类型， 返回类型
-function add (a: Number, b: Number): Number {
+function add (a: number, b: number): number {
   return a + b
 }
 console.log(`add :${add(1,3)}`)
@@ -20,7 +20,7 @@ let c: 20
 let d: false | true
 
 // 联合类型
-let e: Number | Object
+let e: number | Object
 
 e = 10
 e = { a: 10 }
@@ -56,4 +56,39 @@ function myfn (): void {
 // 没有返回值
 function myfn2 (): never {
   throw new Error('出错了')
+}
+
+// Object
+let obj: Object
+obj = { a: '13' }
+
+// 指定属性类型
+let obj1: { name: String }
+obj1 = { name: '24241' }
+
+// 任意属性
+let obj2: { age: Number, [key: string]: any }
+obj2 = { age: 10 , name: 'nk', other: '2414'}
+
+// Array
+let arr: [string, number] = ['123', 123]
+
+// Array
+let arr1: [string | { name: string }, number] = [{name: 'fa'}, 123]
+
+let arr3: string[] = ['a', 'b', 'c', 'd']
+
+// 枚举
+enum Fruits {
+  banna = 1,
+  apple = 3,
+  orange = 5
+}
+
+let like: number = Fruits.apple
+
+if (like === Fruits.banna) {
+  console.log('喜欢香蕉')
+} else {
+  console.log('喜欢苹果或橘子')
 }
