@@ -1,0 +1,1 @@
+export const str = '发哈哈哈'

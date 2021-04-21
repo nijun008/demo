@@ -66,6 +66,9 @@ obj = { a: '13' }
 let obj1: { name: String }
 obj1 = { name: '24241' }
 
+// ?可选属性
+let obj4: { name: string, age?: number }
+
 // 任意属性
 let obj2: { age: Number, [key: string]: any }
 obj2 = { age: 10 , name: 'nk', other: '2414'}

@@ -1,7 +1,7 @@
 { 
   // 包含的文件目录
   "include": [
-    "./src/**/*"
+    "./demo0/**/*"
   ],
   "compilerOptions": {
     // 编译成js版本
