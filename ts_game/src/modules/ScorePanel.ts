@@ -15,6 +15,10 @@ class ScorePanel {
     this.upScore = upScore
   }
 
+  get level () {
+    return this._level
+  }
+
   addScore () {
     this._score++
     this.scoreEle.innerHTML = `${this._score}`
