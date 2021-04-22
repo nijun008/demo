@@ -1,4 +1,77 @@
+@bg-color: #bed4a8;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
 body {
-  background-color: #ddd;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 600 20px 'Courier';
+  min-width: 360px;
+  min-height: 420px;
+}
+
+.main {
+  width: 360px;
+  height: 420px;
+  background-color: @bg-color;
+  border: 10px solid #000;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-around;
+
+  #stage {
+    width: 304px;
+    height: 304px;
+    border: 2px solid #000;
+    position: relative;
+
+    #snake {
+      &>div {
+        width: 10px;
+        height: 10px;
+        background-color: #000;
+        border: 1px solid @bg-color;
+        position: absolute;
+      }
+    }
+
+    #food {
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      // background-color: #000;
+      // border: 1px solid @bg-color;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-content: space-between;
+
+      left: 100px;
+      top: 40px;
+
+      &>div {
+        width: 4px;
+        height: 4px;
+        background-color: #000;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  #score-panel {
+    width: 304px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
 }
