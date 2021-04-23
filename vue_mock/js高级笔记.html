@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>js高级笔记</title>
+  </head>
+  <body>
+    <script>
+      let arr = [undefined, null, 123, '23', () => ({}), function () {console.log("??")} ,true, 'true', '']
+
+      console.log(arr)
+
+      let clone  = JSON.parse(JSON.stringify(arr))
+
+      // undefined 函数 会转换为null
+      console.log(clone)
+      // 变量的名称存在栈里面
+      
+    </script>
+  </body>
+</html>
