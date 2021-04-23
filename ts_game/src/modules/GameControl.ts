@@ -30,7 +30,6 @@ class GameControl {
     this.snack = new Snack()
 
     this.init()
-
     this.run()
   }
 
@@ -39,6 +38,10 @@ class GameControl {
   }
 
   keydownHandler(event: KeyboardEvent) {
+    if (this.eventKeys[event.key] === 'up' && this.direction === 'down') return
+    if (this.eventKeys[event.key] === 'down' && this.direction === 'up') return
+    if (this.eventKeys[event.key] === 'left' && this.direction === 'right') return
+    if (this.eventKeys[event.key] === 'right' && this.direction === 'left') return
     if (this.eventKeys[event.key]) {
       this.direction = this.eventKeys[event.key]
     }
@@ -65,18 +68,27 @@ class GameControl {
         break
     }
 
-    if(x < 0 || x > 290 || y < 0 || x > 290) {
-      console.log('撞墙了')
-      this.isLive = false
+    this.checkEat(x, y)
 
-      this.reStart()
-      return
+
+    try {
+      this.snack.X = x
+      this.snack.Y = y
+    } catch(e) {
+      console.log(e)
+      this.isLive = false
+      alert('Game Over!')
     }
 
-    this.snack.X = x
-    this.snack.Y = y
-
     this.isLive && setTimeout(this.run.bind(this),  330 - this.scorePanel.level * 30)
+  }
+
+  checkEat (x: number, y: number) {
+    if (x === this.food.X && y === this.food.Y) {
+      this.snack.growUp()
+      this.scorePanel.addScore()
+      this.food.change()
+    }
   }
 
   reStart () {
@@ -84,9 +96,7 @@ class GameControl {
     this.snack.Y = 145
     this.isLive = true
     this.direction = 'down'
-    // this.run()
   }
-
 
 }
 
