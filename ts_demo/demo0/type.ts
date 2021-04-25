@@ -95,3 +95,33 @@ if (like === Fruits.banna) {
 } else {
   console.log('喜欢苹果或橘子')
 }
+
+
+// 接口interface
+interface one {
+  age: number,
+  firstName: string
+}
+
+interface two {
+  name: string,
+  say: () => void
+  list: string[]
+}
+
+// 接口继承 继承多个
+interface three extends two, one {
+  hello: string
+}
+
+let a:three = {
+  hello: '14',
+  name: 'KF',
+  say: function fle(hi: string = 'hi'): void {
+    console.log(hi)
+  },
+  list: ['fag', 'sfa', 'asga'],
+  age: 12,
+  firstName: '12415'
+}
+
