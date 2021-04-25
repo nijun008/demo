@@ -41,6 +41,25 @@
       console.log(Function instanceof Object, '???')
       console.log(Function.__proto__ === Function.prototype)
       console.log(Object.__proto__=== Function.prototype)
+      console.log(new Object())
+
+
+
+      function Fn2 (name) {
+        this.name = name
+      }
+      Fn2.prototype.n = 1
+      let a = new Fn2() // a.__proto__为初始的Fn2 proptotype
+      // 重写Fn2原型，与原有原型断开
+      Fn2.prototype = {
+        n: 2,
+        m: 3
+      }
+      // b.__proto__ = { n:2, m: 3 }
+      let b = new Fn2()
+      // 重写类的原型不影响原有实例的__proto__
+      console.log('a :', a.n, a.m) // 1 undefined
+      console.log('b :', b.n, b.m) // 2, 3
     </script>
   </body>
 </html>
