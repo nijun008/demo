@@ -6,17 +6,19 @@
   </head>
   <body>
     <script>
+      /* JSON.parse JSON.stringify() 克隆对象会把对象中值为undefined, 函数 转换为null */
       let arr = [undefined, null, 123, '23', () => ({}), function () {console.log("??")} ,true, 'true', '']
 
       console.log(arr)
 
       let clone  = JSON.parse(JSON.stringify(arr))
-
       // undefined 函数 会转换为null
       console.log(clone)
+
+
+      console.log('----------------------')
       // 变量的名称存在栈里面
-      
-      // 函数
+      /* 函数 */
       function Fn () {
         
       }
@@ -33,7 +35,7 @@
       Fn.prototype.testEnd = function () {
         console.log(this)
       }
-      // 实例对象的__proto__就是类的prototype
+      // 实例对象的__proto__就是构造函数的prototype
       let f = new Fn()
       console.log(f.__proto__ === Fn.prototype)
 
@@ -41,6 +43,81 @@
       console.log(Function instanceof Object, '???')
       console.log(Function.__proto__ === Function.prototype)
       console.log(Object.__proto__=== Function.prototype)
+      console.log(Object.prototype.__proto__)
+      /*  */
+
+      console.log('----------------------')
+      /* 
+      函数是Function 和 Object的实例，构造函数的实例是[构造函数]和 Objecet 的实例，不是Function的实例 
+      */
+      function Fn2 () {}
+
+      Object.prototype.a = function () {
+        console.log('a ()')
+      }
+
+      Function.prototype.b = function () {
+        console.log('b ()')
+      }   
+
+      let f2 = new Fn2()
+      f2.a()
+      try {
+        Object.b()
+        f2.b()
+      } catch (e) {
+        console.log(e) // f2.b is not a function
+      }
+      console.log(f2 instanceof Function)
+      Fn2.a()
+      Fn2.b()
+      console.log('----------------------')
+      /* 函数调用栈 后进先出 */
+      function fn3 (i) {
+        if (i == 4) {
+          return
+        }
+        console.log('fn3 s'+ i)
+        fn3(i + 1)
+        console.log('fn3 e'+ i)
+      }
+      fn3(1)
+      console.log('----------------------')
+
+      /* 先变量提升，后函数提升 */
+      function c () {}
+      var c
+      console.log(typeof c)
+      console.log('----------------------')
+
+      /* 先变量提升，后函数提升 */
+      var d = 1
+      function d(d) {
+        console.log(c)
+      }
+
+      try {
+        d(2) // 报错，d is not a function 函数提升后d为函数，代码执行后d赋值为1
+      } catch (e) {
+        console.log(e)
+      }
+      console.log('----------------------')
+
+
+      /* 函数作用域 */
+      var myObj = {
+        fn5: function () {
+          try {
+            console.log(fn5)
+          } catch (e) {
+            console.log(e) // fn5 is not defined 函数作用域本身没有fn5，全局作用域也没有
+          }
+          console.log(this.fn5)
+        } 
+      }
+
+      myObj.fn5()
+      console.log('----------------------')
     </script>
   </body>
 </html>
