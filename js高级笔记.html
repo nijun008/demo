@@ -118,6 +118,53 @@
 
       myObj.fn5()
       console.log('----------------------')
+
+      /* 闭包 */
+      function fun (n, o) {
+        console.log(o)
+
+        return {
+          run: function (m) {
+            return fun (m, n)
+          }
+        }
+      }
+
+      var a = fun(0) // undefined
+      a.run(1) // 0
+      a.run(2) // 0
+      a.run(3) // 0
+
+      var b = fun(0).run(1).run(2).run(3) // undefined 0 1 2
+
+      var c= fun(0).run(1)  // undefined 0
+      c.run(2) // 1
+      c.run(3) // 1
+      console.log('----------------------')
+    </script>
+    <script>
+      /* 利用闭包构造模块 */
+      !(function (window) {
+        var myName = 'module_name'
+        function getName () {
+          return myName
+        }
+
+        function setName (name) {
+          myName = name
+        }
+        
+        window.myModule = {
+          getName: getName,
+          setName: setName
+        }
+      })(window)
+    </script> 
+    <script>
+      console.log(window.myModule.getName())
+      window.myModule.setName('test')
+      console.log(window.myModule.getName())
+      console.log('----------------------')
     </script>
   </body>
 </html>
