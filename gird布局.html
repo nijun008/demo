@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>grid</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .grid-wrapper {
+        display: grid;
+        /* 子项列宽 */
+        grid-template-columns: repeat(3, 100px);
+        /* 子项行高 */
+        grid-template-rows: 300px 300px 200px;
+        /* 自动填充数量 */
+        grid-template-columns: repeat(auto-fill, 600px);
+        /* 宽度比例 */
+        grid-template-columns: 100px 1fr 3fr;
+        /* 范围列宽 */
+        grid-template-columns: 2fr 2fr minmax(100px, 1fr);
+        /* 自动列宽 */
+        grid-template-columns: auto auto auto auto;
+        /* 两栏布局 */
+        grid-template-columns: 70% 30%;
+        /* 网格布局 */
+        grid-template-columns: repeat(3, 1fr);
+        /* 行间距 */
+        row-gap: 20px;
+        /* 列间距 */
+        column-gap: 30px;
+        /* 行列间距 */
+        gap: 60px 20px;
+        /* 区域划分  区域起止线 区域名-start 区域名-end */
+        grid-template-areas: 'a b c'
+                             'd e f' 
+                             'g h j';
+        /* 排列顺序  默认为 row 即从左到右，column为从上到下 */
+        grid-auto-flow: column;
+        /* 可以设置排满换行  row dense 表示先行后列  column dense 表示先列后行 ，尽量填满空白，顺序可能会打乱*/
+        grid-auto-flow: row dense;
+        /* 单元格内容对齐方式  默认为 stretch 填满*/
+        justify-items: center;
+        align-items: start;
+        /* 单元格内容对齐缩写 align justify  如果省略第二个值，则浏览器认为与第一个值相等 */
+        place-items: stretch;
+        /* 容器单元格对齐方式 与flex一致*/
+        justify-content: start;
+        align-content: start;
+        /* 容器单元格对齐方式缩写 align justify  如果省略第二个值，则浏览器认为与第一个值相等 */
+        place-content: start start;
+        /* 规定项目以外的单元格 列宽 行高 grid-template-columns grid-template-row 以外*/
+        grid-auto-columns: 50px;
+        grid-auto-rows: 30px;
+      }
+
+      /* ---------------华丽的分割线------------- */
+
+      /* 子项属性 */
+      /* 
+      指定项目网格线
+      grid-column-start 左边框垂直网格线
+      grid-column-end 右边框垂直网格线
+      grid-row-start 上边框水平网格线
+      grid-row-end  下边框水平网格线
+      */
+      .item1 {
+        /* grid-column-start: 2;
+        grid-column-end: 4; */
+        grid-row-start: a-start;
+        grid-row-end: 4;
+      }
+      .item2 {
+        /* span 3 表示span横跨3个网格 */
+        grid-row-start: span 3; 
+      }
+
+      /* 
+      grid-column-start grid-column-end 的简写
+      grid-row-start grid-row-end 的简写
+      */
+      .item3 {
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 2;
+      }
+      /* 
+      指定项目位于哪个区域 也可以作为grid-row-start、grid-column-start、grid-row-end、grid-column-end 的简写
+      如 grid-area: 1 / 1 / 3 / 3
+      */
+      .item4 {
+        grid-area: g;
+      }
+      /* 
+      justify-self 单元格内容的水平位置，与容器的justify-items一致
+      align-self 单元格内容的垂直位置，与容器的align-items一致
+      */
+      .item1 {
+        justify-self: end;
+      }
+      /* place-self 是 justify-self, align-self 的简写 */
+      .item5 {
+        /* 垂直 水平 */
+        place-self: center end;
+      }
+
+
+      .grid-item {
+        background-color: #ddd;
+        border: 2px solid #000;
+        font-size: 40px;
+        text-align: center;
+      }
+      .item {
+        margin: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid-wrapper">
+      <div class="grid-item item1">1</div>
+      <div class="grid-item item2">2</div>
+      <div class="grid-item item3">3</div>
+      <div class="grid-item item4">4</div>
+      <div class="grid-item item5">5</div>
+      <div class="grid-item item6">6</div>
+      <div class="grid-item item7">7</div>
+      <div class="grid-item item8">8</div>
+      <div class="grid-item item9">9</div>
+      <div class="grid-item item10">10</div>
+    </div>
+  </body>
+</html>
